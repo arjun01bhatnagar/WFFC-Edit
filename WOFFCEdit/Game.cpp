@@ -154,6 +154,17 @@ void Game::Update(DX::StepTimer const& timer)
 		m_camOrientation.y += m_camRotRate;
 	}
 
+	if (m_InputCommands.LMMouseButtonDown)
+	{
+
+
+	}
+
+	
+
+
+	//if(m_InputCommands.back)
+
 	//create look direction from Euler angles in m_camOrientation
 	m_camLookDirection.x = sin((m_camOrientation.y)*3.1415 / 180);
 	m_camLookDirection.z = cos((m_camOrientation.y)*3.1415 / 180);
