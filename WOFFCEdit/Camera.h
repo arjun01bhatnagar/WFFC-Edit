@@ -22,7 +22,7 @@ public:
 	
 	
 
-	InputCommands m_InputCommands;
+	//InputCommands m_InputCommands;
 
 	//RECT screenDim; 
 
@@ -41,6 +41,6 @@ public:
 
 	
 
-	void Update();
+	void Update(InputCommands* m_InputCommands);
 
 };

@@ -45,41 +45,53 @@ Camera::~Camera()
 
 }
 
-void Camera::Update()
+void Camera::Update(InputCommands* m_InputCommands)
 {
 	Vector3 planarMotionVector = m_camLookDirection;
 	planarMotionVector.y = 0.0;
 
-	if (m_InputCommands.rotRight)
+
+
+	if (m_InputCommands->rotRight)
 	{
 		m_camOrientation.y -= m_camRotRate;
 	}
-	if (m_InputCommands.rotLeft)
+	if (m_InputCommands->rotLeft)
 	{
 		m_camOrientation.y += m_camRotRate;
+	 }
+	if (m_InputCommands->mouse_RB_down)
+	{
+		//m_camOrientation.x +=
 	}
 
 	m_camLookDirection.x = sin((m_camOrientation.y) * 3.1415 / 180);
 	m_camLookDirection.z = cos((m_camOrientation.y) * 3.1415 / 180);
+	//m_camLookDirection.y = 
+
+
+	//m_camLookDirection.z = cos((m_camOrientation.y) * 3.1415 / 180) * sin((m_camOrientation.x) * 3.1415 / 180);
+	//m_camLookDirection.x = sin((m_camOrientation.y) * 3.1415 / 180) * sin((m_camOrientation.x) * 3.1415 / 180);
+	//m_camLookDirection.y = cos((m_camOrientation.x) * 3.1415 / 180);
 	m_camLookDirection.Normalize();
 
 	//create right vector from look Direction
 	m_camLookDirection.Cross(Vector3::UnitY, m_camRight);
 
 	//process input and update stuff
-	if (m_InputCommands.forward)
+	if (m_InputCommands->forward)
 	{
 		m_camPosition += m_camLookDirection * m_movespeed;
 	}
-	if (m_InputCommands.back)
+	if (m_InputCommands->back)
 	{
 		m_camPosition -= m_camLookDirection * m_movespeed;
 	}
-	if (m_InputCommands.right)
+	if (m_InputCommands->right)
 	{
 		m_camPosition += m_camRight * m_movespeed;
 	}
-	if (m_InputCommands.left)
+	if (m_InputCommands->left)
 	{
 		m_camPosition -= m_camRight * m_movespeed;
 	}
