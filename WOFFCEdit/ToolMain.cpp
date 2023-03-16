@@ -321,6 +321,17 @@ void ToolMain::UpdateInput(MSG * msg)
 		m_toolInputCommands.mouse_LB_Down = true;
 		break;
 
+	case WM_LBUTTONUP:
+		m_toolInputCommands.mouse_LB_Down = false;
+		break;
+
+	case WM_RBUTTONDOWN:
+		m_toolInputCommands.mouse_RB_down = true;
+		break;
+
+	case WM_RBUTTONUP:
+		m_toolInputCommands.mouse_RB_down = false;
+		break;
 	}
 	//here we update all the actual app functionality that we want.  This information will either be used int toolmain, or sent down to the renderer (Camera movement etc
 	//WASD movement

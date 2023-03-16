@@ -67,12 +67,7 @@ void Camera::Update(InputCommands* m_InputCommands)
 
 	m_camLookDirection.x = sin((m_camOrientation.y) * 3.1415 / 180);
 	m_camLookDirection.z = cos((m_camOrientation.y) * 3.1415 / 180);
-	//m_camLookDirection.y = 
-
-
-	//m_camLookDirection.z = cos((m_camOrientation.y) * 3.1415 / 180) * sin((m_camOrientation.x) * 3.1415 / 180);
-	//m_camLookDirection.x = sin((m_camOrientation.y) * 3.1415 / 180) * sin((m_camOrientation.x) * 3.1415 / 180);
-	//m_camLookDirection.y = cos((m_camOrientation.x) * 3.1415 / 180);
+	
 	m_camLookDirection.Normalize();
 
 	//create right vector from look Direction
