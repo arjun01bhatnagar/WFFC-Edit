@@ -199,7 +199,7 @@ void Game::Render()
 		XMMATRIX local = m_world * XMMatrixTransformation(g_XMZero, Quaternion::Identity, scale, g_XMZero, rotate, translate);
 
 		m_displayList[i].m_model->Draw(context, *m_states, local, m_camera.GetViewMatrix(), m_projection, false);	//last variable in draw,  make TRUE for wireframe
-
+        
 		m_deviceResources->PIXEndEvent();
 	}
     m_deviceResources->PIXEndEvent();

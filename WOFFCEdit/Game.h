@@ -81,7 +81,7 @@ private:
 	//camera
 
 	Camera m_camera;
-
+	//Camera M_Camera2;
 	//HWND window;
 
 	//control variables
