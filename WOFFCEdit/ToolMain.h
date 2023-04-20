@@ -26,10 +26,24 @@ public: //methods
 	void	Tick(MSG *msg);
 	void	UpdateInput(MSG *msg);
 
+	void UpdateDisplayList()
+	{
+		m_d3dRenderer.BuildDisplayList(&m_sceneGraph);
+	};
+
+	/*void StoreBackup();
+
+	void Undo();
+	void Redo();
+
+	void Instantiate();
+	void RemoveObject();
+	void DuplicateObject();*/
+
 public:	//variables
 	std::vector<SceneObject>    m_sceneGraph;	//our scenegraph storing all the objects in the current chunk
 	ChunkObject					m_chunk;		//our landscape chunk
-	int m_selectedObject;						//ID of current Selection
+	int m_selectedObject = -1;						//ID of current Selection
 	/*int mouseInitialX;
 	int mouseInitialY;
 	int mouseFinalX;
@@ -37,6 +51,19 @@ public:	//variables
 
 	std::vector<int>  PositionDiffX;
 	std::vector<int>  PositionDiffY;*/
+
+	DirectX::XMFLOAT2 GetBrushData();
+	/*void ToggleTerrainEdit()
+	{
+		m_d3dRenderer.m_TerrainEditModeActive = !m_d3dRenderer.m_TerrainEditModeActive;
+	};*/
+
+	void GetTerrainEditMode()
+	{
+
+	}
+
+
 
 
 private:	//methods

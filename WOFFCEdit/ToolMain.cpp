@@ -19,7 +19,7 @@ ToolMain::ToolMain()
 	m_toolInputCommands.left		= false;
 	m_toolInputCommands.right		= false;
 
-	m_
+	//m_
 	
 }
 
