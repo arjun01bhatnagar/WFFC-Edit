@@ -62,30 +62,31 @@ void Camera::Update(InputCommands* m_InputCommands)
 	 }
 	if (m_InputCommands->mouse_RB_down)
 	{
-		if (m_InputCommands->mouse_X > m_InputCommands->mouse_X_prev)
+		if (m_InputCommands->mouse_X < m_InputCommands->mouse_X_prev)
 		{
 			m_camOrientation.y += m_camRotRate;	
 		}
 
-		else if (m_InputCommands->mouse_X < m_InputCommands->mouse_X_prev)
+		else if (m_InputCommands->mouse_X > m_InputCommands->mouse_X_prev)
 		{
 			m_camOrientation.y -= m_camRotRate;
 		}
 
-		else if (m_InputCommands->mouse_Y>m_InputCommands->mouse_Y_prev)
+		else if (m_InputCommands->mouse_Y < m_InputCommands->mouse_Y_prev)
 		{
 			m_camOrientation.x += m_camRotRate;
 		}
 
-		else if (m_InputCommands->mouse_Y<m_InputCommands->mouse_Y_prev)
+		else if (m_InputCommands->mouse_Y > m_InputCommands->mouse_Y_prev)
 		{
 			m_camOrientation.x -= m_camRotRate;
 		}
 	}
 
-	m_camLookDirection.x = sin((m_camOrientation.y) * 3.1415 / 180);
-	m_camLookDirection.z = cos((m_camOrientation.y) * 3.1415 / 180);
-	
+	m_camLookDirection.x = cos(m_camOrientation.y * 3.1415 / 180) * cos(m_camOrientation.x * 3.1415 / 180); //sin((m_camOrientation.y) * 3.1415 / 180);
+	m_camLookDirection.y = sin(m_camOrientation.x * 3.1415 / 180);//cos((m_camOrientation.y) * 3.1415 / 180);
+	m_camLookDirection.z = sin(m_camOrientation.y * 3.1415 / 180) * cos(m_camOrientation.x * 3.1415 / 180);
+
 	m_camLookDirection.Normalize();
 
 	//create right vector from look Direction
