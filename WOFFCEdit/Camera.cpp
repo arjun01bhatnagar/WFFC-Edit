@@ -62,7 +62,25 @@ void Camera::Update(InputCommands* m_InputCommands)
 	 }
 	if (m_InputCommands->mouse_RB_down)
 	{
-		//m_camOrientation.x +=
+		if (m_InputCommands->mouse_X > m_InputCommands->mouse_X_prev)
+		{
+			m_camOrientation.y += m_camRotRate;	
+		}
+
+		else if (m_InputCommands->mouse_X < m_InputCommands->mouse_X_prev)
+		{
+			m_camOrientation.y -= m_camRotRate;
+		}
+
+		else if (m_InputCommands->mouse_Y>m_InputCommands->mouse_Y_prev)
+		{
+			m_camOrientation.x += m_camRotRate;
+		}
+
+		else if (m_InputCommands->mouse_Y<m_InputCommands->mouse_Y_prev)
+		{
+			m_camOrientation.x -= m_camRotRate;
+		}
 	}
 
 	m_camLookDirection.x = sin((m_camOrientation.y) * 3.1415 / 180);

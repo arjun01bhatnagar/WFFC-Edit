@@ -20,6 +20,12 @@ ToolMain::ToolMain()
 	m_toolInputCommands.right		= false;
 
 	//m_
+	for (int i = 0; i < 5; i++)
+	{
+		PositionDiffX.push_back(0);
+		PositionDiffY.push_back(0);
+	}
+
 	
 }
 
@@ -316,6 +322,12 @@ void ToolMain::UpdateInput(MSG * msg)
 	case WM_MOUSEMOVE:
 		m_toolInputCommands.mouse_X = GET_X_LPARAM(msg->lParam);
 		m_toolInputCommands.mouse_Y = GET_Y_LPARAM(msg->lParam);
+
+		PositionDiffX.push_back(m_toolInputCommands.mouse_X);
+		PositionDiffY.push_back(m_toolInputCommands.mouse_Y);
+
+		m_toolInputCommands.mouse_X_prev = PositionDiffX[PositionDiffX.size() - 2];//[m_toolInputCommands.mouse_X - 2];
+		m_toolInputCommands.mouse_Y_prev = PositionDiffY[PositionDiffY.size() - 2];//[m_toolInputCommands.mouse_Y - 2];
 		break;
 
 	case WM_LBUTTONDOWN:	//mouse button down,  you will probably need to check when its up too

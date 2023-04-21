@@ -44,13 +44,10 @@ public:	//variables
 	std::vector<SceneObject>    m_sceneGraph;	//our scenegraph storing all the objects in the current chunk
 	ChunkObject					m_chunk;		//our landscape chunk
 	int m_selectedObject = -1;						//ID of current Selection
-	/*int mouseInitialX;
-	int mouseInitialY;
-	int mouseFinalX;
-	int mouseFinalY;
+	
 
 	std::vector<int>  PositionDiffX;
-	std::vector<int>  PositionDiffY;*/
+	std::vector<int>  PositionDiffY;
 
 	DirectX::XMFLOAT2 GetBrushData();
 	/*void ToggleTerrainEdit()
