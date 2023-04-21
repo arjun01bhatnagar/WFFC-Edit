@@ -1,3 +1,7 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Win32SimpleSample.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   Camera.cpp
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.cpp : fatal  error C1041: cannot open program database 'E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Debug\vc143.pdb'; if multiple CL.EXE write to the same .PDB file, please use /FS
+E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.cpp(9,20): warning C4305: '=': truncation from 'double' to 'float'
+E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.cpp(86,64): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.cpp(87,28): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.cpp(88,64): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Win32SimpleSample.vcxproj -> E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Debug\WoFEdit.exe
