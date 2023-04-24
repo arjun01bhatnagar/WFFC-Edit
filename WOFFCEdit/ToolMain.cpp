@@ -324,12 +324,12 @@ void ToolMain::Tick(MSG *msg)
 		m_toolInputCommands.isDragging = false;
 	}
 
-	if (PositionDiffX.back() > m_width)
+	if (PositionDiffX.back() > m_width || PositionDiffX.back() < 0)
 	{
 		m_toolInputCommands.isDragging = false;
 	}
 
-	if (PositionDiffY.back() > m_height)
+	if (PositionDiffY.back() > m_height || PositionDiffY.back() < 0)
 	{
 		m_toolInputCommands.isDragging = false;
 	}

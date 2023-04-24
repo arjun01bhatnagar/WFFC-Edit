@@ -1,6 +1,4 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Win32SimpleSample.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Camera.cpp
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.cpp : fatal  error C1041: cannot open program database 'E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Debug\vc143.idb'; if multiple CL.EXE write to the same .PDB file, please use /FS
   ToolMain.cpp
   _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
 E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(102,46): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
@@ -31,4 +29,4 @@ E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(152,56): warning C4244: '=': co
 E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(153,54): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(154,57): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(341,39): warning C4353: nonstandard extension used: constant 0 as function expression.  Use '__noop' function intrinsic instead
-  Generating Code...
+  Win32SimpleSample.vcxproj -> E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Debug\WoFEdit.exe
