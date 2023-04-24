@@ -117,3 +117,14 @@ void Camera::Update(InputCommands* m_InputCommands)
 }
 
 
+void Camera::FocusCam(XMFLOAT3 position, XMFLOAT3 scale)
+{
+	m_camOrientation = Vector3(225, 180, 0);
+
+	m_camPosition = position - (XMFLOAT3(0, -5, 5) * scale);
+
+	//Update(InputCommands * m_InputCommands);
+
+	
+}
+

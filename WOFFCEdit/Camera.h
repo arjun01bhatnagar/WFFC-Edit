@@ -22,9 +22,7 @@ public:
 	
 	
 
-	//InputCommands m_InputCommands;
-
-	//RECT screenDim; 
+	
 
 	DirectX::SimpleMath::Vector3 GetOrientation()
 	{
@@ -43,4 +41,5 @@ public:
 
 	void Update(InputCommands* m_InputCommands);
 
+	void FocusCam(DirectX::XMFLOAT3 position, DirectX::XMFLOAT3 scale);
 };
