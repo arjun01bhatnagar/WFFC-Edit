@@ -26,6 +26,9 @@ ToolMain::ToolMain()
 		PositionDiffY.push_back(0);
 	}
 
+
+	m_toolInputCommands.isDragging = true;
+
 	
 }
 
@@ -297,12 +300,49 @@ void ToolMain::Tick(MSG *msg)
 
 	//Renderer Update Call
 
+
+
+
+
+	/*if (m_toolInputCommands.mouse_X == m_toolInputCommands.mouse_X_prev)
+	{
+		m_toolInputCommands.isDragging = false;
+	}
+
+	else if (m_toolInputCommands.mouse_Y == m_toolInputCommands.mouse_Y_prev)
+	{
+		m_toolInputCommands.isDragging = false;
+	}*/
+
+	/*if (PositionDiffX.back() == PositionDiffX[PositionDiffX.size() - 2])
+	{
+		m_toolInputCommands.isDragging = false;
+	}*/
+
+	if (PositionDiffY.back() == PositionDiffY[PositionDiffY.size() - 2])
+	{
+		m_toolInputCommands.isDragging = false;
+	}
+
+	if (PositionDiffX.back() > m_width)
+	{
+		m_toolInputCommands.isDragging = false;
+	}
+
+	if (PositionDiffY.back() > m_height)
+	{
+		m_toolInputCommands.isDragging = false;
+	}
+
+
 	if (m_toolInputCommands.mouse_LB_Down)
 	{
 		m_selectedObject = m_d3dRenderer.MousePicking();
 		m_toolInputCommands.mouse_LB_Down = false();
 	}
 	m_d3dRenderer.Tick(&m_toolInputCommands);
+
+	
 }
 
 void ToolMain::UpdateInput(MSG * msg)
@@ -320,6 +360,7 @@ void ToolMain::UpdateInput(MSG * msg)
 		break;
 
 	case WM_MOUSEMOVE:
+		m_toolInputCommands.isDragging = true;
 		m_toolInputCommands.mouse_X = GET_X_LPARAM(msg->lParam);
 		m_toolInputCommands.mouse_Y = GET_Y_LPARAM(msg->lParam);
 

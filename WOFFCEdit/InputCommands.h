@@ -25,6 +25,8 @@ struct InputCommands
 	bool mouse_RB_down;
 
 	bool FocusCam;
+
+	bool isDragging;
 };
 
 	
