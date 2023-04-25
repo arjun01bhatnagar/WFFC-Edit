@@ -28,5 +28,5 @@ E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(151,59): warning C4244: '=': co
 E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(152,56): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(153,54): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(154,57): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(341,39): warning C4353: nonstandard extension used: constant 0 as function expression.  Use '__noop' function intrinsic instead
+E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(340,39): warning C4353: nonstandard extension used: constant 0 as function expression.  Use '__noop' function intrinsic instead
   Win32SimpleSample.vcxproj -> E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Debug\WoFEdit.exe

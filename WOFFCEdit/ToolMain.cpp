@@ -27,7 +27,7 @@ ToolMain::ToolMain()
 	}
 
 
-	m_toolInputCommands.isDragging = true;
+	m_toolInputCommands.isDragging = false;
 
 	
 }
@@ -333,7 +333,6 @@ void ToolMain::Tick(MSG *msg)
 	{
 		m_toolInputCommands.isDragging = false;
 	}
-
 
 	if (m_toolInputCommands.mouse_LB_Down)
 	{

@@ -120,6 +120,8 @@ void Game::Update(DX::StepTimer const& timer)
 
     m_camera.Update(&m_InputCommands);
 
+   // m_camera.FocusCam();
+
     m_batchEffect->SetView(m_camera.GetViewMatrix());
     m_batchEffect->SetWorld(Matrix::Identity);
 	m_displayChunk.m_terrainEffect->SetView(m_camera.GetViewMatrix());

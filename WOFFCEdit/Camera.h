@@ -41,5 +41,5 @@ public:
 
 	void Update(InputCommands* m_InputCommands);
 
-	void FocusCam(DirectX::XMFLOAT3 position, DirectX::XMFLOAT3 scale);
+	//void FocusCam(DirectX::XMFLOAT3 position, DirectX::XMFLOAT3 scale, InputCommands* m_InputCommands);
 };

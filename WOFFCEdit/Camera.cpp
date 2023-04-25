@@ -61,15 +61,25 @@ void Camera::Update(InputCommands* m_InputCommands)
 		m_camOrientation.y += m_camRotRate;
 	 }
 
+
+	if (m_InputCommands->mouse_RB_down)
+	{
+
+
+	}
 	/*if (m_InputCommands->isDragging == true)
 	{*/
 
-	
+	if (!m_InputCommands->mouse_RB_down)
+	{
+		m_InputCommands->isDragging = false;
+	}
 		if (m_InputCommands->mouse_RB_down && m_InputCommands->isDragging)
 		{
 			if (m_InputCommands->mouse_X < m_InputCommands->mouse_X_prev)
 			{
 				m_camOrientation.y += m_camRotRate;
+
 			}
 
 			else if (m_InputCommands->mouse_X > m_InputCommands->mouse_X_prev)
@@ -123,14 +133,14 @@ void Camera::Update(InputCommands* m_InputCommands)
 }
 
 
-void Camera::FocusCam(XMFLOAT3 position, XMFLOAT3 scale)
-{
-	m_camOrientation = Vector3(225, 180, 0);
-
-	m_camPosition = position - (XMFLOAT3(0, -5, 5) * scale);
-
-	//Update(InputCommands * m_InputCommands);
-
-	
-}
+//void Camera::FocusCam(XMFLOAT3 position, XMFLOAT3 scale, InputCommands* m_InputCommands)
+//{
+//	m_camOrientation = Vector3(225, 180, 0);
+//
+//	m_camPosition = position - (XMFLOAT3(0, -5, 5) * scale);
+//
+//	Update(m_InputCommands);
+//
+//	
+//}
 
