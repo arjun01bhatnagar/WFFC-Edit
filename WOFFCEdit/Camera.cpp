@@ -59,19 +59,21 @@ void Camera::Update(InputCommands* m_InputCommands)
 	if (m_InputCommands->rotLeft)
 	{
 		m_camOrientation.y += m_camRotRate;
-	 }
-
-
-	if (m_InputCommands->mouse_RB_down)
-	{
-
-
 	}
+
+
+	/*if (m_InputCommands->mouse_RB_down)
+	{
+	}*/
+
+
+	//}
 	/*if (m_InputCommands->isDragging == true)
 	{*/
 
 	if (!m_InputCommands->mouse_RB_down)
 	{
+
 		m_InputCommands->isDragging = false;
 	}
 		if (m_InputCommands->mouse_RB_down && m_InputCommands->isDragging)
@@ -97,7 +99,7 @@ void Camera::Update(InputCommands* m_InputCommands)
 				m_camOrientation.x -= m_camRotRate;
 			}
 		}
-	//}
+	
 
 	m_camLookDirection.x = cos(m_camOrientation.y * 3.1415 / 180) * cos(m_camOrientation.x * 3.1415 / 180); //sin((m_camOrientation.y) * 3.1415 / 180);
 	m_camLookDirection.y = sin(m_camOrientation.x * 3.1415 / 180);//cos((m_camOrientation.y) * 3.1415 / 180);

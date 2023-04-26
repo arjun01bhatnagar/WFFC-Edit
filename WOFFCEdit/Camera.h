@@ -22,7 +22,7 @@ public:
 	
 	
 
-	
+	InputCommands* m_InputCommands;
 
 	DirectX::SimpleMath::Vector3 GetOrientation()
 	{
