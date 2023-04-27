@@ -165,6 +165,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ArcBall.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ChunkObject.cpp" />
     <ClCompile Include="DeviceResources.cpp" />
@@ -182,6 +183,7 @@
     <ClCompile Include="ToolMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ArcBall.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ChunkObject.h" />
     <ClInclude Include="DeviceResources.h" />

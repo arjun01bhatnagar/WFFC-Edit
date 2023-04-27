@@ -423,5 +423,11 @@ void ToolMain::UpdateInput(MSG * msg)
 	}
 	else m_toolInputCommands.rotLeft = false;
 
+	if (m_keyArray['F'])
+	{
+		m_toolInputCommands.FButton = true;
+	}
+	else m_toolInputCommands.FButton = false;
+
 	//WASD
 }

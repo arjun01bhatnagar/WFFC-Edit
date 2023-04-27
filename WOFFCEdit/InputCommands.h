@@ -15,17 +15,18 @@ struct InputCommands
 
 	bool mouseButtonUp;
 
-	int mouse_X;
-	int mouse_Y;
+	float mouse_X;
+	float mouse_Y;
 
-	int mouse_X_prev;
-	int mouse_Y_prev;
+	float mouse_X_prev;
+	float mouse_Y_prev;
 
 	bool mouse_LB_Down;
 	bool mouse_RB_down;
 
 	bool FocusCam;
 
+	bool FButton;
 	bool isDragging;
 };
 

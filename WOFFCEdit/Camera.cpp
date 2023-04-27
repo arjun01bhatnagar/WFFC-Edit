@@ -7,7 +7,7 @@ Camera::Camera()
 
 	//functional
 	m_movespeed = 0.30;
-	m_camRotRate = 3.0;
+	m_camRotRate = 200.0;
 
 	//camera
 	m_camPosition.x = 0.0f;
@@ -71,33 +71,61 @@ void Camera::Update(InputCommands* m_InputCommands)
 	/*if (m_InputCommands->isDragging == true)
 	{*/
 
-	if (!m_InputCommands->mouse_RB_down)
+	/*if (!m_InputCommands->mouse_RB_down)
 	{
 
 		m_InputCommands->isDragging = false;
-	}
-		if (m_InputCommands->mouse_RB_down && m_InputCommands->isDragging)
+	}*/
+		if (m_InputCommands->FButton)// && m_InputCommands->isDragging)
 		{
-			if (m_InputCommands->mouse_X < m_InputCommands->mouse_X_prev)
-			{
-				m_camOrientation.y += m_camRotRate;
+			float x = m_InputCommands->mouse_X_prev - m_InputCommands->mouse_X;
+			float y = m_InputCommands->mouse_Y - m_InputCommands->mouse_Y_prev;
 
+			float dx = x / 890;
+			float dy = y / 550;
+
+			if (x > 0)
+			{
+				m_camOrientation.y -= m_camRotRate*dx ;
+			}
+			else if(x < 0)
+			{
+				m_camOrientation.y += m_camRotRate*dx*(-1);
 			}
 
-			else if (m_InputCommands->mouse_X > m_InputCommands->mouse_X_prev)
+			/*if (y )
 			{
-				m_camOrientation.y -= m_camRotRate;
-			}
 
-			else if (m_InputCommands->mouse_Y < m_InputCommands->mouse_Y_prev)
-			{
-				m_camOrientation.x += m_camRotRate;
-			}
+			}*/
 
-			else if (m_InputCommands->mouse_Y > m_InputCommands->mouse_Y_prev)
-			{
-				m_camOrientation.x -= m_camRotRate;
-			}
+			/*float x = m_InputCommands->mouse_X_prev - m_InputCommands->mouse_X;
+			float y = m_InputCommands->mouse_X - m_InputCommands->mouse_Y_prev;
+		    float dx = x / 890;
+			float dy = y / 550;*/
+			
+
+			//if (x > 0) //(m_InputCommands->mouse_X > m_InputCommands->mouse_X_prev)
+			//{
+			//	m_camOrientation.y += m_camRotRate*dx;//*dx maybe something math thing 
+
+			//}
+
+			//else if (x<0)
+			//{
+			//	m_camOrientation.y -= m_camRotRate*dx;
+			//}
+
+		 //   if (y<0)
+			//{
+			//	m_camOrientation.x -= m_camRotRate*dy;
+			//}
+
+			//else if (y>0)
+			//{
+			//	m_camOrientation.x += m_camRotRate*dy;
+			//}
+
+
 		}
 	
 
