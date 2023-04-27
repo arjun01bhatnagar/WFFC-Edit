@@ -26,7 +26,7 @@ struct InputCommands
 
 	bool FocusCam;
 
-	bool FButton;
+	bool RButton;
 	bool isDragging;
 };
 

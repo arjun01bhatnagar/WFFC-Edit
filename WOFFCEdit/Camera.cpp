@@ -7,7 +7,7 @@ Camera::Camera()
 
 	//functional
 	m_movespeed = 0.30;
-	m_camRotRate = 200.0;
+	m_camRotRate = 150.0;
 
 	//camera
 	m_camPosition.x = 0.0f;
@@ -52,32 +52,22 @@ void Camera::Update(InputCommands* m_InputCommands)
 
 
 
-	if (m_InputCommands->rotRight)
+	/*if (m_InputCommands->rotRight)
 	{
 		m_camOrientation.y -= m_camRotRate;
 	}
 	if (m_InputCommands->rotLeft)
 	{
 		m_camOrientation.y += m_camRotRate;
-	}
-
-
-	/*if (m_InputCommands->mouse_RB_down)
-	{
 	}*/
 
 
-	//}
-	/*if (m_InputCommands->isDragging == true)
-	{*/
-
-	/*if (!m_InputCommands->mouse_RB_down)
+	
+	if (m_InputCommands->RButton)//&& m_InputCommands->isDragging)
 	{
-
-		m_InputCommands->isDragging = false;
-	}*/
-		if (m_InputCommands->FButton)// && m_InputCommands->isDragging)
+		if (m_InputCommands->isDragging)
 		{
+
 			float x = m_InputCommands->mouse_X_prev - m_InputCommands->mouse_X;
 			float y = m_InputCommands->mouse_Y - m_InputCommands->mouse_Y_prev;
 
@@ -86,47 +76,49 @@ void Camera::Update(InputCommands* m_InputCommands)
 
 			if (x > 0)
 			{
-				m_camOrientation.y -= m_camRotRate*dx ;
+				m_camOrientation.y -= m_camRotRate * dx;
 			}
-			else if(x < 0)
+			else if (x < 0)
 			{
-				m_camOrientation.y += m_camRotRate*dx*(-1);
+				m_camOrientation.y += m_camRotRate * dx * (-1);
 			}
 
-			/*if (y )
+			if (y > 0)
+			{
+				m_camOrientation.x += m_camRotRate * dy;
+			}
+
+			else if (y < 0)
 			{
 
+				m_camOrientation.x -= m_camRotRate * dy * (-1);
+
+			}
+
+			if (m_camOrientation.x >= 90.f)
+			{
+				m_camOrientation.x = 90.f;
+			}
+
+			else if (m_camOrientation.x <= -90.f)
+			{
+				m_camOrientation.x = -90.f;
+			}
+
+			/*if (m_camOrientation.y < -85.f)
+			{
+				m_camOrientation.y = -85.f;
+			}
+
+			if (m_camOrientation.y > 85.f)
+			{
+				m_camOrientation.y = 85.f;
 			}*/
 
-			/*float x = m_InputCommands->mouse_X_prev - m_InputCommands->mouse_X;
-			float y = m_InputCommands->mouse_X - m_InputCommands->mouse_Y_prev;
-		    float dx = x / 890;
-			float dy = y / 550;*/
-			
-
-			//if (x > 0) //(m_InputCommands->mouse_X > m_InputCommands->mouse_X_prev)
-			//{
-			//	m_camOrientation.y += m_camRotRate*dx;//*dx maybe something math thing 
-
-			//}
-
-			//else if (x<0)
-			//{
-			//	m_camOrientation.y -= m_camRotRate*dx;
-			//}
-
-		 //   if (y<0)
-			//{
-			//	m_camOrientation.x -= m_camRotRate*dy;
-			//}
-
-			//else if (y>0)
-			//{
-			//	m_camOrientation.x += m_camRotRate*dy;
-			//}
 
 
 		}
+	}
 	
 
 	m_camLookDirection.x = cos(m_camOrientation.y * 3.1415 / 180) * cos(m_camOrientation.x * 3.1415 / 180); //sin((m_camOrientation.y) * 3.1415 / 180);

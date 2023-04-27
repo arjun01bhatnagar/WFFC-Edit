@@ -25,8 +25,9 @@ Game::Game()
 	//modes
 	m_grid = false;
 
-	
+    selectedID = -1;
 
+    wireframe = false;
 }
 
 Game::~Game()
@@ -202,18 +203,28 @@ void Game::Render()
 
 		XMMATRIX local = m_world * XMMatrixTransformation(g_XMZero, Quaternion::Identity, scale, g_XMZero, rotate, translate);
 
-		m_displayList[i].m_model->Draw(context, *m_states, local, m_camera.GetViewMatrix(), m_projection, false);	//last variable in draw,  make TRUE for wireframe
-        
+        if (i == selectedID)
+        {
+            m_displayList[i].m_model->Draw(context, *m_states, local, m_camera.GetViewMatrix(), m_projection, true);
+        }
+        else 
+        {
+            m_displayList[i].m_model->Draw(context, *m_states, local, m_camera.GetViewMatrix(), m_projection, false);	//last variable in draw,  make TRUE for wireframe
+        }
 		m_deviceResources->PIXEndEvent();
 	}
     m_deviceResources->PIXEndEvent();
+
+
 
 	//RENDER TERRAIN
 	context->OMSetBlendState(m_states->Opaque(), nullptr, 0xFFFFFFFF);
 	context->OMSetDepthStencilState(m_states->DepthDefault(),0);
 	context->RSSetState(m_states->CullNone());
-//	context->RSSetState(m_states->Wireframe());		//uncomment for wireframe
-
+    if (wireframe == true)
+    {
+        context->RSSetState(m_states->Wireframe());		//uncomment for wireframe
+    }
 	//Render the batch,  This is handled in the Display chunk becuase it has the potential to get complex
 	m_displayChunk.RenderBatch(m_deviceResources);
 
@@ -319,7 +330,7 @@ void Game::OnResuming()
 
 int Game::MousePicking()
 {
-    int selectedID = -1;
+    //int selectedID = -1;
     float pickedDistance = 0;
 
 

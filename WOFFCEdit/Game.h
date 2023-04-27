@@ -42,11 +42,13 @@ public:
 	//Picking
 
 	int MousePicking();
-
+	int selectedID;
 	//Dimensions
 
 	RECT m_ScreenDimensions;
 
+
+	bool wireframe;
 	// Messages
 	void OnActivated();
 	void OnDeactivated();

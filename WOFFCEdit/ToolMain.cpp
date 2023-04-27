@@ -194,6 +194,7 @@ void ToolMain::onActionLoad()
 
 }
 
+
 void ToolMain::onActionSave()
 {
 	//SQL
@@ -288,38 +289,25 @@ void ToolMain::onActionSaveTerrain()
 	m_d3dRenderer.SaveDisplayChunk(&m_chunk);
 }
 
-void ToolMain::Tick(MSG *msg)
+
+
+void ToolMain::onActionWireframe()
 {
-	//do we have a selection
-	//do we have a mode
-	//are we clicking / dragging /releasing
-	//has something changed
-		//update Scenegraph
-		//add to scenegraph
-		//resend scenegraph to Direct X renderer
-
-	//Renderer Update Call
-
-
-
-
-
-	/*if (m_toolInputCommands.mouse_X == m_toolInputCommands.mouse_X_prev)
+	if (m_d3dRenderer.wireframe == false)
 	{
-		m_toolInputCommands.isDragging = false;
+		m_d3dRenderer.wireframe = true;
 	}
 
-	else if (m_toolInputCommands.mouse_Y == m_toolInputCommands.mouse_Y_prev)
+	else
 	{
-		m_toolInputCommands.isDragging = false;
-	}*/
+		m_d3dRenderer.wireframe = false;
+	}
+}
+void ToolMain::Tick(MSG *msg)
+{
 
-	/*if (PositionDiffX.back() == PositionDiffX[PositionDiffX.size() - 2])
-	{
-		m_toolInputCommands.isDragging = false;
-	}*/
 
-	if (PositionDiffY.back() == PositionDiffY[PositionDiffY.size() - 2])
+	if (PositionDiffY.back() == PositionDiffY[PositionDiffY.size() - 5])
 	{
 		m_toolInputCommands.isDragging = false;
 	}
@@ -368,6 +356,15 @@ void ToolMain::UpdateInput(MSG * msg)
 
 		m_toolInputCommands.mouse_X_prev = PositionDiffX[PositionDiffX.size() - 2];//[m_toolInputCommands.mouse_X - 2];
 		m_toolInputCommands.mouse_Y_prev = PositionDiffY[PositionDiffY.size() - 2];//[m_toolInputCommands.mouse_Y - 2];
+
+
+		if (m_toolInputCommands.mouse_X >= WindowRECT.right ||
+			m_toolInputCommands.mouse_X <= WindowRECT.left ||
+			m_toolInputCommands.mouse_Y <= WindowRECT.top ||
+			m_toolInputCommands.mouse_Y >= WindowRECT.bottom)
+		{
+			m_toolInputCommands.RButton = false;
+		}
 		break;
 
 	case WM_LBUTTONDOWN:	//mouse button down,  you will probably need to check when its up too
@@ -423,11 +420,11 @@ void ToolMain::UpdateInput(MSG * msg)
 	}
 	else m_toolInputCommands.rotLeft = false;
 
-	if (m_keyArray['F'])
+	if (m_keyArray['R'])
 	{
-		m_toolInputCommands.FButton = true;
+		m_toolInputCommands.RButton = true;
 	}
-	else m_toolInputCommands.FButton = false;
+	else m_toolInputCommands.RButton = false;
 
 	//WASD
 }
