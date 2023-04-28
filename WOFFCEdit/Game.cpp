@@ -204,7 +204,10 @@ void Game::Render()
 		XMMATRIX local = m_world * XMMatrixTransformation(g_XMZero, Quaternion::Identity, scale, g_XMZero, rotate, translate);
 
         if (i == selectedID)
+
         {
+            
+            
             m_displayList[i].m_model->Draw(context, *m_states, local, m_camera.GetViewMatrix(), m_projection, true);
         }
         else 
@@ -462,6 +465,11 @@ void Game::BuildDisplayList(std::vector<SceneObject> * SceneGraph)
 		newDisplayObject.m_light_quadratic	= SceneGraph->at(i).light_quadratic;
 		
 		m_displayList.push_back(newDisplayObject);
+
+
+        /*if ()
+        {
+        }*/
 		
 	}
 		

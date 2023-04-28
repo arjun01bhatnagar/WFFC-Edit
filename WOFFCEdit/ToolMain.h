@@ -26,6 +26,12 @@ public: //methods
 	void	Tick(MSG *msg);
 	void	UpdateInput(MSG *msg);
 
+	//CopyPaste
+	int IndexID(unsigned int objectID);
+	void onActionPaste(std::vector<SceneObject> m_CopiedObjects);
+	void RebuildDisplaylist();
+
+
 	void UpdateDisplayList()
 	{
 		m_d3dRenderer.BuildDisplayList(&m_sceneGraph);

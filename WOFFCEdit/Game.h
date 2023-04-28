@@ -45,6 +45,8 @@ public:
 	int selectedID;
 	//Dimensions
 
+	std::vector<unsigned int> m_SelectedObjectIDs;
+
 	RECT m_ScreenDimensions;
 
 
