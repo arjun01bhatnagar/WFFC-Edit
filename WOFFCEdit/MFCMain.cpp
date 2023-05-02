@@ -39,7 +39,7 @@ BOOL MFCMain::InitInstance()
 	m_height	= WindowRECT.Height();
 
 	m_ToolSystem.onActionInitialise(m_toolHandle, m_width, m_height);
-	cam.SetCameraScreenSize(m_width, m_height);
+	//cam.SetCameraScreenSize(m_width, m_height);
 
 	return TRUE;
 }

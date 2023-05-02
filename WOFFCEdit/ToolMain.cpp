@@ -443,8 +443,8 @@ void ToolMain::UpdateInput(MSG * msg)
 	}
 	else m_toolInputCommands.RButton = false;
 
-<<<<<<< HEAD
-	if (m_keyArray[VK_CONTROL] && m_keyArray['C'])
+
+	/*if (m_keyArray[VK_CONTROL] && m_keyArray['C'])
 	{
 		if (m_toolInputCommands.CopyDown == false) 
 		{
@@ -464,9 +464,8 @@ void ToolMain::UpdateInput(MSG * msg)
 		}
 
 		m_toolInputCommands.PasteDown = true;
-	}
+	}*/
 
-=======
->>>>>>> parent of e2d0139 (Tried copy paste and arcball)
+
 	//WASD
 }

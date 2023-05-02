@@ -3,8 +3,8 @@
 #include "InputCommands.h"
 #include <SimpleMath.h>
 
-#define width;
-#define height;
+//#define width;
+//#define height;
 
 class Camera
 {
@@ -38,7 +38,7 @@ public:
 	Camera();
 	~Camera();
 
-	void SetCameraScreenSize(int &w, int &h);
+	//void SetCameraScreenSize(int &w, int &h);
 
 
 	void Update(InputCommands* m_InputCommands);

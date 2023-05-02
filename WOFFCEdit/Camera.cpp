@@ -45,11 +45,11 @@ Camera::~Camera()
 
 }
 
-void Camera::SetCameraScreenSize(int& w, int& h)
-{
-	width = w;
-	height = h;
-}
+//void Camera::SetCameraScreenSize(int& w, int& h)
+//{
+//	width = w;
+//	height = h;
+//}
 
 void Camera::Update(InputCommands* m_InputCommands)
 {

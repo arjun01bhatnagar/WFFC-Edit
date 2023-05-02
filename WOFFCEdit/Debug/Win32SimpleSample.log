@@ -1,125 +1,8 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Win32SimpleSample.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-<<<<<<< HEAD
-  Camera.cpp
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.h(6,1): error C2008: ';': unexpected in macro definition
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.h(7,1): error C2008: ';': unexpected in macro definition
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.cpp(9,20): warning C4305: '=': truncation from 'double' to 'float'
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.cpp(50,8): error C2059: syntax error: '='
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.cpp(51,9): error C2059: syntax error: '='
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.cpp(131,64): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.cpp(132,28): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.cpp(133,64): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  CopyPaste.cpp
-  _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.h(6,1): error C2008: ';': unexpected in macro definition
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.h(7,1): error C2008: ';': unexpected in macro definition
-  DisplayChunk.cpp
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.h(6,1): error C2008: ';': unexpected in macro definition
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.h(7,1): error C2008: ';': unexpected in macro definition
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\DisplayChunk.cpp(14,50): warning C4305: '=': truncation from 'double' to 'float'
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\DisplayChunk.cpp(15,49): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\DisplayChunk.cpp(74,185): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\DisplayChunk.cpp(74,81): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\DisplayChunk.cpp(94,10): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\DisplayChunk.cpp(152,10): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  Game.cpp
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.h(6,1): error C2008: ';': unexpected in macro definition
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.h(7,1): error C2008: ';': unexpected in macro definition
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(54,47): error C2059: syntax error: ','
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(205,57): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(204,57): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(203,97): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(350,23): warning C4018: '<': signed/unsigned mismatch
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(359,55): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(358,55): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(357,104): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(365,117): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(365,91): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(366,115): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(366,89): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(373,27): warning C4018: '<': signed/unsigned mismatch
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(390,52): error C2143: syntax error: missing ')' before ','
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(390,27): error C2660: 'DX::DeviceResources::WindowSizeChanged': function does not take 0 arguments
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\DeviceResources.h(29,14): message : see declaration of 'DX::DeviceResources::WindowSizeChanged'
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(390,27): message : while trying to match the argument list '()'
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(390,60): error C2059: syntax error: ')'
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(390,61): error C2059: syntax error: ')'
-  Main.cpp
-  _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.h(6,1): error C2008: ';': unexpected in macro definition
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.h(7,1): error C2008: ';': unexpected in macro definition
-  MFCFrame.cpp
-  _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.h(6,1): error C2008: ';': unexpected in macro definition
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.h(7,1): error C2008: ';': unexpected in macro definition
   MFCMain.cpp
   _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.h(6,1): error C2008: ';': unexpected in macro definition
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.h(7,1): error C2008: ';': unexpected in macro definition
   ToolMain.cpp
   _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.h(6,1): error C2008: ';': unexpected in macro definition
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.h(7,1): error C2008: ';': unexpected in macro definition
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xiosbase(358,52): error C2059: syntax error: ')'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xiosbase(358,60): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xiosbase(362,52): error C2146: syntax error: missing ')' before identifier '_Newwidth'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xiosbase(362,52): error C3646: '_Newwidth': unknown override specifier
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xiosbase(362,61): error C2059: syntax error: ')'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xiosbase(451,59): warning C4869: 'nodiscard' may only be applied to classes, enumerations, and functions
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xiosbase(542,16): error C2327: 'std::ios_base::streamsize': is not a type name, static, or enumerator
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xiosbase(543,16): error C2327: 'std::ios_base::streamsize': is not a type name, static, or enumerator
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xiosbase(353,1): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xiosbase(353,26): error C2146: syntax error: missing ';' before identifier '_Oldprecision'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xiosbase(353,26): error C2065: '_Oldprecision': undeclared identifier
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xiosbase(355,16): error C2065: '_Oldprecision': undeclared identifier
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xiosbase(363,9): error C2059: syntax error: 'const'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\ios(37,25): error C3668: 'std::basic_ios<char,std::char_traits<char>>::~basic_ios': method with override specifier 'override' did not override any base class methods
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\ios(175,71): message : see reference to class template instantiation 'std::basic_ios<char,std::char_traits<char>>' being compiled
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\ios(37,25): error C3668: 'std::basic_ios<wchar_t,std::char_traits<wchar_t>>::~basic_ios': method with override specifier 'override' did not override any base class methods
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\ios(176,77): message : see reference to class template instantiation 'std::basic_ios<wchar_t,std::char_traits<wchar_t>>' being compiled
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\ostream(536,64): error C2061: syntax error: identifier 'streamsize'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\ostream(617,2): message : see reference to class template instantiation 'std::basic_ostream<_Elem,_Traits>' being compiled
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\istream(358,56): error C2061: syntax error: identifier 'streamsize'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\istream(689,2): message : see reference to class template instantiation 'std::basic_istream<_Elem,_Traits>' being compiled
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\istream(362,56): error C2061: syntax error: identifier 'streamsize'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\istream(362,39): error C2535: 'std::basic_istream<_Elem,_Traits> &std::basic_istream<_Elem,_Traits>::get(_Elem *)': member function already defined or declared
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\istream(358,39): message : see declaration of 'std::basic_istream<_Elem,_Traits>::get'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\istream(440,60): error C2061: syntax error: identifier 'streamsize'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\istream(445,60): error C2061: syntax error: identifier 'streamsize'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\istream(445,39): error C2535: 'std::basic_istream<_Elem,_Traits> &std::basic_istream<_Elem,_Traits>::getline(_Elem *)': member function already defined or declared
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\istream(440,39): message : see declaration of 'std::basic_istream<_Elem,_Traits>::getline'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\istream(481,1): error C2327: 'std::ios_base::streamsize': is not a type name, static, or enumerator
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\istream(511,57): error C2061: syntax error: identifier 'streamsize'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\istream(531,1): error C2327: 'std::ios_base::streamsize': is not a type name, static, or enumerator
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\istream(531,57): error C2061: syntax error: identifier 'streamsize'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\istream(608,1): error C2327: 'std::ios_base::streamsize': is not a type name, static, or enumerator
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\istream(688,1): error C2327: 'std::ios_base::streamsize': is not a type name, static, or enumerator
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\istream(362,39): error C2535: 'std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::get(_Elem *)': member function already defined or declared
-          with
-          [
-              _Elem=char
-          ]
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\istream(358,39): message : see declaration of 'std::basic_istream<char,std::char_traits<char>>::get'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\istream(445,39): error C2535: 'std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::getline(_Elem *)': member function already defined or declared
-          with
-          [
-              _Elem=char
-          ]
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\istream(440,39): message : see declaration of 'std::basic_istream<char,std::char_traits<char>>::getline'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\istream(362,39): error C2535: 'std::basic_istream<wchar_t,std::char_traits<wchar_t>> &std::basic_istream<wchar_t,std::char_traits<wchar_t>>::get(_Elem *)': member function already defined or declared
-          with
-          [
-              _Elem=wchar_t
-          ]
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\istream(358,39): message : see declaration of 'std::basic_istream<wchar_t,std::char_traits<wchar_t>>::get'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\istream(445,39): error C2535: 'std::basic_istream<wchar_t,std::char_traits<wchar_t>> &std::basic_istream<wchar_t,std::char_traits<wchar_t>>::getline(_Elem *)': member function already defined or declared
-          with
-          [
-              _Elem=wchar_t
-          ]
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\istream(440,39): message : see declaration of 'std::basic_istream<wchar_t,std::char_traits<wchar_t>>::getline'
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(51,18): error C2059: syntax error: ';'
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(52,19): error C2059: syntax error: ';'
 E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(102,46): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(103,46): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(104,46): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
@@ -147,30 +30,28 @@ E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(151,59): warning C4244: '=': co
 E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(152,56): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(153,54): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(154,57): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(370,39): warning C4353: nonstandard extension used: constant 0 as function expression.  Use '__noop' function intrinsic instead
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(398,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(399,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(401,46): warning C4244: 'argument': conversion from 'float' to '_Ty', possible loss of data
+E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(328,39): warning C4353: nonstandard extension used: constant 0 as function expression.  Use '__noop' function intrinsic instead
+E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(356,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(357,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(359,46): warning C4244: 'argument': conversion from 'float' to '_Ty', possible loss of data
           with
           [
               _Ty=int
           ]
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(402,46): warning C4244: 'argument': conversion from 'float' to '_Ty', possible loss of data
+E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(360,46): warning C4244: 'argument': conversion from 'float' to '_Ty', possible loss of data
           with
           [
               _Ty=int
           ]
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(404,76): warning C4244: '=': conversion from '_Ty' to 'float', possible loss of data
+E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(362,76): warning C4244: '=': conversion from '_Ty' to 'float', possible loss of data
           with
           [
               _Ty=int
           ]
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(405,76): warning C4244: '=': conversion from '_Ty' to 'float', possible loss of data
+E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(363,76): warning C4244: '=': conversion from '_Ty' to 'float', possible loss of data
           with
           [
               _Ty=int
           ]
   Generating Code...
-=======
   Win32SimpleSample.vcxproj -> E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Debug\WoFEdit.exe
->>>>>>> parent of e2d0139 (Tried copy paste and arcball)

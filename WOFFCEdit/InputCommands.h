@@ -27,7 +27,7 @@ struct InputCommands
 	bool FocusCam;
 
 	bool RButton;
-<<<<<<< HEAD
+
 	bool CopyDown;
 	bool PasteDown;
 	bool canScroll;
@@ -36,8 +36,7 @@ struct InputCommands
 	int testingScroll;
 
 
-=======
->>>>>>> parent of e2d0139 (Tried copy paste and arcball)
+
 	bool isDragging;
 };
 
