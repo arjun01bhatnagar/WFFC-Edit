@@ -27,12 +27,15 @@ public: //methods
 	void	Tick(MSG *msg);
 	void	UpdateInput(MSG *msg);
 
+<<<<<<< HEAD
 	//CopyPaste
 	int IndexID(unsigned int objectID);
 	void onActionPaste(std::vector<SceneObject> m_CopiedObjects);
 	void RebuildDisplaylist();
 	CopyPaste m_CopyPaste{ this };
 
+=======
+>>>>>>> parent of e2d0139 (Tried copy paste and arcball)
 	void UpdateDisplayList()
 	{
 		m_d3dRenderer.BuildDisplayList(&m_sceneGraph);

@@ -65,9 +65,6 @@
     <ClCompile Include="ArcBall.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="CopyPaste.cpp">
-      <Filter>Renderer</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DeviceResources.h">
@@ -121,9 +118,6 @@
       <Filter>Renderer</Filter>
     </ClInclude>
     <ClInclude Include="ArcBall.h">
-      <Filter>Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="CopyPaste.h">
       <Filter>Renderer</Filter>
     </ClInclude>
   </ItemGroup>

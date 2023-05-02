@@ -289,49 +289,7 @@ void ToolMain::onActionSaveTerrain()
 	m_d3dRenderer.SaveDisplayChunk(&m_chunk);
 }
 
-/////////////////////COPY/Paste Try
 
-int ToolMain::IndexID(unsigned int objectID)
-{
-	for (size_t i = 0; i < m_sceneGraph.size(); i++)
-	{
-		if (m_sceneGraph[i].ID == objectID)
-			return i;
-	}
-	return -1;
-}
-
-void ToolMain::onActionPaste(std::vector<SceneObject> m_CopiedObjects)
-{
-
-	std::vector<SceneObject> newSceneObjects;
-	std::vector<unsigned int> newSceneAdditionID;
-
-	for (size_t i = 0; i < m_CopiedObjects.size(); i++)
-	{
-		newSceneObjects.push_back(m_CopiedObjects[i]);
-
-		if (m_sceneGraph.size() > 0)
-		{
-			newSceneObjects[i].ID = m_sceneGraph.back().ID + 1;
-			newSceneObjects[i].chunk_ID = m_sceneGraph.back().chunk_ID;
-		}
-
-		else
-		{
-
-			newSceneObjects[i].ID = 1;
-			newSceneObjects[i].chunk_ID = 0;
-
-		}
-
-		newSceneAdditionID.push_back(newSceneObjects[i].ID);
-		m_sceneGraph.push_back(newSceneObjects[i]);
-	}
-	m_d3dRenderer.BuildDisplayList(&m_sceneGraph);
-}
-
-////////////////////////COPY/Paste try
 
 void ToolMain::onActionWireframe()
 {
@@ -485,6 +443,7 @@ void ToolMain::UpdateInput(MSG * msg)
 	}
 	else m_toolInputCommands.RButton = false;
 
+<<<<<<< HEAD
 	if (m_keyArray[VK_CONTROL] && m_keyArray['C'])
 	{
 		if (m_toolInputCommands.CopyDown == false) 
@@ -507,5 +466,7 @@ void ToolMain::UpdateInput(MSG * msg)
 		m_toolInputCommands.PasteDown = true;
 	}
 
+=======
+>>>>>>> parent of e2d0139 (Tried copy paste and arcball)
 	//WASD
 }

@@ -1,4 +1,5 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Win32SimpleSample.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+<<<<<<< HEAD
   Camera.cpp
 E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.h(6,1): error C2008: ';': unexpected in macro definition
 E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.h(7,1): error C2008: ';': unexpected in macro definition
@@ -170,3 +171,6 @@ E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(405,76): warning C4244: '=': co
               _Ty=int
           ]
   Generating Code...
+=======
+  Win32SimpleSample.vcxproj -> E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Debug\WoFEdit.exe
+>>>>>>> parent of e2d0139 (Tried copy paste and arcball)
