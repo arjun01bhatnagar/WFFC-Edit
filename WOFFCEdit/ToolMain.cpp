@@ -371,6 +371,8 @@ void ToolMain::Tick(MSG *msg)
 	}
 	m_d3dRenderer.Tick(&m_toolInputCommands);
 
+
+	m_toolInputCommands.testingScroll = 0;
 	
 }
 
@@ -389,7 +391,10 @@ void ToolMain::UpdateInput(MSG * msg)
 		break;
 
 	case WM_MOUSEMOVE:
-		m_toolInputCommands.isDragging = true;
+		if (m_toolInputCommands.RButton != false)
+		{
+			m_toolInputCommands.isDragging = true;
+		}
 		m_toolInputCommands.mouse_X = GET_X_LPARAM(msg->lParam);
 		m_toolInputCommands.mouse_Y = GET_Y_LPARAM(msg->lParam);
 
@@ -399,14 +404,19 @@ void ToolMain::UpdateInput(MSG * msg)
 		m_toolInputCommands.mouse_X_prev = PositionDiffX[PositionDiffX.size() - 2];//[m_toolInputCommands.mouse_X - 2];
 		m_toolInputCommands.mouse_Y_prev = PositionDiffY[PositionDiffY.size() - 2];//[m_toolInputCommands.mouse_Y - 2];
 
+		if (m_toolInputCommands.mouse_X_prev == m_toolInputCommands.mouse_X || m_toolInputCommands.mouse_Y_prev == m_toolInputCommands.mouse_Y)
+		{
+			m_toolInputCommands.isDragging = false;
+		}
+		
 
-		if (m_toolInputCommands.mouse_X >= WindowRECT.right ||
+		/*if (m_toolInputCommands.mouse_X >= WindowRECT.right ||
 			m_toolInputCommands.mouse_X <= WindowRECT.left ||
 			m_toolInputCommands.mouse_Y <= WindowRECT.top ||
 			m_toolInputCommands.mouse_Y >= WindowRECT.bottom)
 		{
 			m_toolInputCommands.RButton = false;
-		}
+		}*/
 		break;
 
 	case WM_LBUTTONDOWN:	//mouse button down,  you will probably need to check when its up too
@@ -424,6 +434,13 @@ void ToolMain::UpdateInput(MSG * msg)
 
 	case WM_RBUTTONUP:
 		m_toolInputCommands.mouse_RB_down = false;
+		break;
+	case WM_MOUSEWHEEL:
+		if (m_toolInputCommands.canScroll)
+		{
+			m_toolInputCommands.testingScroll = GET_WHEEL_DELTA_WPARAM(msg->wParam);
+			m_toolInputCommands.canScroll = false;
+		}
 		break;
 	}
 	//here we update all the actual app functionality that we want.  This information will either be used int toolmain, or sent down to the renderer (Camera movement etc
@@ -468,14 +485,27 @@ void ToolMain::UpdateInput(MSG * msg)
 	}
 	else m_toolInputCommands.RButton = false;
 
-	/*if (m_keyArray[VK_CONTROL] && m_keyArray['C'])
+	if (m_keyArray[VK_CONTROL] && m_keyArray['C'])
 	{
-		if (m_toolInputCommands.CopyDown == false) {
-			.CopySelectedObjects(m_d3dRenderer.m);
+		if (m_toolInputCommands.CopyDown == false) 
+		{
+
+			m_CopyPaste.CopySelectedObjects(m_d3dRenderer.m_SelectedObjectIDs);
+			
 		}
 
 		m_toolInputCommands.CopyDown = true;
-	}*/
+	}
+
+	if (m_keyArray[VK_CONTROL] && m_keyArray['V'])
+	{
+		if (m_toolInputCommands.PasteDown == false)
+		{
+			m_CopyPaste.PasteCopiedObjects();
+		}
+
+		m_toolInputCommands.PasteDown = true;
+	}
 
 	//WASD
 }

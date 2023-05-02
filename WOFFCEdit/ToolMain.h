@@ -6,6 +6,7 @@
 #include "sqlite3.h"
 #include "SceneObject.h"
 #include "InputCommands.h"
+#include "CopyPaste.h"
 #include <vector>
 
 
@@ -30,7 +31,7 @@ public: //methods
 	int IndexID(unsigned int objectID);
 	void onActionPaste(std::vector<SceneObject> m_CopiedObjects);
 	void RebuildDisplaylist();
-
+	CopyPaste m_CopyPaste{ this };
 
 	void UpdateDisplayList()
 	{
@@ -55,6 +56,7 @@ public:	//variables
 	std::vector<int>  PositionDiffX;
 	std::vector<int>  PositionDiffY;
 
+	
 
 	InputCommands m_toolInputCommands;		//input commands that we want to use and possibly pass over to the renderer
 

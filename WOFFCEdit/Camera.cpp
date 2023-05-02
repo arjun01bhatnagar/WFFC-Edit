@@ -45,6 +45,12 @@ Camera::~Camera()
 
 }
 
+void Camera::SetCameraScreenSize(int& w, int& h)
+{
+	width = w;
+	height = h;
+}
+
 void Camera::Update(InputCommands* m_InputCommands)
 {
 	Vector3 planarMotionVector = m_camLookDirection;
@@ -73,6 +79,7 @@ void Camera::Update(InputCommands* m_InputCommands)
 
 			float dx = x / 890;
 			float dy = y / 550;
+			;
 
 			if (x > 0)
 			{

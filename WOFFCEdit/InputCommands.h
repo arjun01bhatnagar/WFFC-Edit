@@ -29,6 +29,11 @@ struct InputCommands
 	bool RButton;
 	bool CopyDown;
 	bool PasteDown;
+	bool canScroll;
+
+
+	int testingScroll;
+
 
 	bool isDragging;
 };

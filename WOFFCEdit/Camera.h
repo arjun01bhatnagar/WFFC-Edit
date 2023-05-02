@@ -3,7 +3,8 @@
 #include "InputCommands.h"
 #include <SimpleMath.h>
 
-
+#define width;
+#define height;
 
 class Camera
 {
@@ -24,8 +25,6 @@ public:
 
 	InputCommands* m_InputCommands;
 
-	
-
 	DirectX::SimpleMath::Vector3 GetOrientation()
 	{
 		return m_camOrientation;
@@ -39,7 +38,8 @@ public:
 	Camera();
 	~Camera();
 
-	
+	void SetCameraScreenSize(int &w, int &h);
+
 
 	void Update(InputCommands* m_InputCommands);
 
