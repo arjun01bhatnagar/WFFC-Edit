@@ -7,15 +7,15 @@ CopyPaste::CopyPaste(ToolMain* toolMain)
 	m_ToolMain = toolMain;
 }
 
-void CopyPaste::CopySelected(int selectedObjectID)
+void CopyPaste::CopySelected(std::vector <unsigned int> selectedObjectID)
 {
 	SceneObject gameObjectFromSelection;
 	std::vector<SceneObject> selecteObjects;
 	SceneObject newCopiedObject;
 
-	for (int i = 0; i < selectedObjectID; i++)
+	for (int i = 0; i < selectedObjectID.size(); i++)
 	{
-		newCopiedObject = m_ToolMain->m_sceneGraph[m_ToolMain->IndexID(selectedObjectID)];
+		newCopiedObject = m_ToolMain->m_sceneGraph[m_ToolMain->IndexID(selectedObjectID.size())];
 
 
 		selecteObjects.push_back(newCopiedObject);

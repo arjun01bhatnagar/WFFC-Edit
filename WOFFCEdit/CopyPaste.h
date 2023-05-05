@@ -8,7 +8,7 @@ public:
 
 
 	CopyPaste(class ToolMain* toolMain);
-	void CopySelected(int selectedObjectID);
+	void CopySelected(std::vector <unsigned int> selectedObjectID);
 	void PasteCopied();
 
 

@@ -29,7 +29,8 @@ Game::Game()
 
     camView = m_camera.GetViewMatrix();
 
-    selectedID = -1;
+    selectedID.push_back(-1);
+
 
     wireframe = false;
 }
@@ -389,7 +390,7 @@ int Game::MousePicking()
             {
                 if (pickedDistance < nearestDist)
                 {
-                    selectedID = m_displayList[i].m_ID;
+                    selectedID.back() = m_displayList[i].m_ID;
                     nearestDist = pickedDistance;
                 }
             }
@@ -401,7 +402,7 @@ int Game::MousePicking()
 
     m_rebuildDisplaylist = true;
     //if we got a hit.  return it.  
-    return selectedID;
+    return selectedID.back();
     
 }
 void Game::PickTest(std::vector<SceneObject>    m_sceneGraph)
@@ -503,7 +504,7 @@ void Game::BuildDisplayList(std::vector<SceneObject> * SceneGraph)
 
         //SelectedID colour change
 
-        if (SceneGraph->at(i).ID == selectedID)
+        if (SceneGraph->at(i).ID == selectedID.back())
         {
             DisplayObject objectHighlight = newDisplayObject;
 
@@ -556,7 +557,7 @@ void Game::FocusArcBall()
 
     CamType = 2;
     float RadiusOffSet = 5;
-    Vector3 SelectedObjectPosition = m_displayList[selectedID -1].m_position;
+    Vector3 SelectedObjectPosition = m_displayList[selectedID.back() - 1].m_position;
 
 
    // m_ArcBall.ArcBallPosition = Vector3(m_displayList[selectedID].m_position);
