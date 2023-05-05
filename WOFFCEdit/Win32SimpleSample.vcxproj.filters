@@ -65,6 +65,9 @@
     <ClCompile Include="ArcBall.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="CopyPaste.cpp">
+      <Filter>Tool</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DeviceResources.h">
@@ -119,6 +122,9 @@
     </ClInclude>
     <ClInclude Include="ArcBall.h">
       <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="CopyPaste.h">
+      <Filter>Tool</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,4 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Win32SimpleSample.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  MFCMain.cpp
-  _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
   ToolMain.cpp
   _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
 E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(102,46): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
@@ -30,28 +28,7 @@ E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(151,59): warning C4244: '=': co
 E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(152,56): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(153,54): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(154,57): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(328,39): warning C4353: nonstandard extension used: constant 0 as function expression.  Use '__noop' function intrinsic instead
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(356,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(357,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(359,46): warning C4244: 'argument': conversion from 'float' to '_Ty', possible loss of data
-          with
-          [
-              _Ty=int
-          ]
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(360,46): warning C4244: 'argument': conversion from 'float' to '_Ty', possible loss of data
-          with
-          [
-              _Ty=int
-          ]
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(362,76): warning C4244: '=': conversion from '_Ty' to 'float', possible loss of data
-          with
-          [
-              _Ty=int
-          ]
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(363,76): warning C4244: '=': conversion from '_Ty' to 'float', possible loss of data
-          with
-          [
-              _Ty=int
-          ]
-  Generating Code...
+E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(370,39): warning C4353: nonstandard extension used: constant 0 as function expression.  Use '__noop' function intrinsic instead
+E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(407,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(408,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   Win32SimpleSample.vcxproj -> E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Debug\WoFEdit.exe

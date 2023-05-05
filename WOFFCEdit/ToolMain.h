@@ -6,7 +6,7 @@
 #include "sqlite3.h"
 #include "SceneObject.h"
 #include "InputCommands.h"
-//#include "CopyPaste.h"
+#include "CopyPaste.h"
 #include <vector>
 
 
@@ -24,6 +24,7 @@ public: //methods
 	afx_msg	void	onActionSave();											//save the current chunk
 	afx_msg void	onActionSaveTerrain();									//save chunk geometry
 	afx_msg void    onActionWireframe();
+	afx_msg void    onFocusArcBall();
 	void	Tick(MSG *msg);
 	void	UpdateInput(MSG *msg);
 
@@ -32,8 +33,15 @@ public: //methods
 	int IndexID(unsigned int objectID);
 	void onActionPaste(std::vector<SceneObject> m_CopiedObjects);
 	void RebuildDisplaylist();
-	//CopyPaste m_CopyPaste{ this };
+	CopyPaste m_CopyPaste{ this };
 
+
+	int CamTypetool;
+
+	void SetCameraTypeTool(int cam)
+	{
+		CamTypetool = cam;
+	}
 
 	void UpdateDisplayList()
 	{

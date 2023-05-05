@@ -42,6 +42,10 @@ public:
 
 
 	void Update(InputCommands* m_InputCommands);
+	void Initialize(float width, float height);
 
+private:
+	float m_width;
+	float m_height;
 	//void FocusCam(DirectX::XMFLOAT3 position, DirectX::XMFLOAT3 scale, InputCommands* m_InputCommands);
 };

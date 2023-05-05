@@ -8,6 +8,7 @@ BEGIN_MESSAGE_MAP(MFCMain, CWinApp)
 	ON_COMMAND(ID_EDIT_SELECT, &MFCMain::MenuEditSelect)
 	ON_COMMAND(ID_BUTTON40001,	&MFCMain::ToolBarButton1)
 	ON_COMMAND(ID_BUTTON40002, &MFCMain::ToolBarButton2)
+	ON_COMMAND(ID_BUTTON40003, &MFCMain::ToolBarButton3)
 	ON_UPDATE_COMMAND_UI(ID_INDICATOR_TOOL, &CMyFrame::OnUpdatePage)
 END_MESSAGE_MAP()
 
@@ -107,13 +108,30 @@ void MFCMain::MenuEditSelect()
 
 void MFCMain::ToolBarButton1()
 {
-	
 	m_ToolSystem.onActionSave();
 }
 
 void MFCMain::ToolBarButton2()
 {
 	m_ToolSystem.onActionWireframe();
+}
+
+void MFCMain::ToolBarButton3()
+{
+
+	if (!ArcBallOnOff)
+	{
+
+		ArcBallOnOff = true;
+		m_ToolSystem.onFocusArcBall();
+		m_ToolSystem.SetCameraTypeTool(2);
+	}
+
+	else
+	{
+		ArcBallOnOff = false;
+		m_ToolSystem.SetCameraTypeTool(1);
+	}
 }
 
 

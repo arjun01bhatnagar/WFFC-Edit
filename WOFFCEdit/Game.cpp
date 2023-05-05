@@ -25,6 +25,10 @@ Game::Game()
 	//modes
 	m_grid = false;
 
+    CamType = 1;
+
+    camView = m_camera.GetViewMatrix();
+
     selectedID = -1;
 
     wireframe = false;
@@ -59,6 +63,8 @@ void Game::Initialize(HWND window, int width, int height)
     m_deviceResources->CreateWindowSizeDependentResources();
     CreateWindowSizeDependentResources();
 
+    m_camera.Initialize(width, height);
+    m_ArcBall.Inititalize(width, height);
 
     GetClientRect(window, &m_ScreenDimensions);
 #ifdef DXTK_AUDIO
@@ -118,14 +124,21 @@ void Game::Tick(InputCommands *Input)
 void Game::Update(DX::StepTimer const& timer)
 {
 	
-
-    m_camera.Update(&m_InputCommands);
-
+    if (CamType == 1)
+    {
+        camView = m_camera.GetViewMatrix();
+        m_camera.Update(&m_InputCommands);
+    }
+    else if(CamType == 2)
+    {
+        camView = m_ArcBall.GetViewMatrix();
+        m_ArcBall.Update(&m_InputCommands);
+    }
    // m_camera.FocusCam();
 
-    m_batchEffect->SetView(m_camera.GetViewMatrix());
+    m_batchEffect->SetView(camView);
     m_batchEffect->SetWorld(Matrix::Identity);
-	m_displayChunk.m_terrainEffect->SetView(m_camera.GetViewMatrix());
+	m_displayChunk.m_terrainEffect->SetView(camView);
 	m_displayChunk.m_terrainEffect->SetWorld(Matrix::Identity);
 
 #ifdef DXTK_AUDIO
@@ -206,14 +219,16 @@ void Game::Render()
 
 		XMMATRIX local = m_world * XMMatrixTransformation(g_XMZero, Quaternion::Identity, scale, g_XMZero, rotate, translate);
 
-        if (i == selectedID)
-        {
-            m_displayList[i].m_model->Draw(context, *m_states, local, m_camera.GetViewMatrix(), m_projection, true);
-        }
-        else 
-        {
-            m_displayList[i].m_model->Draw(context, *m_states, local, m_camera.GetViewMatrix(), m_projection, false);	//last variable in draw,  make TRUE for wireframe
-        }
+        m_displayList[i].m_model->Draw(context, *m_states, local, camView, m_projection, false);
+
+        //if (i == selectedID)
+        //{
+        //    m_displayList[i].m_model->Draw(context, *m_states, local, m_camera.GetViewMatrix(), m_projection, true);
+        //}
+        //else 
+        //{
+        //    m_displayList[i].m_model->Draw(context, *m_states, local, m_camera.GetViewMatrix(), m_projection, false);	//last variable in draw,  make TRUE for wireframe
+        //}
 		m_deviceResources->PIXEndEvent();
 	}
     m_deviceResources->PIXEndEvent();
@@ -334,8 +349,8 @@ void Game::OnResuming()
 int Game::MousePicking()
 {
     //int selectedID = -1;
-    float pickedDistance = 0;
-
+    float pickedDistance = INFINITY;
+    float nearestDist = INFINITY;
 
 
     //setup near and far planes of frustum with mouse X and mouse y passed down from Toolmain. 
@@ -359,8 +374,8 @@ int Game::MousePicking()
         XMMATRIX local = m_world * XMMatrixTransformation(g_XMZero, Quaternion::Identity, scale, g_XMZero, rotate, translate);
 
         //Unproject the points on the near and far plane, with respect to the matrix we just created.
-        XMVECTOR nearPoint = XMVector3Unproject(nearSource, 0.0f, 0.0f, m_ScreenDimensions.right, m_ScreenDimensions.bottom, m_deviceResources->GetScreenViewport().MinDepth, m_deviceResources->GetScreenViewport().MaxDepth, m_projection, m_camera.m_view, local);
-        XMVECTOR farPoint = XMVector3Unproject(farSource, 0.0f, 0.0f, m_ScreenDimensions.right, m_ScreenDimensions.bottom, m_deviceResources->GetScreenViewport().MinDepth, m_deviceResources->GetScreenViewport().MaxDepth, m_projection, m_camera.m_view, local);
+        XMVECTOR nearPoint = XMVector3Unproject(nearSource, 0.0f, 0.0f, m_ScreenDimensions.right, m_ScreenDimensions.bottom, m_deviceResources->GetScreenViewport().MinDepth, m_deviceResources->GetScreenViewport().MaxDepth, m_projection, camView, local);
+        XMVECTOR farPoint = XMVector3Unproject(farSource, 0.0f, 0.0f, m_ScreenDimensions.right, m_ScreenDimensions.bottom, m_deviceResources->GetScreenViewport().MinDepth, m_deviceResources->GetScreenViewport().MaxDepth, m_projection, camView, local);
 
         //turn the transformed points into our picking vector. 
         XMVECTOR pickingVector = farPoint - nearPoint;
@@ -370,18 +385,32 @@ int Game::MousePicking()
         for (int y = 0; y < m_displayList[i].m_model.get()->meshes.size(); y++)
         {
             //checking for ray intersection
-            if (m_displayList[i].m_model.get()->meshes[y]->boundingBox.Intersects(nearPoint, pickingVector, pickedDistance))
+            if (m_displayList[i].m_model.get()->meshes[y]->boundingBox.Intersects(nearPoint, pickingVector, pickedDistance)&&m_displayList[i].m_ID!=-1)
             {
-                selectedID = i;
+                if (pickedDistance < nearestDist)
+                {
+                    selectedID = m_displayList[i].m_ID;
+                    nearestDist = pickedDistance;
+                }
             }
         }
+
+
+
     }
 
+    m_rebuildDisplaylist = true;
     //if we got a hit.  return it.  
     return selectedID;
     
 }
-
+void Game::PickTest(std::vector<SceneObject>    m_sceneGraph)
+{
+    if (m_rebuildDisplaylist)
+    {
+        BuildDisplayList(&m_sceneGraph);
+    }
+}
 void Game::OnWindowSizeChanged(int width, int height)
 {
     if (!m_deviceResources->WindowSizeChanged(width, height))
@@ -423,7 +452,12 @@ void Game::BuildDisplayList(std::vector<SceneObject> * SceneGraph)
 			CreateDDSTextureFromFile(device, L"database/data/Error.dds", nullptr, &newDisplayObject.m_texture_diffuse);	//load tex into Shader resource
 		}
 
+
+        newDisplayObject.m_ID = SceneGraph->at(i).ID;
+
+
 		//apply new texture to models effect
+
 		newDisplayObject.m_model->UpdateEffects([&](IEffect* effect) //This uses a Lambda function,  if you dont understand it: Look it up.
 		{	
 			auto lights = dynamic_cast<BasicEffect*>(effect);
@@ -466,6 +500,34 @@ void Game::BuildDisplayList(std::vector<SceneObject> * SceneGraph)
 		
 		m_displayList.push_back(newDisplayObject);
 		
+
+        //SelectedID colour change
+
+        if (SceneGraph->at(i).ID == selectedID)
+        {
+            DisplayObject objectHighlight = newDisplayObject;
+
+            objectHighlight.m_ID = -1;
+            objectHighlight.m_wireframe = true;
+
+            objectHighlight.m_model->UpdateEffects([&](IEffect* effect)
+            {
+                    auto fog = dynamic_cast<IEffectFog*>(effect);
+
+                    if(fog)
+                    {
+
+                        fog->SetFogEnabled(true);
+                        fog->SetFogStart(0);
+                        fog->SetFogEnd(0);
+                        fog->SetFogColor(Colors::Blue);
+                    }
+
+            });
+
+        }
+
+        m_rebuildDisplaylist = false;
 	}
 		
 		
@@ -487,7 +549,25 @@ void Game::SaveDisplayChunk(ChunkObject * SceneChunk)
 	m_displayChunk.SaveHeightMap();			//save heightmap to file.
 }
 
+
+void Game::FocusArcBall()
+{
+
+
+    CamType = 2;
+    float RadiusOffSet = 5;
+    Vector3 SelectedObjectPosition = m_displayList[selectedID -1].m_position;
+
+
+   // m_ArcBall.ArcBallPosition = Vector3(m_displayList[selectedID].m_position);
+    m_ArcBall.SetTarget(SelectedObjectPosition);
+
+    
+    m_ArcBall.SetPosition(Vector3(m_ArcBall.ArcBallPosition.x, m_ArcBall.ArcBallPosition.y, m_ArcBall.ArcBallPosition.z));
+
+}
 #ifdef DXTK_AUDIO
+
 void Game::NewAudioDevice()
 {
     if (m_audEngine && !m_audEngine->IsAudioDevicePresent())

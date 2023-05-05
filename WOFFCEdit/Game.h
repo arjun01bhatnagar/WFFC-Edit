@@ -12,6 +12,7 @@
 #include "ChunkObject.h"
 #include "InputCommands.h"
 #include "Camera.h"
+#include "ArcBall.h"
 #include <vector>
 
 
@@ -29,7 +30,7 @@ public:
 	void SetGridState(bool state);
 
 	// Basic game loop
-	void Tick(InputCommands * Input);
+	void Tick(InputCommands* Input);
 	void Render();
 
 	// Rendering helpers
@@ -41,14 +42,25 @@ public:
 
 	//Picking
 
+	int CamType;
+	DirectX::XMMATRIX camView;
+	
+	void PickTest(std::vector<SceneObject>    m_sceneGraph);
 	int MousePicking();
 	int selectedID;
+
+	std::vector<unsigned int> m_selectedID;
+
+	bool m_rebuildDisplaylist;
 	//Dimensions
 
 	RECT m_ScreenDimensions;
 
+	//bool m_rebuildDisplaylist;
 
 	bool wireframe;
+
+	
 	// Messages
 	void OnActivated();
 	void OnDeactivated();
@@ -57,10 +69,34 @@ public:
 	void OnWindowSizeChanged(int width, int height);
 
 	//tool specific
-	void BuildDisplayList(std::vector<SceneObject> * SceneGraph); //note vector passed by reference 
-	void BuildDisplayChunk(ChunkObject *SceneChunk);
-	void SaveDisplayChunk(ChunkObject *SceneChunk);	//saves geometry et al
+	void BuildDisplayList(std::vector<SceneObject>* SceneGraph); //note vector passed by reference 
+	void BuildDisplayChunk(ChunkObject* SceneChunk);
+	void SaveDisplayChunk(ChunkObject* SceneChunk);	//saves geometry et al
 	void ClearDisplayList();
+
+
+	
+	void FocusArcBall();
+
+	void SetCameraType(int SetCamType)
+	{
+       CamType = SetCamType;
+	};
+	
+	
+
+
+	inline void RebuildDisplayList()
+	{
+		m_rebuildDisplaylist = true;
+	} 
+
+	inline bool ShouldRebuildDisplayList()
+
+	{
+		return m_rebuildDisplaylist;
+	}
+	
 
 #ifdef DXTK_AUDIO
 	void NewAudioDevice();
@@ -81,11 +117,15 @@ private:
 	InputCommands						m_InputCommands;
 
 	//camera
-
+	ArcBall m_ArcBall;
 	Camera m_camera;
+
+	
 	//Camera M_Camera2;
 	//HWND window;
 
+	//bool m_rebuildDisplayList;
+	
 	//control variables
 	bool m_grid;							//grid rendering on / off
 	// Device resources.
