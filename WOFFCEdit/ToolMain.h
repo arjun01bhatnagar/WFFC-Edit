@@ -30,7 +30,7 @@ public: //methods
 
 
 	//CopyPaste
-	int IndexID(unsigned int objectID);
+	int IndexID( int objectID);
 	void onActionPaste(std::vector<SceneObject> m_CopiedObjects);
 	void RebuildDisplaylist();
 	CopyPaste m_CopyPaste{ this };
@@ -101,6 +101,5 @@ private:	//variables
 	int m_height;
 	int m_currentChunk;			//the current chunk of thedatabase that we are operating on.  Dictates loading and saving. 
 	
-
 	
 };

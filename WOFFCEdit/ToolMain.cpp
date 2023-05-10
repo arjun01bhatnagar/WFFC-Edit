@@ -19,6 +19,7 @@ ToolMain::ToolMain()
 	m_toolInputCommands.left		= false;
 	m_toolInputCommands.right		= false;
 
+	m_toolInputCommands.CopyDown = false;
 	//m_
 	/*for (int i = 0; i < 5; i++)
 	{
@@ -299,7 +300,7 @@ void ToolMain::onFocusArcBall()
 	
 }
 
-int ToolMain::IndexID(unsigned int objectID)
+int ToolMain::IndexID( int objectID)
 {
 
 	for (size_t i = 0; i < m_sceneGraph.size(); i++)
@@ -397,7 +398,7 @@ void ToolMain::UpdateInput(MSG * msg)
 		
 		m_toolInputCommands.isDragging = true;
 		
-
+		
 		m_toolInputCommands.mouse_X_prev=m_toolInputCommands.mouse_X;
 
 		m_toolInputCommands.mouse_Y_prev=m_toolInputCommands.mouse_Y;
@@ -488,20 +489,22 @@ void ToolMain::UpdateInput(MSG * msg)
 		{
 
 			m_CopyPaste.CopySelected(m_d3dRenderer.selectedID);
-			
+			m_toolInputCommands.CopyDown = true;
+
 		}
 
-		m_toolInputCommands.CopyDown = true;
+		//m_toolInputCommands.CopyDown = true;
 	}
-
 	if (m_keyArray[VK_CONTROL] && m_keyArray['V'])
 	{
-		if (m_toolInputCommands.PasteDown == false)
+		//if (m_toolInputCommands.PasteDown == false)
+		if (m_toolInputCommands.CopyDown == true)
 		{
 			m_CopyPaste.PasteCopied();
+			m_toolInputCommands.CopyDown = false;
 		}
 
-		m_toolInputCommands.PasteDown = true;
+		//m_toolInputCommands.PasteDown = true;
 	}
 
 

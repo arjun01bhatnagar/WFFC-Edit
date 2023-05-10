@@ -47,8 +47,8 @@ public:
 	
 	void PickTest(std::vector<SceneObject>    m_sceneGraph);
 	int MousePicking();
-	std::vector<unsigned int> selectedID;
-
+	//std::vector<unsigned int> selectedID;
+	int selectedID;
 	std::vector<unsigned int> m_selectedID;
 
 	bool m_rebuildDisplaylist;
