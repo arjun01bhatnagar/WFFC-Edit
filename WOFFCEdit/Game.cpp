@@ -349,7 +349,7 @@ void Game::OnResuming()
 
 int Game::MousePicking()
 {
-    //int selectedID = -1;
+   // int select = -1;
     float pickedDistance = INFINITY;
     float nearestDist = INFINITY;
 
@@ -400,9 +400,10 @@ int Game::MousePicking()
 
     }
 
+    //selectedID = select;
     m_rebuildDisplaylist = true;
     //if we got a hit.  return it.  
-    return selectedID;// .back();
+    return selectedID-1;
     
 }
 void Game::PickTest(std::vector<SceneObject>    m_sceneGraph)
@@ -571,7 +572,7 @@ void Game::FocusArcBall()
     m_ArcBall.SetTarget(SelectedObjectPosition);
 
     
-    m_ArcBall.SetPosition(Vector3(m_ArcBall.ArcBallPosition.x, m_ArcBall.ArcBallPosition.y, m_ArcBall.ArcBallPosition.z));
+    m_ArcBall.SetPosition(SelectedObjectPosition);//Vector3(m_ArcBall.ArcBallPosition.x, m_ArcBall.ArcBallPosition.y, m_ArcBall.ArcBallPosition.z));
 
 }
 #ifdef DXTK_AUDIO

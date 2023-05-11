@@ -427,11 +427,11 @@ void ToolMain::UpdateInput(MSG * msg)
 		break;
 
 	case WM_RBUTTONDOWN:
-		m_toolInputCommands.mouse_RB_down = true;
+		m_toolInputCommands.mouse_RB_Down = true;
 		break;
 
 	case WM_RBUTTONUP:
-		m_toolInputCommands.mouse_RB_down = false;
+		m_toolInputCommands.mouse_RB_Down = false;
 		break;
 	case WM_MOUSEWHEEL:
 		if (m_toolInputCommands.canScroll)
@@ -443,7 +443,7 @@ void ToolMain::UpdateInput(MSG * msg)
 
 	case WM_MOUSELEAVE:
 		m_toolInputCommands.isDragging = true;
-		m_toolInputCommands.mouse_RB_down = true;
+		m_toolInputCommands.mouse_RB_Down = true;
 		break;
 	}
 	//here we update all the actual app functionality that we want.  This information will either be used int toolmain, or sent down to the renderer (Camera movement etc

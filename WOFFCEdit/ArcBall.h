@@ -11,7 +11,7 @@ class ArcBall
 public:
 	float ArcBallSpeed;
 	float RotateRate;
-
+	float radiusArcBall;
 	DirectX::SimpleMath::Vector3 ArcBallPosition;
 	DirectX::SimpleMath::Vector3 ArcBallCamOrientation;
 	DirectX::SimpleMath::Vector3 ArcBallLookAt;
@@ -38,10 +38,7 @@ public:
 	void Update(InputCommands* m_Inputcommands);
 	void Inititalize(float width, float height);
 
-	void SetPosition(Vector3 pos)
-	{
-		ArcBallPosition = pos;
-	}
+	void SetPosition(Vector3 pos);
 
 	void SetTarget(Vector3 TargetPos)
 	{

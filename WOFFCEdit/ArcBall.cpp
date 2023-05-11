@@ -90,30 +90,31 @@ void ArcBall::Update(InputCommands* m_InputCommands)
 		}
 	}
 
-	ArcBallLookDirection.x = cos(ArcBallCamOrientation.y * 3.1415 / 180) * cos(ArcBallCamOrientation.x * 3.415 / 180) ;
-	ArcBallLookDirection.y = sin(ArcBallCamOrientation.x * 3.1415 / 180);
-	ArcBallLookDirection.z = sin(ArcBallCamOrientation.y * 3.1415 / 180) * cos(ArcBallCamOrientation.x * 3.1415 / 180);
+	ArcBallLookDirection.x = ArcBallLookAt.x + radiusArcBall * cos(ArcBallCamOrientation.y * 3.1415 / 180) * cos(ArcBallCamOrientation.x * 3.415 / 180) ;
+	ArcBallLookDirection.y = ArcBallLookAt.y + radiusArcBall * sin(ArcBallCamOrientation.x * 3.1415 / 180);
+	ArcBallLookDirection.z = ArcBallLookAt.z + radiusArcBall * sin(ArcBallCamOrientation.y * 3.1415 / 180) * cos(ArcBallCamOrientation.x * 3.1415 / 180);
 
 
-	ArcBallLookDirection.Normalize();
+	//ArcBallLookDirection.Normalize();
 
 
-	ArcBallLookDirection.Cross(Vector3::UnitY, ArcBallRight);
+	//ArcBallLookDirection.Cross(Vector3::UnitY, ArcBallRight);
 
 
 
-	ArcBallPosition.x = ArcBallLookAt.x + 2.f;
+	/*ArcBallPosition.x = ArcBallLookAt.x + 2.f;
 
-	ArcBallPosition = ArcBallLookAt  + ArcBallLookDirection;
+	ArcBallPosition = ArcBallLookAt  + ArcBallLookDirection;*/
 
 	
 
-	Vector3 newPos = Vector3(ArcBallPosition.x  , ArcBallPosition.y  , ArcBallPosition.z );
-	ArcBallView = Matrix::CreateLookAt(newPos, ArcBallLookAt, Vector3::UnitY);
+	//Vector3 newPos = Vector3(ArcBallPosition.x  , ArcBallPosition.y  , ArcBallPosition.z );
+	ArcBallView = Matrix::CreateLookAt(ArcBallLookDirection, ArcBallLookAt, Vector3::UnitY);
 
 }
 
-//void ArcBall::SetPosition(Vector3 pos)
-//{
-//	ArcBallPosition = pos;
-//}
+void ArcBall::SetPosition(Vector3 pos)
+{
+	ArcBallLookAt = pos;
+	radiusArcBall = 5;
+}

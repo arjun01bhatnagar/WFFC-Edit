@@ -22,7 +22,7 @@ struct InputCommands
 	float mouse_Y_prev;
 
 	bool mouse_LB_Down;
-	bool mouse_RB_down;
+	bool mouse_RB_Down;
 
 	bool FocusCam;
 

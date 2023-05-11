@@ -65,7 +65,7 @@ void Camera::Update(InputCommands* m_InputCommands)
 
 
 	
-	if (m_InputCommands->mouse_RB_down && m_InputCommands->isDragging)
+	if (m_InputCommands->mouse_RB_Down && m_InputCommands->isDragging)
 	{
 		/*if (m_InputCommands->isDragging)*/
 		//{
