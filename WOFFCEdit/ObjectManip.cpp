@@ -39,7 +39,7 @@ ObjectManip::ObjectManip(CWnd* pParent)			//constructor used in modeless
 	 ScaleX=0;
 	 ScaleY=0;
 	 ScaleZ=0;
-
+	 
 	 current = 0;
 	 isSelected = false;
 }
@@ -58,7 +58,7 @@ void ObjectManip::SetObjectData(std::vector<SceneObject>* SceneGraph, int* selec
 	current = *selection;
 	//roll through all the objects in the scene graph and put an entry for each in the listbox
 	int numSceneObjects = m_sceneGraph->size();
-	if (current != -1)
+	if (current > -1)
 	{
 		PosX = SceneGraph->at(*selection).posX;
 		PosY = SceneGraph->at(*selection).posY;

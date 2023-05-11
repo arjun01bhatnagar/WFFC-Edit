@@ -119,19 +119,21 @@ void MFCMain::ToolBarButton2()
 
 void MFCMain::ToolBarButton3()
 {
-
-	if (!ArcBallOnOff)
+	if (m_ToolSystem.m_selectedObject > -1)
 	{
+		if (!ArcBallOnOff)
+		{
 
-		ArcBallOnOff = true;
-		m_ToolSystem.onFocusArcBall();
-		m_ToolSystem.SetCameraTypeTool(2);
-	}
+			ArcBallOnOff = true;
+			m_ToolSystem.onFocusArcBall();
+			m_ToolSystem.SetCameraTypeTool(2);
+		}
 
-	else
-	{
-		ArcBallOnOff = false;
-		m_ToolSystem.SetCameraTypeTool(1);
+		else
+		{
+			ArcBallOnOff = false;
+			m_ToolSystem.SetCameraTypeTool(1);
+		}
 	}
 }
 
@@ -140,10 +142,12 @@ void MFCMain::ToolBarButton4()
 	//m_ToolSelectDialogue.Create(IDD_DIALOG2);	//Start up modeless
 	//m_ToolSelectDialogue.ShowWindow(SW_SHOW);	//show modeless
 	//m_ToolSelectDialogue.SetObjectData(&m_ToolSystem.m_sceneGraph, &m_ToolSystem.m_selectedObject);
-	m_ObjectManip.SetObjectData(&m_ToolSystem.m_sceneGraph, &m_ToolSystem.m_selectedObject, &m_ToolSystem.m_toolInputCommands);
-	m_ObjectManip.Create(IDD_DIALOG2);
-	m_ObjectManip.ShowWindow(SW_SHOW);
-	
+	if (m_ToolSystem.m_selectedObject > -1)
+	{
+		m_ObjectManip.SetObjectData(&m_ToolSystem.m_sceneGraph, &m_ToolSystem.m_selectedObject, &m_ToolSystem.m_toolInputCommands);
+		m_ObjectManip.Create(IDD_DIALOG2);
+		m_ObjectManip.ShowWindow(SW_SHOW);
+	}
 }
 
 MFCMain::MFCMain()

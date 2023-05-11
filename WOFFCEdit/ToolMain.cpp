@@ -9,7 +9,7 @@ ToolMain::ToolMain()
 {
 
 	m_currentChunk = 0;		//default value
-	m_selectedObject = 0;	//initial selection ID
+	m_selectedObject = -1;	//initial selection ID
 	m_sceneGraph.clear();	//clear the vector for the scenegraph
 	m_databaseConnection = NULL;
 
