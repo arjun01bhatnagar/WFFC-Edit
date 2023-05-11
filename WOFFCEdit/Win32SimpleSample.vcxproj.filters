@@ -68,6 +68,9 @@
     <ClCompile Include="CopyPaste.cpp">
       <Filter>Tool</Filter>
     </ClCompile>
+    <ClCompile Include="ObjectManip.cpp">
+      <Filter>Tool</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DeviceResources.h">
@@ -124,6 +127,9 @@
       <Filter>Renderer</Filter>
     </ClInclude>
     <ClInclude Include="CopyPaste.h">
+      <Filter>Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManip.h">
       <Filter>Tool</Filter>
     </ClInclude>
   </ItemGroup>

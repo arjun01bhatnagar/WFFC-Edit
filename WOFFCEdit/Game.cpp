@@ -550,6 +550,13 @@ void Game::SaveDisplayChunk(ChunkObject * SceneChunk)
 	m_displayChunk.SaveHeightMap();			//save heightmap to file.
 }
 
+void Game::Info(SceneObject* scene, int i)
+{
+    m_displayList.at(i).m_position = Vector3(scene->posX, scene->posY, scene->posZ);
+    m_displayList.at(i).m_orientation = Vector3(scene->rotX, scene->rotY, scene->rotZ);
+    m_displayList.at(i).m_scale = Vector3(scene->scaX, scene->scaY, scene->scaZ);
+
+}
 
 void Game::FocusArcBall()
 {

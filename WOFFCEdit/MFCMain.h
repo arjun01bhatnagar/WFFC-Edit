@@ -9,6 +9,7 @@
 #include "resource.h"
 #include "MFCFrame.h"
 #include "SelectDialogue.h"
+#include"ObjectManip.h"
 #include "Camera.h"
 
 class MFCMain : public CWinApp 
@@ -28,6 +29,7 @@ private:
 	ToolMain m_ToolSystem;	//Instance of Tool System that we interface to. 
 	CRect WindowRECT;	//Window area rectangle. 
 	SelectDialogue m_ToolSelectDialogue;			//for modeless dialogue, declare it here
+	ObjectManip m_ObjectManip;
 	Camera cam;
 
 	//Interface funtions for menu and toolbar etc requires
@@ -37,6 +39,7 @@ private:
 	afx_msg	void ToolBarButton1();
 	afx_msg void ToolBarButton2();
 	afx_msg void ToolBarButton3();
+	afx_msg void ToolBarButton4();
 
 
 	int m_width;

@@ -29,7 +29,7 @@ ToolMain::ToolMain()
 
 
 	m_toolInputCommands.isDragging = false;
-
+	m_toolInputCommands.ifOK = false;
 	
 }
 
@@ -369,6 +369,12 @@ void ToolMain::Tick(MSG *msg)
 	{
 		m_selectedObject = m_d3dRenderer.MousePicking();
 		m_toolInputCommands.mouse_LB_Down = false();
+	}
+
+	if (m_toolInputCommands.ifOK)
+	{
+		m_d3dRenderer.Info(&m_sceneGraph.at(m_selectedObject),m_selectedObject);
+		m_toolInputCommands.ifOK = false;
 	}
 	m_d3dRenderer.Tick(&m_toolInputCommands);
 

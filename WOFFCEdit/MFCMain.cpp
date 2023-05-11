@@ -9,6 +9,7 @@ BEGIN_MESSAGE_MAP(MFCMain, CWinApp)
 	ON_COMMAND(ID_BUTTON40001,	&MFCMain::ToolBarButton1)
 	ON_COMMAND(ID_BUTTON40002, &MFCMain::ToolBarButton2)
 	ON_COMMAND(ID_BUTTON40003, &MFCMain::ToolBarButton3)
+	ON_COMMAND(ID_BUTTON40006, &MFCMain::ToolBarButton4)
 	ON_UPDATE_COMMAND_UI(ID_INDICATOR_TOOL, &CMyFrame::OnUpdatePage)
 END_MESSAGE_MAP()
 
@@ -134,6 +135,16 @@ void MFCMain::ToolBarButton3()
 	}
 }
 
+void MFCMain::ToolBarButton4()
+{
+	//m_ToolSelectDialogue.Create(IDD_DIALOG2);	//Start up modeless
+	//m_ToolSelectDialogue.ShowWindow(SW_SHOW);	//show modeless
+	//m_ToolSelectDialogue.SetObjectData(&m_ToolSystem.m_sceneGraph, &m_ToolSystem.m_selectedObject);
+	m_ObjectManip.SetObjectData(&m_ToolSystem.m_sceneGraph, &m_ToolSystem.m_selectedObject, &m_ToolSystem.m_toolInputCommands);
+	m_ObjectManip.Create(IDD_DIALOG2);
+	m_ObjectManip.ShowWindow(SW_SHOW);
+	
+}
 
 MFCMain::MFCMain()
 {

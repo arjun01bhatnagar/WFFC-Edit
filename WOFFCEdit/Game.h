@@ -60,6 +60,7 @@ public:
 
 	bool wireframe;
 
+	void Info(SceneObject* scene, int i);
 	
 	// Messages
 	void OnActivated();

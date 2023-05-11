@@ -35,7 +35,7 @@ struct InputCommands
 
 	int testingScroll;
 
-
+	bool ifOK;
 
 	bool isDragging;
 };
