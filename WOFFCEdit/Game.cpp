@@ -347,6 +347,77 @@ void Game::OnResuming()
 #endif
 }
 
+void Game::AddToList(SceneObject scene)
+{
+
+    auto device = m_deviceResources->GetD3DDevice();
+    auto devicecontext = m_deviceResources->GetD3DDeviceContext();
+    DisplayObject newDisplayObject;
+
+    //load model
+    std::wstring modelwstr = StringToWCHART(scene.model_path);							//convect string to Wchar
+    newDisplayObject.m_model = Model::CreateFromCMO(device, modelwstr.c_str(), *m_fxFactory, true);	//get DXSDK to load model "False" for LH coordinate system (maya)
+
+    //Load Texture
+    std::wstring texturewstr = StringToWCHART(scene.tex_diffuse_path);								//convect string to Wchar
+    HRESULT rs;
+    rs = CreateDDSTextureFromFile(device, texturewstr.c_str(), nullptr, &newDisplayObject.m_texture_diffuse);	//load tex into Shader resource
+
+    //if texture fails.  load error default
+    if (rs)
+    {
+        CreateDDSTextureFromFile(device, L"database/data/Error.dds", nullptr, &newDisplayObject.m_texture_diffuse);	//load tex into Shader resource
+    }
+
+
+    newDisplayObject.m_ID = scene.ID;
+
+
+    //apply new texture to models effect
+
+    newDisplayObject.m_model->UpdateEffects([&](IEffect* effect) //This uses a Lambda function,  if you dont understand it: Look it up.
+        {
+            auto lights = dynamic_cast<BasicEffect*>(effect);
+    if (lights)
+    {
+        lights->SetTexture(newDisplayObject.m_texture_diffuse);
+    }
+        });
+
+    //set position
+    newDisplayObject.m_position.x =scene.posX;
+    newDisplayObject.m_position.y =scene.posY;
+    newDisplayObject.m_position.z =scene.posZ;
+
+    //setorientation
+    newDisplayObject.m_orientation.x = scene.rotX;
+    newDisplayObject.m_orientation.y = scene.rotY;
+    newDisplayObject.m_orientation.z = scene.rotZ;
+
+    //set scale
+    newDisplayObject.m_scale.x = scene.scaX;
+    newDisplayObject.m_scale.y = scene.scaY;
+    newDisplayObject.m_scale.z = scene.scaZ;
+
+    //set wireframe / render flags
+    newDisplayObject.m_render = scene.editor_render;
+    newDisplayObject.m_wireframe = scene.editor_wireframe;
+
+    newDisplayObject.m_light_type = scene.light_type;
+    newDisplayObject.m_light_diffuse_r = scene.light_diffuse_r;
+    newDisplayObject.m_light_diffuse_g = scene.light_diffuse_g;
+    newDisplayObject.m_light_diffuse_b = scene.light_diffuse_b;
+    newDisplayObject.m_light_specular_r = scene.light_specular_r;
+    newDisplayObject.m_light_specular_g = scene.light_specular_g;
+    newDisplayObject.m_light_specular_b = scene.light_specular_b;
+    newDisplayObject.m_light_spot_cutoff = scene.light_spot_cutoff;
+    newDisplayObject.m_light_constant = scene.light_constant;
+    newDisplayObject.m_light_linear = scene.light_linear;
+    newDisplayObject.m_light_quadratic = scene.light_quadratic;
+
+    m_displayList.push_back(newDisplayObject);
+}
+
 int Game::MousePicking()
 {
    // int select = -1;

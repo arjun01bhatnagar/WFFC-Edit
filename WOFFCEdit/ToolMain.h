@@ -33,6 +33,7 @@ public: //methods
 	int IndexID( int objectID);
 	void onActionPaste(std::vector<SceneObject> m_CopiedObjects);
 	void RebuildDisplaylist();
+	
 	CopyPaste m_CopyPaste{ this };
 
 

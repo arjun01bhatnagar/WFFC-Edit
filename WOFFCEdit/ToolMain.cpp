@@ -335,10 +335,15 @@ void ToolMain::onActionPaste(std::vector<SceneObject>m_CopiedObjects)
 
 		newSceneAdditionID.push_back(newSceneObjects[i].ID);
 		m_sceneGraph.push_back(newSceneObjects[i]);
+		m_d3dRenderer.AddToList(newSceneObjects[i]);
 	}
 
 	m_d3dRenderer.RebuildDisplayList();
+	//m_d3dRenderer.AddToList(SceneObject scene);
+
 }
+
+
 
 
 void ToolMain::onActionWireframe()
