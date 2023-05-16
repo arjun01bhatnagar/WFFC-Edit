@@ -76,7 +76,11 @@ public:
 	void ClearDisplayList();
 	void AddToList(SceneObject scene);
 
+	void TerrainEditing();
 
+
+	int outerRadius = 10;
+	int innerRadius = 5;
 	
 	void FocusArcBall();
 

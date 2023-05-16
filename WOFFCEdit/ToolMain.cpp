@@ -373,6 +373,8 @@ void ToolMain::Tick(MSG *msg)
 	if (m_toolInputCommands.mouse_LB_Down)
 	{
 		m_selectedObject = m_d3dRenderer.MousePicking();
+		m_d3dRenderer.TerrainEditing();
+
 		m_toolInputCommands.mouse_LB_Down = false();
 	}
 

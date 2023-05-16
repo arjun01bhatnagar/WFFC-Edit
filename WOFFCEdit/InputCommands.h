@@ -38,6 +38,8 @@ struct InputCommands
 	bool ifOK;
 
 	bool isDragging;
+
+	bool terrainEdit;
 };
 
 	
