@@ -18,11 +18,20 @@ BOOL MFCMain::InitInstance()
 	//instanciate the mfc frame
 	m_frame = new CMyFrame();
 	m_pMainWnd = m_frame;
+	RECT hDesktopsize;
+	// Get a handle to the desktop window
+	const HWND desktop = GetDesktopWindow();
+	// Get the size of screen to the variable desktop
+	GetWindowRect(desktop, &hDesktopsize);
+	// The top left corner will have coordinates (0,0)
+	// and the bottom right corner will have coordinates
+	// (horizontal, vertical)
+
 
 	m_frame->Create(	NULL,
 					_T("World Of Flim-Flam Craft Editor"),
 					WS_OVERLAPPEDWINDOW,
-					CRect(100, 100, 1024, 768),
+					CRect(0, 0, hDesktopsize.right, hDesktopsize.bottom),
 					NULL,
 					NULL,
 					0,

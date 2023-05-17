@@ -37,7 +37,7 @@ public: //methods
 	void RebuildDisplaylist();
 
 	void Duplicate();
-	
+	void Delete();
 	
 
 	std::vector<std::vector<SceneObject>> m_scene_objects_memory;

@@ -31,5 +31,6 @@ E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(156,57): warning C4244: '=': co
 E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(398,39): warning C4353: nonstandard extension used: constant 0 as function expression.  Use '__noop' function intrinsic instead
 E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(442,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(443,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(568,20): warning C4018: '<': signed/unsigned mismatch
+E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(559,20): warning C4018: '<': signed/unsigned mismatch
+E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(589,21): warning C4018: '<': signed/unsigned mismatch
   Win32SimpleSample.vcxproj -> E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Debug\WoFEdit.exe
