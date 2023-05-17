@@ -558,6 +558,27 @@ int Game::MousePicking()
     return selectedID-1;
     
 }
+
+//void Game::CopyObject(int selectedObject)
+//{
+//
+//    
+//    if (selectedObject != -1)
+//    {
+//        CopiedObj = m_displayList[selectedObject];//selectedID;
+//    }
+//
+//}
+//
+//void Game::PasteObj()
+//{
+//
+//    CopiedObj.m_position.x += 2;
+//
+//    m_displayList.push_back(CopiedObj);
+//
+//}
+
 void Game::PickTest(std::vector<SceneObject>    m_sceneGraph)
 {
     if (m_rebuildDisplaylist)
@@ -657,7 +678,7 @@ void Game::BuildDisplayList(std::vector<SceneObject> * SceneGraph)
 
         //SelectedID colour change
 
-        if (SceneGraph->at(i).ID == selectedID)//.back())
+        if (SceneGraph->at(i).ID == selectedID) //.back())
         {
             DisplayObject objectHighlight = newDisplayObject;
 
@@ -687,6 +708,11 @@ void Game::BuildDisplayList(std::vector<SceneObject> * SceneGraph)
 		
 		
 }
+
+//DisplayChunk* Game::GetTerrain()
+//{
+//    return &m_displayChunk;
+//}
 
 void Game::BuildDisplayChunk(ChunkObject * SceneChunk)
 {

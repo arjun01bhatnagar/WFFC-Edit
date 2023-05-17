@@ -55,10 +55,13 @@ public:
 	//Dimensions
 
 	RECT m_ScreenDimensions;
+	//ToolMain* m_ToolMain;
+	
 
 	//bool m_rebuildDisplaylist;
 
 	bool wireframe;
+	bool terrainBool;
 
 	void Info(SceneObject* scene, int i);
 	
@@ -69,6 +72,9 @@ public:
 	void OnResuming();
 	void OnWindowSizeChanged(int width, int height);
 
+	void CopyObject(int selectedObj);
+	void PasteObj();
+
 	//tool specific
 	void BuildDisplayList(std::vector<SceneObject>* SceneGraph); //note vector passed by reference 
 	void BuildDisplayChunk(ChunkObject* SceneChunk);
@@ -78,9 +84,10 @@ public:
 
 	void TerrainEditing();
 
+	DisplayObject CopiedObj;
 
-	int outerRadius = 10;
-	int innerRadius = 5;
+	int outerRadius = 5;
+	int innerRadius = 2;
 	
 	void FocusArcBall();
 

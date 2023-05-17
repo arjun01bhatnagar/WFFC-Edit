@@ -25,6 +25,8 @@ public: //methods
 	afx_msg void	onActionSaveTerrain();									//save chunk geometry
 	afx_msg void    onActionWireframe();
 	afx_msg void    onFocusArcBall();
+	afx_msg void    onActionTerrain();
+
 	void	Tick(MSG *msg);
 	void	UpdateInput(MSG *msg);
 
@@ -33,8 +35,16 @@ public: //methods
 	int IndexID( int objectID);
 	void onActionPaste(std::vector<SceneObject> m_CopiedObjects);
 	void RebuildDisplaylist();
+
+	void Duplicate();
 	
-	CopyPaste m_CopyPaste{ this };
+	
+
+	std::vector<std::vector<SceneObject>> m_scene_objects_memory;
+	std::vector<SceneObject> m_scene_objects;
+	//Game GameObject;
+	
+	//CopyPaste m_CopyPaste{ this };
 
 
 	int CamTypetool;

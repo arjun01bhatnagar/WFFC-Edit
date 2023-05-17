@@ -28,6 +28,8 @@ struct InputCommands
 
 	bool RButton;
 
+	bool TButton;
+
 	bool CopyDown;
 	bool PasteDown;
 	bool canScroll;
@@ -38,6 +40,7 @@ struct InputCommands
 	bool ifOK;
 
 	bool isDragging;
+	
 
 	bool terrainEdit;
 };

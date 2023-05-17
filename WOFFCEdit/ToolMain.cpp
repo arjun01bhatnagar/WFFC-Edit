@@ -30,6 +30,7 @@ ToolMain::ToolMain()
 
 	m_toolInputCommands.isDragging = false;
 	m_toolInputCommands.ifOK = false;
+	m_toolInputCommands.terrainEdit = false;
 	
 }
 
@@ -343,6 +344,19 @@ void ToolMain::onActionPaste(std::vector<SceneObject>m_CopiedObjects)
 
 }
 
+void ToolMain::onActionTerrain()
+{
+	if (m_d3dRenderer.terrainBool == false)
+	{
+		m_d3dRenderer.terrainBool = true;
+	}
+
+	else
+	{
+		m_d3dRenderer.terrainBool = false;
+	}
+
+}
 
 
 
@@ -369,11 +383,17 @@ void ToolMain::Tick(MSG *msg)
 		m_d3dRenderer.CamType = 2;
 	}
 
+	if (m_toolInputCommands.mouse_LB_Down && m_toolInputCommands.terrainEdit == true)
+	{
+
+		//m_d3dRenderer.TerrainEditing();
+
+	}
 
 	if (m_toolInputCommands.mouse_LB_Down)
 	{
 		m_selectedObject = m_d3dRenderer.MousePicking();
-		m_d3dRenderer.TerrainEditing();
+		//m_d3dRenderer.TerrainEditing();
 
 		m_toolInputCommands.mouse_LB_Down = false();
 	}
@@ -410,6 +430,7 @@ void ToolMain::UpdateInput(MSG * msg)
 	case WM_MOUSEMOVE:
 		
 		m_toolInputCommands.isDragging = true;
+		m_toolInputCommands.terrainEdit = true;
 		
 		
 		m_toolInputCommands.mouse_X_prev=m_toolInputCommands.mouse_X;
@@ -427,6 +448,7 @@ void ToolMain::UpdateInput(MSG * msg)
 	case WM_LBUTTONDOWN:	//mouse button down,  you will probably need to check when its up too
 		//set some flag for the mouse button in inputcommands
 		m_toolInputCommands.mouse_LB_Down = true;
+		
 		break;
 
 	case WM_LBUTTONUP:
@@ -449,7 +471,7 @@ void ToolMain::UpdateInput(MSG * msg)
 		break;
 
 	case WM_MOUSELEAVE:
-		m_toolInputCommands.isDragging = true;
+		m_toolInputCommands.isDragging = false;
 		m_toolInputCommands.mouse_RB_Down = true;
 		break;
 	}
@@ -470,7 +492,7 @@ void ToolMain::UpdateInput(MSG * msg)
 	{
 		m_toolInputCommands.left = true;
 	}
-	else m_toolInputCommands.left = false;
+	else m_toolInputCommands.left = false; 
 
 	if (m_keyArray['D'])
 	{
@@ -495,27 +517,40 @@ void ToolMain::UpdateInput(MSG * msg)
 	}
 	else m_toolInputCommands.RButton = false;
 
+	if (m_keyArray['T'])
+	{
+		m_toolInputCommands.TButton = true;
+	}
+	else m_toolInputCommands.TButton = false;
+
 
 	if (m_keyArray[VK_CONTROL] && m_keyArray['C'])
 	{
-		if (m_toolInputCommands.CopyDown == false) 
+
+
+
+		if (m_toolInputCommands.CopyDown == false)
 		{
-
-			m_CopyPaste.CopySelected(m_d3dRenderer.selectedID);
-			m_toolInputCommands.CopyDown = true;
-
+			Duplicate();
 		}
+		m_toolInputCommands.CopyDown = true;
 
-		//m_toolInputCommands.CopyDown = true;
+
+
 	}
+	else m_toolInputCommands.CopyDown = false;
+
+	
 	if (m_keyArray[VK_CONTROL] && m_keyArray['V'])
 	{
-		//if (m_toolInputCommands.PasteDown == false)
-		if (m_toolInputCommands.CopyDown == true)
-		{
-			m_CopyPaste.PasteCopied();
-			m_toolInputCommands.CopyDown = false;
-		}
+		////if (m_toolInputCommands.PasteDown == false)
+		//if (m_toolInputCommands.CopyDown == true)
+		//{
+		//	//m_CopyPaste.PasteCopied();
+		//
+		//    m_d3dRenderer.PasteObj();
+		//	m_toolInputCommands.CopyDown = false;
+		//}
 
 		//m_toolInputCommands.PasteDown = true;
 	}
@@ -523,3 +558,34 @@ void ToolMain::UpdateInput(MSG * msg)
 
 	//WASD
 }
+
+void ToolMain::Duplicate()
+{
+	SceneObject newObject;
+	int newID = 0;
+	int targetIndex = 0;
+
+	for (int i = 0; i < m_sceneGraph.size(); i++)
+	{
+		if (m_sceneGraph.at(i).ID == m_selectedObject)
+		{
+			targetIndex = i+1;
+		}
+
+		newID = max(newID, m_sceneGraph[i].ID);
+	}
+	newObject = m_sceneGraph.at(targetIndex);
+
+	newObject.ID = newID + 1;
+	newObject.posY += 2;
+	//newObject.posX += 2;
+
+	m_sceneGraph.push_back(newObject);
+
+	m_selectedObject = newObject.ID;
+	m_d3dRenderer.BuildDisplayList(&m_sceneGraph);
+
+	
+	
+}
+

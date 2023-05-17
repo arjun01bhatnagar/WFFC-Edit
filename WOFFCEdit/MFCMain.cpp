@@ -150,6 +150,13 @@ void MFCMain::ToolBarButton4()
 	}
 }
 
+void MFCMain::ToolBarButton5()
+{
+
+	m_ToolSystem.onActionTerrain();
+
+}
+
 MFCMain::MFCMain()
 {
 }

@@ -45,6 +45,10 @@ public:
 		ArcBallLookAt = TargetPos;
 	}
 
+	
+
+	
+
 private:
 	float arcBallWidth;
 	float arcBallHeight;

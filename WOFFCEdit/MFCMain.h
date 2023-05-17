@@ -9,7 +9,7 @@
 #include "resource.h"
 #include "MFCFrame.h"
 #include "SelectDialogue.h"
-#include"ObjectManip.h"
+#include "ObjectManip.h"
 #include "Camera.h"
 
 class MFCMain : public CWinApp 
@@ -40,6 +40,7 @@ private:
 	afx_msg void ToolBarButton2();
 	afx_msg void ToolBarButton3();
 	afx_msg void ToolBarButton4();
+	afx_msg void ToolBarButton5();
 
 
 	int m_width;
