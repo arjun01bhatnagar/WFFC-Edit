@@ -45,11 +45,7 @@ Camera::~Camera()
 
 }
 
-//void Camera::SetCameraScreenSize(int& w, int& h)
-//{
-//	width = w;
-//	height = h;
-//}
+
 void Camera::Initialize(float width, float height)
 {
 	m_width = width;
@@ -67,8 +63,7 @@ void Camera::Update(InputCommands* m_InputCommands)
 	
 	if (m_InputCommands->mouse_RB_Down && m_InputCommands->isDragging)
 	{
-		/*if (m_InputCommands->isDragging)*/
-		//{
+		
 
 			float x = m_InputCommands->mouse_X - m_InputCommands->mouse_X_prev;
 			float y = m_InputCommands->mouse_Y - m_InputCommands->mouse_Y_prev;
@@ -158,6 +153,16 @@ void Camera::Update(InputCommands* m_InputCommands)
 	m_view = Matrix::CreateLookAt(m_camPosition, m_camLookAt, Vector3::UnitY);
 }
 
+void Camera::FocusCam(XMFLOAT3 position, XMFLOAT3 scale)
+{
+
+
+	m_camOrientation = Vector3(225, 180, 0);
+	m_camPosition = position - (XMFLOAT3(0, -5, 5) * scale);
+	Update(m_InputCommands);
+
+
+}
 
 
 

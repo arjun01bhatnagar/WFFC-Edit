@@ -301,48 +301,48 @@ void ToolMain::onFocusArcBall()
 	
 }
 
-int ToolMain::IndexID( int objectID)
-{
-
-	for (size_t i = 0; i < m_sceneGraph.size(); i++)
-	{
-		if (m_sceneGraph[i].ID == objectID)
-			return i;
-	}
-
-	return -1;
-}
-
-void ToolMain::onActionPaste(std::vector<SceneObject>m_CopiedObjects)
-{
-	std::vector<SceneObject> newSceneObjects;
-	std::vector<unsigned int> newSceneAdditionID;
-
-	for (size_t i = 0; i < m_CopiedObjects.size(); i++)
-	{
-		newSceneObjects.push_back(m_CopiedObjects[i]);
-
-		if (m_sceneGraph.size() > 0)
-		{
-			newSceneObjects[i].ID = m_sceneGraph.back().ID + 1;
-			newSceneObjects[i].chunk_ID = m_sceneGraph.back().chunk_ID;
-		}
-
-		else
-		{
-			newSceneObjects[i].ID = 1;
-			newSceneObjects[i].chunk_ID = 0;
-		}
-
-		newSceneAdditionID.push_back(newSceneObjects[i].ID);
-		m_sceneGraph.push_back(newSceneObjects[i]);
-		m_d3dRenderer.AddToList(newSceneObjects[i]);
-	}
-
-	m_d3dRenderer.RebuildDisplayList();
-	//m_d3dRenderer.AddToList(SceneObject scene);
-
-}
+//int ToolMain::IndexID( int objectID)
+//{
+//
+//	for (size_t i = 0; i < m_sceneGraph.size(); i++)
+//	{
+//		if (m_sceneGraph[i].ID == objectID)
+//			return i;
+//	}
+//
+//	return -1;
+//}
+//
+//void ToolMain::onActionPaste(std::vector<SceneObject>m_CopiedObjects)
+//{
+//	std::vector<SceneObject> newSceneObjects;
+//	std::vector<unsigned int> newSceneAdditionID;
+//
+//	for (size_t i = 0; i < m_CopiedObjects.size(); i++)
+//	{
+//		newSceneObjects.push_back(m_CopiedObjects[i]);
+//
+//		if (m_sceneGraph.size() > 0)
+//		{
+//			newSceneObjects[i].ID = m_sceneGraph.back().ID + 1;
+//			newSceneObjects[i].chunk_ID = m_sceneGraph.back().chunk_ID;
+//		}
+//
+//		else
+//		{
+//			newSceneObjects[i].ID = 1;
+//			newSceneObjects[i].chunk_ID = 0;
+//		}
+//
+//		newSceneAdditionID.push_back(newSceneObjects[i].ID);
+//		m_sceneGraph.push_back(newSceneObjects[i]);
+//		m_d3dRenderer.AddToList(newSceneObjects[i]);
+//	}
+//
+//	m_d3dRenderer.RebuildDisplayList();
+//	//m_d3dRenderer.AddToList(SceneObject scene);
+//
+//}
 
 void ToolMain::onActionTerrain()
 {
@@ -517,9 +517,17 @@ void ToolMain::UpdateInput(MSG * msg)
 	}
 	else m_toolInputCommands.RButton = false;
 
-	if (m_keyArray['T'])
+	if (m_keyArray[VK_CONTROL] && m_keyArray['T'])
 	{
-		m_toolInputCommands.TButton = true;
+		//m_toolInputCommands.TButton = true;
+
+
+		int Target = 0;
+
+		/*for (int i = 0; i m_sceneGraph.size(); i++)
+		{
+			if(m_sceneGraph.at(i).ID)
+		}*/
 	}
 	else m_toolInputCommands.TButton = false;
 
