@@ -144,6 +144,10 @@ void MFCMain::ToolBarButton3()
 			m_ToolSystem.SetCameraTypeTool(1);
 		}
 	}
+	else
+	{
+		MessageBox(m_toolHandle, L"Make sure to select an object before opening the inspector.", L"Error", MB_OK);
+	}
 }
 
 void MFCMain::ToolBarButton4()
@@ -157,6 +161,11 @@ void MFCMain::ToolBarButton4()
 		m_ObjectManip.Create(IDD_DIALOG2);
 		m_ObjectManip.ShowWindow(SW_SHOW);
 	}
+	else
+	{
+		MessageBox(m_toolHandle, L"Make sure to select an object before opening the inspector.", L"Error", MB_OK);
+	}
+	
 }
 
 void MFCMain::ToolBarButton5()

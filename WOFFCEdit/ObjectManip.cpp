@@ -11,6 +11,7 @@ BEGIN_MESSAGE_MAP(ObjectManip, CDialogEx)
 	ON_BN_CLICKED(IDOK, &ObjectManip::OnBnClickedOk)
 	ON_LBN_SELCHANGE(IDC_LIST1, &ObjectManip::Select)	//listbox
 	ON_BN_CLICKED(IDR_EXIT1, &ObjectManip::OnEnd)
+	//ON_BN_CLICKED(IDOK,&ObjectManip::OnEnd)
 
 	//ON_EN_CHANGE(IDC_EDIT4, &ObjectManip::OnEnChangeEdit4)
 END_MESSAGE_MAP()
@@ -176,6 +177,8 @@ void ObjectManip::OnBnClickedOk()
 	UpdateData(true);
 
 	UpdateData(false);
+
+	DestroyWindow();
 
 	if (!m_Inputcommands->ifOK)
 	{

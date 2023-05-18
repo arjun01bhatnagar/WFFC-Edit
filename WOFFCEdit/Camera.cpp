@@ -170,7 +170,7 @@ void Camera::FocusCam(XMFLOAT3 position,XMFLOAT3 scale)
 	//float LerpFactor = 0.1f;
 
 
-	m_camOrientation = Vector3(-20, 0, 0);
+	m_camOrientation = Vector3(-30, 0, 0);
 	m_camPosition = position - (XMFLOAT3(2.5, -2, 0) * scale);
 
 	

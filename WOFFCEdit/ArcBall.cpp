@@ -61,22 +61,22 @@ void ArcBall::Update(InputCommands* m_InputCommands)
 
 		if (x > 0)
 		{
-			ArcBallCamOrientation.y -= RotateRate * dx;
+			ArcBallCamOrientation.y += RotateRate * dx;
 		}
 
 		else if (x < 0)
 		{
-			ArcBallCamOrientation.y += RotateRate * (-1) * dx;// *(-1);
+			ArcBallCamOrientation.y -= RotateRate * (-1) * dx;// *(-1);
 		}
 
 		if (y > 0)
 		{
-			ArcBallCamOrientation.x += RotateRate * dy;
+			ArcBallCamOrientation.x -= RotateRate * dy;
 		}
 
 		else if (y < 0)
 		{
-			ArcBallCamOrientation.x -= RotateRate * (-1) * dy;// * (-1);
+			ArcBallCamOrientation.x += RotateRate * (-1) * dy;// * (-1);
 		}
 
 		if (ArcBallCamOrientation.x >= 90.f)

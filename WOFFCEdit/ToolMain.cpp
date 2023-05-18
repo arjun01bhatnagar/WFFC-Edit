@@ -383,14 +383,14 @@ void ToolMain::Tick(MSG *msg)
 		m_d3dRenderer.CamType = 2;
 	}
 
-	if (m_toolInputCommands.mouse_LB_Down && m_toolInputCommands.terrainEdit == true)
+	if (m_toolInputCommands.mouse_LB_Down && m_toolInputCommands.mouse_RB_Down)
 	{
 
 		//m_d3dRenderer.TerrainEditing();
 
 	}
 
-	if (m_toolInputCommands.mouse_LB_Down)
+	if (m_toolInputCommands.mouse_LB_Down )
 	{
 		m_selectedObject = m_d3dRenderer.MousePicking();
 		//m_d3dRenderer.TerrainEditing();
@@ -549,9 +549,13 @@ void ToolMain::UpdateInput(MSG * msg)
 		{
 			Duplicate();
 		}
+		//m_toolInputCommands.CopyDown = true;
+		/*else if(m_selectedObject >= 15)
+		{
+			MessageBox(m_toolHandle, L"Make sure to select an object before opening the inspector.", L"Error", MB_OK);
+		}
+		*/
 		m_toolInputCommands.CopyDown = true;
-
-
 
 	}
 	else m_toolInputCommands.CopyDown = false;
@@ -572,6 +576,7 @@ void ToolMain::Duplicate()
 	SceneObject newObject;
 	int newID = 0;
 	int targetIndex = 0;
+	
 
 	for (int i = 0; i < m_sceneGraph.size(); i++)
 	{
@@ -586,11 +591,14 @@ void ToolMain::Duplicate()
 
 	newObject.ID = newID + 1;
 	newObject.posY += 2;
-	//newObject.posX += 2;
+	newObject.posX += 2;
+
+	
 
 	m_sceneGraph.push_back(newObject);
 
-	m_selectedObject = newObject.ID;
+	//m_selectedObject = newObject.ID;
+
 	m_d3dRenderer.BuildDisplayList(&m_sceneGraph);
 
 }
