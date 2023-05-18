@@ -543,7 +543,7 @@ void ToolMain::UpdateInput(MSG * msg)
 	
 	if (m_keyArray[VK_CONTROL] && m_keyArray['X'])
 	{
-		//Delete();
+		Delete();
 	}
 
 
@@ -578,31 +578,32 @@ void ToolMain::Duplicate()
 
 }
 
-//void ToolMain::Delete()
-//{
-//	if (m_selectedObject !=-1)
-//	{
-//
-//
-//		std::vector<SceneObject> newSceneGraph;
-//
-//		for (int i = 0; i < m_sceneGraph.size(); i++)
-//		{
-//			if (m_sceneGraph.at(i).ID != m_selectedObject-1)
-//			{
-//				newSceneGraph.push_back(m_sceneGraph.at(i));
-//			}
-//		}
-//
-//		m_sceneGraph.clear();
-//		m_sceneGraph = newSceneGraph;
-//
-//		m_selectedObject = -1;
-//
-//		m_d3dRenderer.BuildDisplayList(&m_sceneGraph);
-//		
-//
-//
-//	}
-//}
+void ToolMain::Delete()
+{
+	if (m_selectedObject !=-1)
+	{
+
+
+		std::vector<SceneObject> newSceneGraph;
+
+
+		for (int i = 0; i < m_sceneGraph.size(); i++)
+		{
+			if (m_sceneGraph.at(i).ID != m_selectedObject+1)
+			{
+				newSceneGraph.push_back(m_sceneGraph.at(i));
+			}
+		}
+
+		m_sceneGraph.clear();
+		m_sceneGraph = newSceneGraph;
+
+		m_selectedObject = -1;
+
+		m_d3dRenderer.BuildDisplayList(&m_sceneGraph);
+		
+
+
+	}
+}
 
