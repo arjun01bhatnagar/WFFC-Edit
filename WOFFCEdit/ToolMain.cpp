@@ -519,15 +519,23 @@ void ToolMain::UpdateInput(MSG * msg)
 
 	if (m_keyArray[VK_CONTROL] && m_keyArray['T'])
 	{
-		//m_toolInputCommands.TButton = true;
+		m_toolInputCommands.TButton = true;
 
-
+		
 		int Target = 0;
 
-		/*for (int i = 0; i m_sceneGraph.size(); i++)
+		for (int i = 0; i < m_sceneGraph.size(); i++)
 		{
-			if(m_sceneGraph.at(i).ID)
-		}*/
+			if (m_sceneGraph.at(i).ID == m_selectedObject)
+			{
+				Target = i;
+			}
+		}
+
+		m_d3dRenderer.m_camera.FocusCam(DirectX::XMFLOAT3(m_sceneGraph[Target].posX, m_sceneGraph[Target].posY, m_sceneGraph[Target].posZ), 
+			                   DirectX::XMFLOAT3(m_sceneGraph[Target].scaX , m_sceneGraph[Target].scaY , m_sceneGraph[Target].scaZ ));
+
+		
 	}
 	else m_toolInputCommands.TButton = false;
 
@@ -555,7 +563,8 @@ void ToolMain::UpdateInput(MSG * msg)
 	}
 
 
-	//WASD
+
+	
 }
 
 void ToolMain::Duplicate()

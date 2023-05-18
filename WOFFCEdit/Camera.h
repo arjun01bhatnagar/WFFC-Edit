@@ -43,11 +43,17 @@ public:
 
 	void FocusCam(DirectX::XMFLOAT3 position, DirectX::XMFLOAT3 scale);  // , InputCommands* m_InputCommands);
 
+
+
+	//void Focus(const Vector3 objectPosition, float objectRadius, const XMFLOAT3 cameraDirection, XMFLOAT3 cameraPosition, float lerpSpeed);
 	void Update(InputCommands* m_InputCommands);
 	void Initialize(float width, float height);
+	
 
 private:
 	float m_width;
 	float m_height;
 	//
+
+	//std::vector<DisplayObject>			m_displayList;
 };

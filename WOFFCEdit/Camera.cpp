@@ -74,22 +74,22 @@ void Camera::Update(InputCommands* m_InputCommands)
 
 			if (x > 0)
 			{
-				m_camOrientation.y -= m_camRotRate * dx;
+				m_camOrientation.y += m_camRotRate * dx;
 			}
 			else if (x < 0)
 			{
-				m_camOrientation.y += m_camRotRate * dx * (-1);
+				m_camOrientation.y -= m_camRotRate * dx * (-1);
 			}
 
 			if (y > 0)
 			{
-				m_camOrientation.x += m_camRotRate * dy;
+				m_camOrientation.x -= m_camRotRate * dy;
 			}
 
 			else if (y < 0)
 			{
 
-				m_camOrientation.x -= m_camRotRate * dy * (-1);
+				m_camOrientation.x += m_camRotRate * dy * (-1);
 
 			}
 
@@ -153,13 +153,13 @@ void Camera::Update(InputCommands* m_InputCommands)
 	m_view = Matrix::CreateLookAt(m_camPosition, m_camLookAt, Vector3::UnitY);
 }
 
-void Camera::FocusCam(XMFLOAT3 position, XMFLOAT3 scale)
+void Camera::FocusCam(XMFLOAT3 position,XMFLOAT3 scale)
 {
 
 
-	m_camOrientation = Vector3(225, 180, 0);
-	m_camPosition = position - (XMFLOAT3(0, -5, 5) * scale);
-	Update(m_InputCommands);
+	m_camOrientation = Vector3(-15, 0, 0);
+	m_camPosition = position - (XMFLOAT3(2.5, -2, -1) * scale);
+	
 
 
 }

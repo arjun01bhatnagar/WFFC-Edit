@@ -56,6 +56,8 @@ public:
 
 	RECT m_ScreenDimensions;
 	//ToolMain* m_ToolMain;
+
+	Camera m_camera;
 	
 
 	//bool m_rebuildDisplaylist;
@@ -131,7 +133,7 @@ private:
 
 	//camera
 	ArcBall m_ArcBall;
-	Camera m_camera;
+	
 
 	
 	//Camera M_Camera2;
