@@ -153,12 +153,26 @@ void Camera::Update(InputCommands* m_InputCommands)
 	m_view = Matrix::CreateLookAt(m_camPosition, m_camLookAt, Vector3::UnitY);
 }
 
+//XMFLOAT3 Camera::Lerp(XMFLOAT3 start, XMFLOAT3 end, float t)
+//{
+//	
+//		float x = start.x + (end.x - start.x) * t;
+//		float y = start.y + (end.y - start.y) * t;
+//		float z = start.z + (end.z - start.z) * t;
+//
+//		return XMFLOAT3(x, y, z);
+//	
+//}
+
 void Camera::FocusCam(XMFLOAT3 position,XMFLOAT3 scale)
 {
 
+	//float LerpFactor = 0.1f;
 
-	m_camOrientation = Vector3(-15, 0, 0);
-	m_camPosition = position - (XMFLOAT3(2.5, -2, -1) * scale);
+
+	m_camOrientation = Vector3(-20, 0, 0);
+	m_camPosition = position - (XMFLOAT3(2.5, -2, 0) * scale);
+
 	
 
 

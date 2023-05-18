@@ -43,7 +43,14 @@ public:
 
 	void FocusCam(DirectX::XMFLOAT3 position, DirectX::XMFLOAT3 scale);  // , InputCommands* m_InputCommands);
 
+	//XMFLOAT3 Lerp(DirectX:: XMFLOAT3 start, DirectX:: XMFLOAT3 end, float t);
+	/*{
+		float x = start.x + (end.x - start.x) * t;
+		float y = start.y + (end.y - start.y) * t;
+		float z = start.z + (end.z - start.z) * t;
 
+		return XMFLOAT3(x, y, z);
+	}*/
 
 	//void Focus(const Vector3 objectPosition, float objectRadius, const XMFLOAT3 cameraDirection, XMFLOAT3 cameraPosition, float lerpSpeed);
 	void Update(InputCommands* m_InputCommands);

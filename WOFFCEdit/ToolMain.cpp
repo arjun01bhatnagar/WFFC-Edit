@@ -526,7 +526,7 @@ void ToolMain::UpdateInput(MSG * msg)
 
 		for (int i = 0; i < m_sceneGraph.size(); i++)
 		{
-			if (m_sceneGraph.at(i).ID == m_selectedObject)
+			if (m_sceneGraph.at(i).ID == m_selectedObject+1)
 			{
 				Target = i;
 			}
