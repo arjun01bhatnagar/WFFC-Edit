@@ -134,7 +134,7 @@ void Game::Update(DX::StepTimer const& timer)
     else if(CamType == 2)
     {
         camView = m_ArcBall.GetViewMatrix();
-        m_ArcBall.Update(&m_InputCommands);
+        m_ArcBall.Update(&m_InputCommands,timer);
     }
    // m_camera.FocusCam();
 
@@ -213,7 +213,15 @@ void Game::Render()
 
 		XMMATRIX local = m_world * XMMatrixTransformation(g_XMZero, Quaternion::Identity, scale, g_XMZero, rotate, translate);
 
-        m_displayList[i].m_model->Draw(context, *m_states, local, camView, m_projection, false);
+        if (wireframe == true)
+        {
+            m_displayList[i].m_model->Draw(context, *m_states, local, camView, m_projection, true);
+        }
+        else
+        {
+
+            m_displayList[i].m_model->Draw(context, *m_states, local, camView, m_projection, false);
+        }
 
         //if (i == selectedID)
         //{
@@ -235,7 +243,7 @@ void Game::Render()
 	context->RSSetState(m_states->CullNone());
     if (wireframe == true)
     {
-        context->RSSetState(m_states->Wireframe());		//uncomment for wireframe
+        context->RSSetState(m_states->Wireframe());		
     }
 	//Render the batch,  This is handled in the Display chunk becuase it has the potential to get complex
 	m_displayChunk.RenderBatch(m_deviceResources);
@@ -243,12 +251,12 @@ void Game::Render()
     //CAMERA POSITION ON HUD
     m_sprites->Begin();
     WCHAR   Buffer[256];
-    std::wstring var = L"Cam X: " + std::to_wstring(m_InputCommands.mouse_X) + L"Cam Z: " + std::to_wstring(m_InputCommands.mouse_Y);
-    std::wstring var1 = L"Dragging: " + std::to_wstring(m_InputCommands.isDragging) + L"Mouse Down " + std::to_wstring(m_InputCommands.mouseButtonUp);
+    std::wstring var = L"Cursor X: " + std::to_wstring(m_InputCommands.mouse_X) + L"Cursor Y: " + std::to_wstring(m_InputCommands.mouse_Y);
+   // std::wstring var1 = L"Dragging: " + std::to_wstring(m_InputCommands.isDragging) + L"Mouse Down " + std::to_wstring(m_InputCommands.mouseButtonUp);
 
 
     m_font->DrawString(m_sprites.get(), var.c_str(), XMFLOAT2(100, 10), Colors::Yellow);
-    m_font->DrawString(m_sprites.get(), var1.c_str(), XMFLOAT2(100, 50), Colors::Yellow);
+    //m_font->DrawString(m_sprites.get(), var1.c_str(), XMFLOAT2(100, 50), Colors::Yellow);
 
     m_sprites->End();
     
@@ -563,7 +571,7 @@ int Game::MousePicking()
 
     if (temp < 0  && PreviousSelected >= 0)
     {
-        DisplayObject objectHighlight = m_displayList[PreviousSelected];
+        DisplayObject objectHighlight = m_displayList[PreviousSelected-1];
 
         //objectHighlight.m_ID = -1;
         objectHighlight.m_wireframe = false;
@@ -589,7 +597,7 @@ int Game::MousePicking()
     //selectedID = select;
     
     //if we got a hit.  return it.  
-    return selectedID-1;
+    return selectedID - 1;
     
 }
 

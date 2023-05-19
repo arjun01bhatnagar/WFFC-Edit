@@ -1,6 +1,7 @@
 #pragma once
 #include "pch.h"
 #include "InputCommands.h"
+#include "StepTimer.h"
 #include <SimpleMath.h>
 
 using namespace DirectX;
@@ -35,8 +36,11 @@ public:
 	ArcBall();
 	~ArcBall();
 
-	void Update(InputCommands* m_Inputcommands);
+	void Update(InputCommands* m_Inputcommands, DX::StepTimer const& t);
+	void ArcLerp(DX::StepTimer const& t);
 	void Inititalize(float width, float height);
+	DirectX::SimpleMath::Vector3 ArcBallFrom;
+	DirectX::SimpleMath::Vector3 ArcBallTowards;
 
 	void SetPosition(Vector3 pos);
 
@@ -52,4 +56,6 @@ public:
 private:
 	float arcBallWidth;
 	float arcBallHeight;
+	float ArcLerpRemaining;
+	float ArcBallLerp;
 };

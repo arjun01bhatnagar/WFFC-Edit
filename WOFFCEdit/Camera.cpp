@@ -64,7 +64,7 @@ void Camera::Update(InputCommands* m_InputCommands, DX::StepTimer const& t)
 	}
 
 	
-	if (m_InputCommands->mouse_RB_Down && m_InputCommands->isDragging)
+	if (m_InputCommands->mouse_LB_Down && m_InputCommands->isDragging)
 	{
 		
 
@@ -75,21 +75,21 @@ void Camera::Update(InputCommands* m_InputCommands, DX::StepTimer const& t)
 			float dy = y * (3.1415) / m_height;
 			
 
-			if (x > 1)
+			if (x > 2)
 			{
 				m_camOrientation.y += m_camRotRate * dx;
 			}
-			else if (x < -1)
+			else if (x < -2)
 			{
 				m_camOrientation.y -= m_camRotRate * dx * (-1);
 			}
 
-			if (y > 1)
+			if (y > 2)
 			{
 				m_camOrientation.x -= m_camRotRate * dy;
 			}
 
-			else if (y < -1)
+			else if (y < -2)
 			{
 
 				m_camOrientation.x += m_camRotRate * dy * (-1);
@@ -170,15 +170,15 @@ void Camera::Lerp(DX::StepTimer const& t)
 void Camera::FocusCam(XMFLOAT3 position,XMFLOAT3 scale)
 {
 
-	//float LerpFactor = 0.1f;
+	
 
 	LerpRemaining = 0.5;
 	lerp = 0.5;
 	m_camOrientation = Vector3(-30, 0, 0);
-	//m_camPosition = position - (XMFLOAT3(2.5, -2, 0) * scale);
+	
 	M_Towards = position - (XMFLOAT3(2.5, -2, 0) * scale);
 	M_from = m_camPosition;
-	FocusCamera = true;
+	//FocusCamera = true;
 	
 
 

@@ -43,10 +43,15 @@ void ArcBall::Inititalize(float width, float height)
 	arcBallHeight = height;
 }
 
-void ArcBall::Update(InputCommands* m_InputCommands)
+void ArcBall::Update(InputCommands* m_InputCommands,DX::StepTimer const& t)
 {
 	Vector3 planarMotionVector = ArcBallLookDirection;
 	planarMotionVector.y = 0.0;
+
+	if (ArcLerpRemaining > 0)
+	{
+		ArcLerp(t);
+	}
 
 	if (m_InputCommands->RButton && m_InputCommands->isDragging)
 	{
@@ -95,12 +100,31 @@ void ArcBall::Update(InputCommands* m_InputCommands)
 	ArcBallLookDirection.z = ArcBallLookAt.z + radiusArcBall * sin(ArcBallCamOrientation.y * 3.1415 / 180) * cos(ArcBallCamOrientation.x * 3.1415 / 180);
 
 
-	ArcBallView = Matrix::CreateLookAt(ArcBallLookDirection, ArcBallLookAt, Vector3::UnitY);
+	ArcBallView = Matrix::CreateLookAt(ArcBallLookDirection, ArcBallTowards, Vector3::UnitY);
+	//ArcBallView = Matrix::CreateLookAt(ArcBallLookDirection, ArcBallLookAt, Vector3::UnitY);
 
+}
+
+void ArcBall::ArcLerp(DX::StepTimer const& t)
+{
+
+	ArcLerpRemaining -= t.GetElapsedSeconds();
+	float lerpFacArc = (ArcBallLerp - ArcLerpRemaining) / ArcLerpRemaining;
+	ArcBallPosition = Vector3::Lerp(ArcBallFrom, ArcBallTowards, lerpFacArc);
 }
 
 void ArcBall::SetPosition(Vector3 pos)
 {
-	ArcBallLookAt = pos;
+	ArcLerpRemaining = 0.5;
+	ArcBallLerp = 0.5;
+
+	//ArcBallLookAt = pos;
+	ArcBallTowards = pos;
+	ArcBallFrom = ArcBallPosition;
 	radiusArcBall = 5;
 }
+
+
+
+
+

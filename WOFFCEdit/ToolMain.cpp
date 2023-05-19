@@ -390,13 +390,14 @@ void ToolMain::Tick(MSG *msg)
 
 	//}
 
-	if (m_toolInputCommands.mouse_LB_Down )
+	if (m_toolInputCommands.mouse_RB_Down )
 	{
 		m_selectedObject = m_d3dRenderer.MousePicking();
 		//m_d3dRenderer.TerrainEditing();
-
-		m_toolInputCommands.mouse_LB_Down = false();
+		m_toolInputCommands.mouse_RB_Down = false();
+		
 	}
+	
 
 	if (m_toolInputCommands.ifOK)
 	{
@@ -605,7 +606,7 @@ void ToolMain::Duplicate()
 
 	m_sceneGraph.push_back(newObject);
 
-	//m_selectedObject = newObject.ID;
+	m_selectedObject = newObject.ID;
 
 	m_d3dRenderer.BuildDisplayList(&m_sceneGraph);
 
