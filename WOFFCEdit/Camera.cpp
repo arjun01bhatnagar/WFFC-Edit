@@ -54,11 +54,14 @@ void Camera::Initialize(float width, float height)
 
 }
 
-void Camera::Update(InputCommands* m_InputCommands)
+void Camera::Update(InputCommands* m_InputCommands, DX::StepTimer const& t)
 {
 	Vector3 planarMotionVector = m_camLookDirection;
 	planarMotionVector.y = 0.0;
-
+	if (LerpRemaining > 0)
+	{
+		Lerp(t);
+	}
 
 	
 	if (m_InputCommands->mouse_RB_Down && m_InputCommands->isDragging)
@@ -72,21 +75,21 @@ void Camera::Update(InputCommands* m_InputCommands)
 			float dy = y * (3.1415) / m_height;
 			
 
-			if (x > 0)
+			if (x > 1)
 			{
 				m_camOrientation.y += m_camRotRate * dx;
 			}
-			else if (x < 0)
+			else if (x < -1)
 			{
 				m_camOrientation.y -= m_camRotRate * dx * (-1);
 			}
 
-			if (y > 0)
+			if (y > 1)
 			{
 				m_camOrientation.x -= m_camRotRate * dy;
 			}
 
-			else if (y < 0)
+			else if (y < -1)
 			{
 
 				m_camOrientation.x += m_camRotRate * dy * (-1);
@@ -153,26 +156,29 @@ void Camera::Update(InputCommands* m_InputCommands)
 	m_view = Matrix::CreateLookAt(m_camPosition, m_camLookAt, Vector3::UnitY);
 }
 
-//XMFLOAT3 Camera::Lerp(XMFLOAT3 start, XMFLOAT3 end, float t)
-//{
-//	
-//		float x = start.x + (end.x - start.x) * t;
-//		float y = start.y + (end.y - start.y) * t;
-//		float z = start.z + (end.z - start.z) * t;
-//
-//		return XMFLOAT3(x, y, z);
-//	
-//}
+
+
+void Camera::Lerp(DX::StepTimer const& t)
+{
+	
+	LerpRemaining -= t.GetElapsedSeconds();
+	float lerpFac = (lerp - LerpRemaining) / lerp;
+	m_camPosition = Vector3::Lerp(M_from, M_Towards, lerpFac);
+
+}
 
 void Camera::FocusCam(XMFLOAT3 position,XMFLOAT3 scale)
 {
 
 	//float LerpFactor = 0.1f;
 
-
+	LerpRemaining = 0.5;
+	lerp = 0.5;
 	m_camOrientation = Vector3(-30, 0, 0);
-	m_camPosition = position - (XMFLOAT3(2.5, -2, 0) * scale);
-
+	//m_camPosition = position - (XMFLOAT3(2.5, -2, 0) * scale);
+	M_Towards = position - (XMFLOAT3(2.5, -2, 0) * scale);
+	M_from = m_camPosition;
+	FocusCamera = true;
 	
 
 

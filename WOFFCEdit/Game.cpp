@@ -31,6 +31,7 @@ Game::Game()
 
     selectedID = -1;// .push_back(-1);
 
+    PreviousSelected = -1;
 
     wireframe = false;
 }
@@ -128,7 +129,7 @@ void Game::Update(DX::StepTimer const& timer)
     if (CamType == 1)
     {
         camView = m_camera.GetViewMatrix();
-        m_camera.Update(&m_InputCommands);
+        m_camera.Update(&m_InputCommands,timer);
     }
     else if(CamType == 2)
     {
@@ -505,8 +506,11 @@ void Game::TerrainEditing()
 int Game::MousePicking()
 {
    // int select = -1;
+    PreviousSelected = selectedID;
     float pickedDistance = INFINITY;
     float nearestDist = INFINITY;
+    int temp = -1;
+    selectedID = -1;
 
 
     //setup near and far planes of frustum with mouse X and mouse y passed down from Toolmain. 
@@ -540,11 +544,13 @@ int Game::MousePicking()
         //loop through mesh list for object
         for (int y = 0; y < m_displayList[i].m_model.get()->meshes.size(); y++)
         {
+            
             //checking for ray intersection
             if (m_displayList[i].m_model.get()->meshes[y]->boundingBox.Intersects(nearPoint, pickingVector, pickedDistance)&&m_displayList[i].m_ID!=-1)
             {
                 if (pickedDistance < nearestDist)
                 {
+                    temp = m_displayList[i].m_ID;
                     selectedID = m_displayList[i].m_ID;
                     nearestDist = pickedDistance;
                 }
@@ -555,8 +561,33 @@ int Game::MousePicking()
 
     }
 
+    if (temp < 0  && PreviousSelected >= 0)
+    {
+        DisplayObject objectHighlight = m_displayList[PreviousSelected];
+
+        //objectHighlight.m_ID = -1;
+        objectHighlight.m_wireframe = false;
+
+        objectHighlight.m_model->UpdateEffects([&](IEffect* effect)
+            {
+                auto fog = dynamic_cast<IEffectFog*>(effect);
+
+                if (fog)
+                {
+
+                    fog->SetFogEnabled(false);
+
+                }
+
+            });
+
+
+    }
+        m_rebuildDisplaylist = true;
+    
+    
     //selectedID = select;
-    m_rebuildDisplaylist = true;
+    
     //if we got a hit.  return it.  
     return selectedID-1;
     
@@ -683,9 +714,10 @@ void Game::BuildDisplayList(std::vector<SceneObject> * SceneGraph)
 
         if (SceneGraph->at(i).ID == selectedID) //.back())
         {
+            
             DisplayObject objectHighlight = newDisplayObject;
 
-            objectHighlight.m_ID = -1;
+            //objectHighlight.m_ID = -1;
             objectHighlight.m_wireframe = true;
 
             objectHighlight.m_model->UpdateEffects([&](IEffect* effect)
@@ -704,6 +736,36 @@ void Game::BuildDisplayList(std::vector<SceneObject> * SceneGraph)
             });
 
         }
+
+        else
+        {
+            //if (SceneGraph->at(i).ID == PreviousSelected) //.back())
+           // {
+
+                DisplayObject objectHighlight = newDisplayObject;
+
+                //objectHighlight.m_ID = -1;
+                objectHighlight.m_wireframe = false;
+
+                objectHighlight.m_model->UpdateEffects([&](IEffect* effect)
+                    {
+                        auto fog = dynamic_cast<IEffectFog*>(effect);
+
+                        if (fog)
+                        {
+
+                            fog->SetFogEnabled(false);
+                            
+                        }
+
+                    });
+
+           // }
+
+
+
+        }
+
 
         m_rebuildDisplaylist = false;
 	}

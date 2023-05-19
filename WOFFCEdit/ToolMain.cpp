@@ -461,6 +461,7 @@ void ToolMain::UpdateInput(MSG * msg)
 
 	case WM_RBUTTONUP:
 		m_toolInputCommands.mouse_RB_Down = false;
+		m_toolInputCommands.isDragging = false;
 		break;
 	case WM_MOUSEWHEEL:
 		if (m_toolInputCommands.canScroll)
@@ -471,7 +472,7 @@ void ToolMain::UpdateInput(MSG * msg)
 		break;
 
 	case WM_MOUSELEAVE:
-		m_toolInputCommands.isDragging = false;
+		
 		m_toolInputCommands.mouse_RB_Down = true;
 		break;
 	}

@@ -1,6 +1,7 @@
 #pragma once
 #include "pch.h"
 #include "InputCommands.h"
+#include "StepTimer.h"
 #include <SimpleMath.h>
 
 //#define width;
@@ -51,15 +52,20 @@ public:
 
 		return XMFLOAT3(x, y, z);
 	}*/
+	void Lerp(DX::StepTimer const& t);
 
 	//void Focus(const Vector3 objectPosition, float objectRadius, const XMFLOAT3 cameraDirection, XMFLOAT3 cameraPosition, float lerpSpeed);
-	void Update(InputCommands* m_InputCommands);
+	void Update(InputCommands* m_InputCommands, DX::StepTimer const& t);
 	void Initialize(float width, float height);
-	
+	DirectX::SimpleMath::Vector3 M_from;
+	DirectX::SimpleMath::Vector3 M_Towards;
+	bool FocusCamera;
 
 private:
 	float m_width;
 	float m_height;
+	float LerpRemaining;
+	float lerp;
 	//
 
 	//std::vector<DisplayObject>			m_displayList;

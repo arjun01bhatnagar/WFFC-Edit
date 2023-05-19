@@ -133,7 +133,7 @@ private:
 
 	//camera
 	ArcBall m_ArcBall;
-	
+	int PreviousSelected;
 
 	
 	//Camera M_Camera2;
