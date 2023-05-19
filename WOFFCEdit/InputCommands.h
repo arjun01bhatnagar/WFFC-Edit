@@ -30,6 +30,8 @@ struct InputCommands
 
 	bool TButton;
 
+	bool BButton;
+
 	bool CopyDown;
 	bool PasteDown;
 	bool canScroll;

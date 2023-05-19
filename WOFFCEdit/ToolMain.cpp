@@ -383,12 +383,12 @@ void ToolMain::Tick(MSG *msg)
 		m_d3dRenderer.CamType = 2;
 	}
 
-	if (m_toolInputCommands.mouse_LB_Down && m_toolInputCommands.mouse_RB_Down)
-	{
+	//if (m_toolInputCommands.mouse_LB_Down )
+	//{
 
-		//m_d3dRenderer.TerrainEditing();
+	//	//m_d3dRenderer.TerrainEditing();
 
-	}
+	//}
 
 	if (m_toolInputCommands.mouse_LB_Down )
 	{
@@ -516,6 +516,13 @@ void ToolMain::UpdateInput(MSG * msg)
 		m_toolInputCommands.RButton = true;
 	}
 	else m_toolInputCommands.RButton = false;
+
+	if (m_keyArray['B'] && m_toolInputCommands.mouse_LB_Down)
+	{
+		m_toolInputCommands.BButton = true;
+		m_d3dRenderer.TerrainEditing();
+	}
+	else m_toolInputCommands.BButton = false;
 
 	if (m_keyArray[VK_CONTROL] && m_keyArray['T'])
 	{

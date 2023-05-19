@@ -109,7 +109,7 @@ void Camera::Update(InputCommands* m_InputCommands)
 			}
 
 			if (m_camOrientation.y > 85.f)
-			{
+			{w
 				m_camOrientation.y = 85.f;
 			}*/
 
