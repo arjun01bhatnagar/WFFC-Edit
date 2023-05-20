@@ -52,12 +52,35 @@ void DisplayChunk::RenderBatch(std::shared_ptr<DX::DeviceResources>  DevResource
 	m_batch->Begin();
 	for (size_t i = 0; i < TERRAINRESOLUTION-1; i++)	//looping through QUADS.  so we subtrack one from the terrain array or it will try to draw a quad starting with the last vertex in each row. Which wont work
 	{
-		for (size_t j = 0; j < TERRAINRESOLUTION-1; j++)//same as above
+		for (size_t j = 0; j < TERRAINRESOLUTION - 1; j++)//same as above
 		{
-			m_batch->DrawQuad(m_terrainGeometry[i][j], m_terrainGeometry[i][j+1], m_terrainGeometry[i+1][j+1], m_terrainGeometry[i+1][j]); //bottom left bottom right, top right top left.
+			if (m_Highlighted[i][j] && m_Highlighted[i][j + 1] && m_Highlighted[i + 1][j + 1] && m_Highlighted[i + 1][j])
+
+				continue;
+
+				m_batch->DrawQuad(m_terrainGeometry[i][j], m_terrainGeometry[i][j + 1], m_terrainGeometry[i + 1][j + 1], m_terrainGeometry[i + 1][j]); //bottom left bottom right, top right top left.
+			
 		}
 	}
 	m_batch->End();
+
+	m_EffectHighlight->Apply(context);
+	m_batch->Begin();
+	for (size_t i = 0; i < TERRAINRESOLUTION - 1; i++)	//looping through QUADS.  so we subtrack one from the terrain array or it will try to draw a quad starting with the last vertex in each row. Which wont work
+	{
+		for (size_t j = 0; j < TERRAINRESOLUTION - 1; j++)//same as above
+		{
+			if (!m_Highlighted[i][j] || !m_Highlighted[i][j + 1] || !m_Highlighted[i + 1][j + 1] || !m_Highlighted[i + 1][j])
+
+				continue;
+
+				m_batch->DrawQuad(m_terrainGeometry[i][j], m_terrainGeometry[i][j + 1], m_terrainGeometry[i + 1][j + 1], m_terrainGeometry[i + 1][j]); //bottom left bottom right, top right top left.
+			
+		}
+	}
+	m_batch->End();
+
+
 }
 
 void DisplayChunk::InitialiseBatch()
@@ -120,10 +143,22 @@ void DisplayChunk::LoadHeightMap(std::shared_ptr<DX::DeviceResources>  DevResour
 	m_terrainEffect->SetTextureEnabled(true);
 	m_terrainEffect->SetTexture(m_texture_diffuse);
 
+	m_EffectHighlight = std::make_unique<BasicEffect>(device);
+	m_EffectHighlight->EnableDefaultLighting();
+	m_EffectHighlight->SetLightingEnabled(true);
+	m_EffectHighlight->SetTextureEnabled(true);
+	m_EffectHighlight->SetTexture(m_texture_diffuse);
+	m_EffectHighlight->SetFogStart(0.0f);
+	m_EffectHighlight->SetFogEnd(0.0f);
+	m_EffectHighlight->SetFogColor(Colors::Red);
+	m_EffectHighlight->SetFogEnabled(true);
+
+
 	void const* shaderByteCode;
 	size_t byteCodeLength;
 
 	m_terrainEffect->GetVertexShaderBytecode(&shaderByteCode, &byteCodeLength);
+	m_EffectHighlight->GetVertexShaderBytecode(&shaderByteCode, &byteCodeLength);
 
 	//setup batch
 	DX::ThrowIfFailed(
@@ -136,6 +171,12 @@ void DisplayChunk::LoadHeightMap(std::shared_ptr<DX::DeviceResources>  DevResour
 
 	m_batch = std::make_unique<PrimitiveBatch<VertexPositionNormalTexture>>(devicecontext);
 
+
+	for (size_t i = 0; i < TERRAINRESOLUTION; i++)
+	{
+		for (size_t j = 0; j < TERRAINRESOLUTION; j++)
+			m_Highlighted[i][j] = false;
+	}
 	
 }
 
@@ -146,6 +187,7 @@ void DisplayChunk::SaveHeightMap()
 		m_heightMap[i] = 0;
 	}*/
 
+	GenerateHeightmap();
 	FILE *pFile = NULL;
 
 	// Open The File In Read / Binary Mode.
@@ -163,25 +205,33 @@ void DisplayChunk::SaveHeightMap()
 	
 }
 
-void DisplayChunk::UpdateTerrain()
+//void DisplayChunk::UpdateTerrain()
+//{
+//	//all this is doing is transferring the height from the heigtmap into the terrain geometry.
+//	int index;
+//	for (size_t i = 0; i < TERRAINRESOLUTION; i++)
+//	{
+//		for (size_t j = 0; j < TERRAINRESOLUTION; j++)
+//		{
+//			index = (TERRAINRESOLUTION * i) + j;
+//			m_terrainGeometry[i][j].position.y = (float)(m_heightMap[index])*m_terrainHeightScale;	
+//		}
+//	}
+//	CalculateTerrainNormals();
+//
+//}
+
+void DisplayChunk::GenerateHeightmap()
 {
-	//all this is doing is transferring the height from the heigtmap into the terrain geometry.
 	int index;
 	for (size_t i = 0; i < TERRAINRESOLUTION; i++)
 	{
 		for (size_t j = 0; j < TERRAINRESOLUTION; j++)
 		{
 			index = (TERRAINRESOLUTION * i) + j;
-			m_terrainGeometry[i][j].position.y = (float)(m_heightMap[index])*m_terrainHeightScale;	
+			m_heightMap[index] = (float)(m_terrainGeometry[i][j].position.y / m_terrainHeightScale);
 		}
 	}
-	CalculateTerrainNormals();
-
-}
-
-void DisplayChunk::GenerateHeightmap()
-{
-	//insert how YOU want to update the heigtmap here! :D
 }
 
 void DisplayChunk::CalculateTerrainNormals()

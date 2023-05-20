@@ -1,5 +1,14 @@
 #pragma once
 
+
+enum ToolState
+{
+	Pressed,
+	Released,
+	Held
+
+};
+
 struct InputCommands
 {
 	bool forward;
@@ -45,7 +54,17 @@ struct InputCommands
 	bool isDragging;
 	
 
+
 	bool terrainEdit;
+
+	bool TerrainEnd;
+
+
+	bool terrain;
+
+	ToolState MouseLeftButtonState;
 };
 
-	
+
+
+

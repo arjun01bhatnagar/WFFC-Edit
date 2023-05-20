@@ -21,6 +21,8 @@ public:
 	
 	std::unique_ptr<DirectX::PrimitiveBatch<DirectX::VertexPositionNormalTexture>>  m_batch;
 	std::unique_ptr<DirectX::BasicEffect>       m_terrainEffect;
+	std::unique_ptr<DirectX::BasicEffect>       m_EffectHighlight;
+
 
 	ID3D11ShaderResourceView *					m_texture_diffuse;				//diffuse texture
 	Microsoft::WRL::ComPtr<ID3D11InputLayout>   m_terrainInputLayout;

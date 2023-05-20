@@ -138,10 +138,19 @@ void Game::Update(DX::StepTimer const& timer)
     }
    // m_camera.FocusCam();
 
+    if (m_InputCommands.terrain == true)
+    {
+        TerrainHighlight();
+    }
+
+    
+
     m_batchEffect->SetView(camView);
     m_batchEffect->SetWorld(Matrix::Identity);
 	m_displayChunk.m_terrainEffect->SetView(camView);
 	m_displayChunk.m_terrainEffect->SetWorld(Matrix::Identity);
+    m_displayChunk.m_EffectHighlight->SetView(camView);
+    m_displayChunk.m_EffectHighlight->SetWorld(Matrix::Identity);
 
 #ifdef DXTK_AUDIO
     m_audioTimerAcc -= (float)timer.GetElapsedSeconds();
@@ -715,6 +724,7 @@ void Game::BuildDisplayChunk(ChunkObject * SceneChunk)
 	m_displayChunk.PopulateChunkData(SceneChunk);		//migrate chunk data
 	m_displayChunk.LoadHeightMap(m_deviceResources);
 	m_displayChunk.m_terrainEffect->SetProjection(m_projection);
+    m_displayChunk.m_EffectHighlight->SetProjection(m_projection);
 	m_displayChunk.InitialiseBatch();
 }
 

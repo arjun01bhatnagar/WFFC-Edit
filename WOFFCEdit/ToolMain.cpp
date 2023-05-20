@@ -32,6 +32,7 @@ ToolMain::ToolMain()
 	m_toolInputCommands.ifOK = false;
 	m_toolInputCommands.terrainEdit = false;
 	m_copy =  SceneObject();
+	m_toolInputCommands.DirTerrain = 1;
 	
 }
 
@@ -302,48 +303,7 @@ void ToolMain::onFocusArcBall()
 	
 }
 
-//int ToolMain::IndexID( int objectID)
-//{
-//
-//	for (size_t i = 0; i < m_sceneGraph.size(); i++)
-//	{
-//		if (m_sceneGraph[i].ID == objectID)
-//			return i;
-//	}
-//
-//	return -1;
-//}
-//
-//void ToolMain::onActionPaste(std::vector<SceneObject>m_CopiedObjects)
-//{
-//	std::vector<SceneObject> newSceneObjects;
-//	std::vector<unsigned int> newSceneAdditionID;
-//
-//	for (size_t i = 0; i < m_CopiedObjects.size(); i++)
-//	{
-//		newSceneObjects.push_back(m_CopiedObjects[i]);
-//
-//		if (m_sceneGraph.size() > 0)
-//		{
-//			newSceneObjects[i].ID = m_sceneGraph.back().ID + 1;
-//			newSceneObjects[i].chunk_ID = m_sceneGraph.back().chunk_ID;
-//		}
-//
-//		else
-//		{
-//			newSceneObjects[i].ID = 1;
-//			newSceneObjects[i].chunk_ID = 0;
-//		}
-//
-//		newSceneAdditionID.push_back(newSceneObjects[i].ID);
-//		m_sceneGraph.push_back(newSceneObjects[i]);
-//		m_d3dRenderer.AddToList(newSceneObjects[i]);
-//	}
-//
-//	m_d3dRenderer.RebuildDisplayList();
-//	//m_d3dRenderer.AddToList(SceneObject scene);
-//
-//}
+
 
 void ToolMain::onActionTerrain()
 {
@@ -357,6 +317,51 @@ void ToolMain::onActionTerrain()
 		m_d3dRenderer.terrainBool = false;
 	}
 
+	if (m_toolInputCommands.terrain == false)
+	{
+
+		m_toolInputCommands.terrain = true;
+
+	}
+
+	else
+	{
+
+		m_toolInputCommands.terrain = false;
+
+	}
+
+	
+
+}
+
+void ToolMain::TerrainFlip()
+{
+	
+	if (m_d3dRenderer.terrainBool == false)
+	{
+		m_d3dRenderer.terrainBool = true;
+	}
+
+	else
+	{
+		m_d3dRenderer.terrainBool = false;
+	}
+
+	if (m_toolInputCommands.terrain == false)
+	{
+
+		m_toolInputCommands.terrain = true;
+
+	}
+
+	else
+	{
+
+		m_toolInputCommands.terrain = false;
+
+	}
+	
 }
 
 
@@ -384,17 +389,32 @@ void ToolMain::Tick(MSG *msg)
 		m_d3dRenderer.CamType = 2;
 	}
 
-	//if (m_toolInputCommands.mouse_LB_Down )
-	//{
 
-	//	//m_d3dRenderer.TerrainEditing();
+	if (m_toolInputCommands.terrain == true)
+	{
+		if (m_toolInputCommands.MouseLeftButtonState == Pressed)
+		{
+			m_d3dRenderer.TerrainStart();
+			m_toolInputCommands.MouseLeftButtonState = Held;
+		}
 
-	//}
+		if (m_toolInputCommands.MouseLeftButtonState == Held)
+		{
+			m_d3dRenderer.TerrainEditing();
+
+		}
+		if (m_toolInputCommands.TerrainEnd)
+		{
+			m_d3dRenderer.TerrainEnd();
+			m_toolInputCommands.TerrainEnd = false;
+		}
+	}
+
 
 	if (m_toolInputCommands.mouse_RB_Down )
 	{
 		m_selectedObject = m_d3dRenderer.MousePicking();
-		//m_d3dRenderer.TerrainEditing();
+		
 		m_toolInputCommands.mouse_RB_Down = false();
 		
 	}
@@ -410,7 +430,7 @@ void ToolMain::Tick(MSG *msg)
 
 	m_d3dRenderer.PickTest(m_sceneGraph);
 	
-	//m_d3dRenderer.BuildDisplayList(&m_sceneGraph);
+	
 	m_toolInputCommands.testingScroll = 0;
 	
 }
@@ -449,11 +469,13 @@ void ToolMain::UpdateInput(MSG * msg)
 
 	case WM_LBUTTONDOWN:	//mouse button down,  you will probably need to check when its up too
 		//set some flag for the mouse button in inputcommands
+		m_toolInputCommands.MouseLeftButtonState = Pressed;
 		m_toolInputCommands.mouse_LB_Down = true;
 		
 		break;
 
 	case WM_LBUTTONUP:
+		m_toolInputCommands.MouseLeftButtonState = Released;
 		m_toolInputCommands.mouse_LB_Down = false;
 		break;
 
@@ -520,12 +542,7 @@ void ToolMain::UpdateInput(MSG * msg)
 	}
 	else m_toolInputCommands.RButton = false;
 
-	if (m_keyArray['B'] && m_toolInputCommands.mouse_LB_Down)
-	{
-		m_toolInputCommands.BButton = true;
-		m_d3dRenderer.TerrainEditing();
-	}
-	else m_toolInputCommands.BButton = false;
+	
 
 	if (m_keyArray[VK_CONTROL] && m_keyArray['T'])
 	{
