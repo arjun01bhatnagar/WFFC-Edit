@@ -150,7 +150,7 @@ void DisplayChunk::LoadHeightMap(std::shared_ptr<DX::DeviceResources>  DevResour
 	m_EffectHighlight->SetTexture(m_texture_diffuse);
 	m_EffectHighlight->SetFogStart(0.0f);
 	m_EffectHighlight->SetFogEnd(0.0f);
-	m_EffectHighlight->SetFogColor(Colors::Red);
+	m_EffectHighlight->SetFogColor(Colors::IndianRed);
 	m_EffectHighlight->SetFogEnabled(true);
 
 

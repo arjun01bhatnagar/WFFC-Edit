@@ -837,6 +837,23 @@ void Game::TerrainHighlight()
         }
     }
 
+    if (!intersection)
+        return;
+
+    for (int i = 0; i < 128; i++)
+    {
+        for (int j = 0; j < 128; j++)
+        {
+            const float distance = Vector3::Distance(Vector3(IntersectPoint.x, 0, IntersectPoint.z), Vector3(m_displayChunk.m_terrainGeometry[i][j].position.x, 0, m_displayChunk.m_terrainGeometry[i][j].position.z));
+            
+
+            if (distance<outerRadius && distance>innerRadius)
+            {
+                m_displayChunk.m_Highlighted[i][j] = true;
+            }
+        }
+    }
+
 
 }
 

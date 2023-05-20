@@ -95,8 +95,8 @@ public:
 
 	DisplayObject CopiedObj;
 
-	int outerRadius = 10;
-	int innerRadius = 5;
+	int outerRadius = 25;
+	int innerRadius = 15;
 	
 	void FocusArcBall();
 

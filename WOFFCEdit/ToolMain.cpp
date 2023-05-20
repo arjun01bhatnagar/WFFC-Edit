@@ -32,7 +32,7 @@ ToolMain::ToolMain()
 	m_toolInputCommands.ifOK = false;
 	m_toolInputCommands.terrainEdit = false;
 	m_copy =  SceneObject();
-	m_toolInputCommands.DirTerrain = 1;
+	m_toolInputCommands.DirTerrain = -1;
 	
 }
 
