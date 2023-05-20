@@ -208,6 +208,8 @@ void ToolMain::onActionSave()
 	sqlite3_stmt *pResults;								//results of the query
 	
 
+	//TEST
+
 	//OBJECTS IN THE WORLD Delete them all
 	//prepare SQL Text
 	sqlCommand = "DELETE FROM Objects";	 //will delete the whole object table.   Slightly risky but hey.
