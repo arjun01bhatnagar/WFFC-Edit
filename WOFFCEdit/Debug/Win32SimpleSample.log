@@ -11,6 +11,7 @@ E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\DisplayChunk.cpp(239,30): warning C4101: 'in
 E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\DisplayChunk.cpp(239,14): warning C4101: 'index2': unreferenced local variable
 E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\DisplayChunk.cpp(239,22): warning C4101: 'index3': unreferenced local variable
 E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\DisplayChunk.cpp(239,6): warning C4101: 'index1': unreferenced local variable
+  DisplayObject.cpp
   Game.cpp
 E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(68,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(68,25): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
@@ -80,4 +81,5 @@ E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(554,21): warning C4018: '<': si
 E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(615,20): warning C4018: '<': signed/unsigned mismatch
 E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(665,21): warning C4018: '<': signed/unsigned mismatch
   Generating Code...
+  LINK : E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Debug\WoFEdit.exe not found or not built by the last incremental link; performing full link
   Win32SimpleSample.vcxproj -> E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Debug\WoFEdit.exe
