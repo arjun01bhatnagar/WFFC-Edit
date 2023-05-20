@@ -36,6 +36,7 @@ struct InputCommands
 	bool PasteDown;
 	bool canScroll;
 
+	int DirTerrain;
 
 	int testingScroll;
 

@@ -90,6 +90,9 @@ public:
 	void TerrainEditing();
 	void TerrainEnd();
 
+	float m_OldY[TERRAINRESOLUTION][TERRAINRESOLUTION];
+	std::vector<std::pair<int, int>> m_points;
+
 	DisplayObject CopiedObj;
 
 	int outerRadius = 5;

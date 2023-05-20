@@ -211,3 +211,24 @@ void DisplayChunk::CalculateTerrainNormals()
 		}
 	}
 }
+
+void DisplayChunk::HighlightNormals(int i,int j)
+{
+
+	DirectX::SimpleMath::Vector3 upDownVector, leftRightVector, normalVector;
+
+	upDownVector.x = (m_terrainGeometry[i + 1][j].position.x - m_terrainGeometry[i - 1][j].position.x);
+	upDownVector.y = (m_terrainGeometry[i + 1][j].position.y - m_terrainGeometry[i - 1][j].position.y);
+	upDownVector.z = (m_terrainGeometry[i + 1][j].position.z - m_terrainGeometry[i - 1][j].position.z);
+
+	leftRightVector.x = (m_terrainGeometry[i][j - 1].position.x - m_terrainGeometry[i][j + 1].position.x);
+	leftRightVector.y = (m_terrainGeometry[i][j - 1].position.y - m_terrainGeometry[i][j + 1].position.y);
+	leftRightVector.z = (m_terrainGeometry[i][j - 1].position.z - m_terrainGeometry[i][j + 1].position.z);
+
+
+	leftRightVector.Cross(upDownVector, normalVector);	//get cross product
+	normalVector.Normalize();			//normalise it.
+
+	m_terrainGeometry[i][j].normal = normalVector;
+
+}
