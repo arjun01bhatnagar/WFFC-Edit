@@ -40,7 +40,7 @@ public: //methods
 	void Delete();
 	
 
-	std::vector<std::vector<SceneObject>> m_scene_objects_memory;
+	//std::vector<std::vector<SceneObject>> m_scene_objects_memory;
 	std::vector<SceneObject> m_scene_objects;
 	//Game GameObject;
 	
@@ -74,6 +74,8 @@ public:	//variables
 	int m_selectedObject = -1;						//ID of current Selection
 	
 
+	std::vector <std::vector <SceneObject>> m_sceneObjectMem;
+
 	std::vector<int>  PositionDiffX;
 	std::vector<int>  PositionDiffY;
 
@@ -92,7 +94,8 @@ public:	//variables
 
 	}
 
-
+	SceneObject m_copy;
+	void Copy();
 
 
 private:	//methods

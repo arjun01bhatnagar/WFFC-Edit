@@ -841,7 +841,10 @@ void Game::NewAudioDevice()
 
 
 #pragma endregion
-
+void Game::TerrainHighlight()
+{
+    
+}
 #pragma region Direct3D Resources
 // These are the resources that depend on the device.
 void Game::CreateDeviceDependentResources()

@@ -84,7 +84,11 @@ public:
 	void ClearDisplayList();
 	void AddToList(SceneObject scene);
 
+	//terrain
+	void TerrainHighlight();
+	void TerrainStart();
 	void TerrainEditing();
+	void TerrainEnd();
 
 	DisplayObject CopiedObj;
 
