@@ -106,19 +106,7 @@ void Camera::Update(InputCommands* m_InputCommands, DX::StepTimer const& t)
 				m_camOrientation.x = -89.f;
 			}
 
-		/*	if (m_camOrientation.y < -85.f)
-			{
-				m_camOrientation.y = -85.f;
-			}
-
-			if (m_camOrientation.y > 85.f)
-			{w
-				m_camOrientation.y = 85.f;
-			}*/
-
-
-
-		//}
+		
 	}
 	
 
@@ -136,18 +124,42 @@ void Camera::Update(InputCommands* m_InputCommands, DX::StepTimer const& t)
 	{
 		m_camPosition += m_camLookDirection * m_movespeed;
 	}
+	
 	if (m_InputCommands->back)
 	{
 		m_camPosition -= m_camLookDirection * m_movespeed;
 	}
+	
 	if (m_InputCommands->right)
 	{
 		m_camPosition += m_camRight * m_movespeed;
 	}
+	
 	if (m_InputCommands->left)
 	{
 		m_camPosition -= m_camRight * m_movespeed;
 	}
+	
+
+	if (m_InputCommands->forward && m_InputCommands->ShiftButton)
+	{
+		m_camPosition += m_camLookDirection * m_movespeed * CamSpeed;
+	}
+	if (m_InputCommands->back && m_InputCommands->ShiftButton)
+	{
+		m_camPosition -= m_camLookDirection * m_movespeed * CamSpeed;
+	}
+	if (m_InputCommands->right && m_InputCommands->ShiftButton)
+	{
+		m_camPosition += m_camRight * m_movespeed * CamSpeed;
+	}
+	if (m_InputCommands->left && m_InputCommands->ShiftButton)
+	{
+		m_camPosition -= m_camRight * m_movespeed * CamSpeed;
+	}
+
+
+
 
 	//update lookat point
 	m_camLookAt = m_camPosition + m_camLookDirection;

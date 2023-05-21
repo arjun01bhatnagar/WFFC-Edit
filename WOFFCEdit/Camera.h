@@ -60,6 +60,7 @@ public:
 	DirectX::SimpleMath::Vector3 M_from;
 	DirectX::SimpleMath::Vector3 M_Towards;
 	bool FocusCamera;
+	float CamSpeed = 1.5;
 
 private:
 	float m_width;

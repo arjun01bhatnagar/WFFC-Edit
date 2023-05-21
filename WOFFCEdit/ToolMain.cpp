@@ -555,6 +555,12 @@ void ToolMain::UpdateInput(MSG * msg)
 	}
 	else m_toolInputCommands.RButton = false;
 
+	if (m_keyArray[VK_SHIFT])
+	{
+		m_toolInputCommands.ShiftButton= true;
+	}
+	else m_toolInputCommands.ShiftButton = false;
+
 	
 
 	if (m_keyArray[VK_CONTROL] && m_keyArray['T'])
