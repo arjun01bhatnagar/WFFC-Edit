@@ -540,14 +540,15 @@ void ToolMain::UpdateInput(MSG * msg)
 	//rotation
 	if (m_keyArray['E'])
 	{
-		m_toolInputCommands.rotRight = true;
+		m_toolInputCommands.moveDown = true;
 	}
-	else m_toolInputCommands.rotRight = false;
+	else m_toolInputCommands.moveDown = false;
+
 	if (m_keyArray['Q'])
 	{
-		m_toolInputCommands.rotLeft = true;
+		m_toolInputCommands.moveUp = true;
 	}
-	else m_toolInputCommands.rotLeft = false;
+	else m_toolInputCommands.moveUp = false;
 
 	if (m_keyArray['R'])
 	{

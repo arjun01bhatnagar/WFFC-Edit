@@ -14,9 +14,9 @@ Camera::Camera()
 	m_camPosition.y = 10.0f;
 	m_camPosition.z = -3.5f;
 
-	m_camOrientation.x = -25.f;
-	m_camOrientation.y = 0;
-	m_camOrientation.z = 0;
+	m_camOrientation.x = 0.0f;
+	m_camOrientation.y = 0.01;
+	m_camOrientation.z = 0.0f;
 
 	m_camLookAt.x = 0.0f;
 	m_camLookAt.y = 0.0f;
@@ -139,6 +139,16 @@ void Camera::Update(InputCommands* m_InputCommands, DX::StepTimer const& t)
 	{
 		m_camPosition -= m_camRight * m_movespeed;
 	}
+
+	if (m_InputCommands->moveUp)
+	{
+		m_camPosition += Vector3::UnitY * m_movespeed;
+	}
+
+	if (m_InputCommands->moveDown)
+	{
+		m_camPosition -= Vector3::UnitY * m_movespeed;
+	}
 	
 
 	if (m_InputCommands->forward && m_InputCommands->ShiftButton)
@@ -157,6 +167,16 @@ void Camera::Update(InputCommands* m_InputCommands, DX::StepTimer const& t)
 	{
 		m_camPosition -= m_camRight * m_movespeed * CamSpeed;
 	}
+	if (m_InputCommands->moveUp && m_InputCommands->ShiftButton)
+	{
+		m_camPosition += Vector3::UnitY * m_movespeed*CamSpeed;
+	}
+
+	if (m_InputCommands->moveDown && m_InputCommands->ShiftButton)
+	{
+		m_camPosition -= Vector3::UnitY * m_movespeed*CamSpeed;
+	}
+
 
 
 
