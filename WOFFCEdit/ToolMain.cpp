@@ -564,9 +564,9 @@ void ToolMain::UpdateInput(MSG * msg)
 
 	
 
-	if (m_keyArray[VK_CONTROL] && m_keyArray['T'])
+	if (m_keyArray[VK_CONTROL] && m_keyArray['F'])
 	{
-		m_toolInputCommands.TButton = true;
+		m_toolInputCommands.FButton = true;
 
 		
 		int Target = 0;
@@ -584,7 +584,7 @@ void ToolMain::UpdateInput(MSG * msg)
 
 		
 	}
-	else m_toolInputCommands.TButton = false;
+	else m_toolInputCommands.FButton = false;
 
 
 

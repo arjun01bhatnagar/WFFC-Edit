@@ -37,7 +37,7 @@ struct InputCommands
 
 	bool RButton;
 
-	bool TButton;
+	bool FButton;
 
 	bool ShiftButton;
 
