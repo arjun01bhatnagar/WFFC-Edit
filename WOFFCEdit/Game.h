@@ -84,6 +84,8 @@ public:
 	void ClearDisplayList();
 	void AddToList(SceneObject scene);
 
+	void DragObj(int ID);
+	
 	//terrain
 	void TerrainHighlight();
 	void TerrainStart();
@@ -105,7 +107,10 @@ public:
        CamType = SetCamType;
 	};
 	
-	
+	std::vector<DisplayObject> GetDisplayList()
+	{
+		return m_displayList;
+	}
 
 
 	inline void RebuildDisplayList()

@@ -260,12 +260,12 @@ void Game::Render()
     //CAMERA POSITION ON HUD
     m_sprites->Begin();
     WCHAR   Buffer[256];
-    std::wstring var = L"Cursor X: " + std::to_wstring(m_InputCommands.mouse_X) + L"Cursor Y: " + std::to_wstring(m_InputCommands.mouse_Y);
-   // std::wstring var1 = L"Dragging: " + std::to_wstring(m_InputCommands.isDragging) + L"Mouse Down " + std::to_wstring(m_InputCommands.mouseButtonUp);
+    std::wstring var = L"Cursor X: " + std::to_wstring(m_InputCommands.mouse_X) + L" Cursor Y: " + std::to_wstring(m_InputCommands.mouse_Y);
+    std::wstring var1 = L"CamX: " + std::to_wstring(m_camera.m_camPosition.x) + L" CamY: " + std::to_wstring(m_camera.m_camPosition.y)+ L" CamZ: " + std::to_wstring(m_camera.m_camPosition.z);
 
 
     m_font->DrawString(m_sprites.get(), var.c_str(), XMFLOAT2(100, 10), Colors::Yellow);
-    //m_font->DrawString(m_sprites.get(), var1.c_str(), XMFLOAT2(100, 50), Colors::Yellow);
+    m_font->DrawString(m_sprites.get(), var1.c_str(), XMFLOAT2(100, 50), Colors::Yellow);
 
     m_sprites->End();
     
@@ -444,7 +444,7 @@ void Game::AddToList(SceneObject scene)
 int Game::MousePicking()
 {
    // int select = -1;
-    PreviousSelected = selectedID;
+    //PreviousSelected = selectedID;
     float pickedDistance = INFINITY;
     float nearestDist = INFINITY;
     int temp = -1;
@@ -493,6 +493,13 @@ int Game::MousePicking()
                     nearestDist = pickedDistance;
                 }
             }
+
+         /*   else if(m_displayList[i].m_model.get()->meshes[y]->boundingBox.Intersects(nearPoint, pickingVector, pickedDistance) && m_displayList[i].m_ID == -1)
+            {
+
+                selectedID = -1;
+
+            }*/
         }
 
 
@@ -998,6 +1005,28 @@ void Game::TerrainEnd()
 
 }
 
+void Game::DragObj(int ID)
+{
+    if (ID == -1)
+    
+        return;
+
+    const XMVECTOR nearSource = XMVectorSet(m_InputCommands.mouse_X, m_InputCommands.mouse_Y, 0.0f, 1.0f);
+    const XMVECTOR farSource = XMVectorSet(m_InputCommands.mouse_X, m_InputCommands.mouse_Y, 1.0f, 1.0f);
+
+    XMVECTOR nearPoint = XMVector3Unproject(nearSource, 0.0f, 0.0f, m_ScreenDimensions.right, m_ScreenDimensions.bottom, m_deviceResources->GetScreenViewport().MinDepth, m_deviceResources->GetScreenViewport().MaxDepth, m_projection, m_camera.m_view, m_world);
+    XMVECTOR farPoint = XMVector3Unproject(farSource, 0.0f, 0.0f, m_ScreenDimensions.right, m_ScreenDimensions.bottom, m_deviceResources->GetScreenViewport().MinDepth, m_deviceResources->GetScreenViewport().MaxDepth, m_projection, m_camera.m_view, m_world);
+    
+    XMVECTOR mouseCast = farPoint - nearPoint;
+    mouseCast = XMVector3Normalize(mouseCast);
+
+    //place object set distance from cursor
+    Vector3 newPos = m_displayList[ID].m_position = nearPoint + mouseCast * 15;//DistanceToSelected;
+       // = m_displayList[ID].m_position 
+    m_displayList[ID].m_position = newPos;
+
+
+}
 #pragma region Direct3D Resources
 // These are the resources that depend on the device.
 void Game::CreateDeviceDependentResources()

@@ -30,7 +30,7 @@ ToolMain::ToolMain()
 
 	m_toolInputCommands.isDragging = false;
 	m_toolInputCommands.ifOK = false;
-	m_toolInputCommands.terrainEdit = false;
+	
 	m_copy =  SceneObject();
 	m_toolInputCommands.DirTerrain = 1;
 	
@@ -357,6 +357,12 @@ void ToolMain::Tick(MSG *msg)
 	}
 
 
+
+	
+
+
+	
+
 	if (m_toolInputCommands.terrain == true)
 	{
 
@@ -395,9 +401,18 @@ void ToolMain::Tick(MSG *msg)
 	if (m_toolInputCommands.mouse_RB_Down )
 	{
 		m_selectedObject = m_d3dRenderer.MousePicking();
+
+		//m_d3dRenderer.DragObj(m_selectedObject);
 		
 		m_toolInputCommands.mouse_RB_Down = false();
-		
+
+		//if (m_toolInputCommands.MouseLeftButtonState == Held && m_toolInputCommands.dragObj)
+		//{
+		//	m_d3dRenderer.DragObj(m_selectedObject);
+		//}
+		/*m_toolInputCommands.MouseLeftButtonState = Held;*/
+
+		//sssm_d3dRenderer.DragObj(m_selectedObject);
 	}
 	
 
@@ -433,7 +448,7 @@ void ToolMain::UpdateInput(MSG * msg)
 	case WM_MOUSEMOVE:
 		
 		m_toolInputCommands.isDragging = true;
-		m_toolInputCommands.terrainEdit = true;
+		
 		
 		
 		m_toolInputCommands.mouse_X_prev=m_toolInputCommands.mouse_X;
@@ -444,6 +459,15 @@ void ToolMain::UpdateInput(MSG * msg)
 
 		m_toolInputCommands.mouse_X = GET_X_LPARAM(msg->lParam);
 		m_toolInputCommands.mouse_Y = GET_Y_LPARAM(msg->lParam);
+
+		if (!m_toolInputCommands.MouseLeftButtonState == Held)
+		{
+			if (!m_toolInputCommands.dragObj&&m_selectedObject!=-1)
+			{
+				m_OriginalPosition = m_d3dRenderer.GetDisplayList()[m_selectedObject].m_position;
+				m_toolInputCommands.dragObj = true;
+			}
+		}
 
 	
 		break;
@@ -458,15 +482,23 @@ void ToolMain::UpdateInput(MSG * msg)
 	case WM_LBUTTONUP:
 		m_toolInputCommands.MouseLeftButtonState = Released;
 		m_toolInputCommands.mouse_LB_Down = false;
+		
 		break;
 
 	case WM_RBUTTONDOWN:
 		m_toolInputCommands.mouse_RB_Down = true;
+
 		break;
 
 	case WM_RBUTTONUP:
 		m_toolInputCommands.mouse_RB_Down = false;
 		m_toolInputCommands.isDragging = false;
+		if (m_toolInputCommands.dragObj)
+		{
+
+			m_toolInputCommands.dragObj = false;
+
+		}
 		break;
 	case WM_MOUSEWHEEL:
 		if (m_toolInputCommands.canScroll)

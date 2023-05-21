@@ -27,6 +27,7 @@ public: //methods
 	afx_msg void    onFocusArcBall();
 	afx_msg void    onActionTerrain();
 	
+	int ID;
 
 	void	Tick(MSG *msg);
 	void	UpdateInput(MSG *msg);
@@ -42,6 +43,7 @@ public: //methods
 
 	//std::vector<std::vector<SceneObject>> m_scene_objects_memory;
 	std::vector<SceneObject> m_scene_objects;
+	DirectX::SimpleMath::Vector3 m_OriginalPosition = DirectX::SimpleMath::Vector3(0, 0, 0);
 	//Game GameObject;
 	
 	//CopyPaste m_CopyPaste{ this };

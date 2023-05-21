@@ -47,7 +47,7 @@ struct InputCommands
 	bool PasteDown;
 	bool canScroll;
 
-	int DirTerrain;
+	
 
 	int testingScroll;
 
@@ -56,16 +56,16 @@ struct InputCommands
 	bool isDragging;
 	
 
-
-	bool terrainEdit;
+	bool dragObj;
+	bool dragObjEnd;
 
 	bool TerrainEnd;
 
+	int DirTerrain;
 
 	bool terrain;
 
-	bool terrainPos;
-	bool terrainNeg;
+
 
 	ToolState MouseLeftButtonState;
 };
