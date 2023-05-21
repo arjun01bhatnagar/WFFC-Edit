@@ -26,7 +26,7 @@ public: //methods
 	afx_msg void    onActionWireframe();
 	afx_msg void    onFocusArcBall();
 	afx_msg void    onActionTerrain();
-	afx_msg void    TerrainFlip();
+	
 
 	void	Tick(MSG *msg);
 	void	UpdateInput(MSG *msg);

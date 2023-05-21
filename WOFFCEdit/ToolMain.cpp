@@ -332,37 +332,6 @@ void ToolMain::onActionTerrain()
 
 }
 
-void ToolMain::TerrainFlip()
-{
-	///*if (!m_toolInputCommands.terrainNeg) {
-	//	m_toolInputCommands.terrainNeg = true;
-	//	m_toolInputCommands.DirTerrain = -1;
-	//}
-	//else {
-	//	m_toolInputCommands.terrainNeg = false;
-
-	//}*/
-	////m_toolInputCommands.DirTerrain = -1;
-
-	//if (m_toolInputCommands.terrain == false)
-	//{
-
-	//	m_toolInputCommands.terrain = true;
-
-	//}
-
-	//else //if(m_toolInputCommands.terrain==true)
-	//{
-
-	//	m_toolInputCommands.terrain = false;
-	//	m_toolInputCommands.DirTerrain = -1;
-
-
-	//}
-	
-}
-
-
 
 void ToolMain::onActionWireframe()
 {
