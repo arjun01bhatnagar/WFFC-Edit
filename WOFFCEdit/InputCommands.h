@@ -41,6 +41,8 @@ struct InputCommands
 
 	bool BButton;
 
+	bool NButton;
+
 	bool CopyDown;
 	bool PasteDown;
 	bool canScroll;
@@ -61,6 +63,9 @@ struct InputCommands
 
 
 	bool terrain;
+
+	bool terrainPos;
+	bool terrainNeg;
 
 	ToolState MouseLeftButtonState;
 };

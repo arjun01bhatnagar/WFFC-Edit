@@ -33,12 +33,11 @@ public: //methods
 
 
 	//CopyPaste
-	int IndexID( int objectID);
-	void onActionPaste(std::vector<SceneObject> m_CopiedObjects);
-	void RebuildDisplaylist();
 
-	void Duplicate();
 	void Delete();
+	SceneObject m_copy;
+	void Copy();
+	void Paste();
 	
 
 	//std::vector<std::vector<SceneObject>> m_scene_objects_memory;
@@ -95,8 +94,7 @@ public:	//variables
 
 	}
 
-	SceneObject m_copy;
-	void Copy();
+	
 
 
 private:	//methods

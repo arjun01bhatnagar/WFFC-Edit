@@ -32,7 +32,7 @@ ToolMain::ToolMain()
 	m_toolInputCommands.ifOK = false;
 	m_toolInputCommands.terrainEdit = false;
 	m_copy =  SceneObject();
-	m_toolInputCommands.DirTerrain = -1;
+	m_toolInputCommands.DirTerrain = 1;
 	
 }
 
@@ -309,15 +309,11 @@ void ToolMain::onFocusArcBall()
 
 void ToolMain::onActionTerrain()
 {
-	if (m_d3dRenderer.terrainBool == false)
-	{
-		m_d3dRenderer.terrainBool = true;
-	}
 
-	else
-	{
-		m_d3dRenderer.terrainBool = false;
-	}
+	
+	
+
+	
 
 	if (m_toolInputCommands.terrain == false)
 	{
@@ -326,43 +322,43 @@ void ToolMain::onActionTerrain()
 
 	}
 
-	else
+	else 
 	{
 
 		m_toolInputCommands.terrain = false;
+	
 
 	}
-
-	
 
 }
 
 void ToolMain::TerrainFlip()
 {
-	
-	if (m_d3dRenderer.terrainBool == false)
-	{
-		m_d3dRenderer.terrainBool = true;
-	}
+	///*if (!m_toolInputCommands.terrainNeg) {
+	//	m_toolInputCommands.terrainNeg = true;
+	//	m_toolInputCommands.DirTerrain = -1;
+	//}
+	//else {
+	//	m_toolInputCommands.terrainNeg = false;
 
-	else
-	{
-		m_d3dRenderer.terrainBool = false;
-	}
+	//}*/
+	////m_toolInputCommands.DirTerrain = -1;
 
-	if (m_toolInputCommands.terrain == false)
-	{
+	//if (m_toolInputCommands.terrain == false)
+	//{
 
-		m_toolInputCommands.terrain = true;
+	//	m_toolInputCommands.terrain = true;
 
-	}
+	//}
 
-	else
-	{
+	//else //if(m_toolInputCommands.terrain==true)
+	//{
 
-		m_toolInputCommands.terrain = false;
+	//	m_toolInputCommands.terrain = false;
+	//	m_toolInputCommands.DirTerrain = -1;
 
-	}
+
+	//}
 	
 }
 
@@ -394,6 +390,7 @@ void ToolMain::Tick(MSG *msg)
 
 	if (m_toolInputCommands.terrain == true)
 	{
+
 		if (m_toolInputCommands.MouseLeftButtonState == Pressed)
 		{
 			m_d3dRenderer.TerrainStart();
@@ -402,9 +399,22 @@ void ToolMain::Tick(MSG *msg)
 
 		if (m_toolInputCommands.MouseLeftButtonState == Held)
 		{
-			m_d3dRenderer.TerrainEditing();
+			if (m_keyArray['N'])
+			{
+				m_toolInputCommands.NButton = true;
+
+				m_toolInputCommands.DirTerrain = -1;
+				m_d3dRenderer.TerrainEditing();
+			}
+
+			else
+			{
+				m_toolInputCommands.DirTerrain = 1;
+				m_d3dRenderer.TerrainEditing();
+			}
 
 		}
+
 		if (m_toolInputCommands.TerrainEnd)
 		{
 			m_d3dRenderer.TerrainEnd();
@@ -584,7 +594,7 @@ void ToolMain::UpdateInput(MSG * msg)
 
 		if (m_toolInputCommands.CopyDown == false)
 		{
-			Duplicate();
+			Paste();
 		}
 
 		m_toolInputCommands.CopyDown = true;
@@ -604,7 +614,7 @@ void ToolMain::UpdateInput(MSG * msg)
 	
 }
 
-void ToolMain::Duplicate()
+void ToolMain::Paste()
 {
 
 	

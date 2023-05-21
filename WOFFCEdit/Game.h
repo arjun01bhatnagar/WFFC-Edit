@@ -63,7 +63,7 @@ public:
 	//bool m_rebuildDisplaylist;
 
 	bool wireframe;
-	bool terrainBool;
+	
 
 	void Info(SceneObject* scene, int i);
 	

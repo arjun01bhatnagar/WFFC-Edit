@@ -179,7 +179,7 @@ void MFCMain::ToolBarButton5()
 
 void MFCMain::ToolBarButton6()
 {
-
+	//m_ToolSystem.TerrainFlip();
 }
 
 MFCMain::MFCMain()

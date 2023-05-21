@@ -10,11 +10,11 @@ Camera::Camera()
 	m_camRotRate = 10;
 
 	//camera
-	m_camPosition.x = 0.0f;
-	m_camPosition.y = 3.7f;
+	m_camPosition.x = -15.f;
+	m_camPosition.y = 10.0f;
 	m_camPosition.z = -3.5f;
 
-	m_camOrientation.x = 0;
+	m_camOrientation.x = -25.f;
 	m_camOrientation.y = 0;
 	m_camOrientation.z = 0;
 
