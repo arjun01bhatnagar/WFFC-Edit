@@ -3,9 +3,9 @@
 
 enum ToolState
 {
-	Pressed,
-	Released,
-	Held
+	Down,
+	Up,
+	Dragged
 
 };
 

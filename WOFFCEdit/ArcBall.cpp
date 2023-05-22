@@ -4,12 +4,10 @@ using namespace DirectX::SimpleMath;
 
 ArcBall::ArcBall()
 {
-	ArcBallSpeed = 0.30;
+	/*ArcBallSpeed = 0.30;*/
 	RotateRate = 10;
 
-	ArcBallPosition.x = 0.0f;
-	ArcBallPosition.y = 0.0f;
-	ArcBallPosition.z = 0.0f;
+	
 
 	ArcBallCamOrientation.x = 0;
 	ArcBallCamOrientation.y = 0;
@@ -23,9 +21,7 @@ ArcBall::ArcBall()
 	ArcBallLookDirection.y = 0.0f;
 	ArcBallLookDirection.z = 0.0f;
 
-	ArcBallRight.x = 0.0f;
-	ArcBallRight.y = 0.0f;
-	ArcBallRight.z = 0.0f;
+
 
 	//ArcBall
 
@@ -48,18 +44,14 @@ void ArcBall::Update(InputCommands* m_InputCommands,DX::StepTimer const& t)
 	Vector3 planarMotionVector = ArcBallLookDirection;
 	planarMotionVector.y = 0.0;
 
-	if (ArcLerpRemaining > 0)
-	{
-		ArcLerp(t);
-	}
+
 
 	if (m_InputCommands->RButton && m_InputCommands->isDragging)
 	{
 		float x = m_InputCommands->mouse_X - m_InputCommands->mouse_X_prev;
 		float y = m_InputCommands->mouse_Y - m_InputCommands->mouse_Y_prev;
 
-		/*float dx = x * ((2 * 3.1415) / 898); 
-		float dy = y * (3.1415) / 499;*/ 
+		
 
 		float dx = x * ((2 * 3.1415) / arcBallWidth); 
 		float dy = y * (3.1415) / arcBallHeight;
@@ -105,23 +97,13 @@ void ArcBall::Update(InputCommands* m_InputCommands,DX::StepTimer const& t)
 
 }
 
-void ArcBall::ArcLerp(DX::StepTimer const& t)
-{
-
-	ArcLerpRemaining -= t.GetElapsedSeconds();
-	float lerpFacArc = (ArcBallLerp - ArcLerpRemaining) / ArcLerpRemaining;
-	ArcBallPosition = Vector3::Lerp(ArcBallFrom, ArcBallTowards, lerpFacArc);
-}
 
 void ArcBall::SetPosition(Vector3 pos)
 {
-	ArcLerpRemaining = 0.5;
-	ArcBallLerp = 0.5;
-
-	//ArcBallLookAt = pos;
+	
 	ArcBallTowards = pos;
-	ArcBallFrom = ArcBallPosition;
-	radiusArcBall = 5;
+	
+	radiusArcBall = 10;
 }
 
 

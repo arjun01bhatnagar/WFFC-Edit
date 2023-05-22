@@ -356,23 +356,16 @@ void ToolMain::Tick(MSG *msg)
 		m_d3dRenderer.CamType = 2;
 	}
 
-
-
-	
-
-
-	
-
 	if (m_toolInputCommands.terrain == true)
 	{
 
-		if (m_toolInputCommands.MouseLeftButtonState == Pressed)
+		if (m_toolInputCommands.MouseLeftButtonState == Down)
 		{
-			m_d3dRenderer.TerrainStart();
-			m_toolInputCommands.MouseLeftButtonState = Held;
+			
+			m_toolInputCommands.MouseLeftButtonState = Dragged;
 		}
 
-		if (m_toolInputCommands.MouseLeftButtonState == Held)
+		if (m_toolInputCommands.MouseLeftButtonState == Dragged)
 		{
 			if (m_keyArray['N'])
 			{
@@ -384,17 +377,13 @@ void ToolMain::Tick(MSG *msg)
 
 			else
 			{
-				m_toolInputCommands.DirTerrain = 1;
+				m_toolInputCommands.DirTerrain =1;
 				m_d3dRenderer.TerrainEditing();
 			}
 
 		}
 
-		if (m_toolInputCommands.TerrainEnd)
-		{
-			m_d3dRenderer.TerrainEnd();
-			m_toolInputCommands.TerrainEnd = false;
-		}
+		
 	}
 
 
@@ -402,17 +391,11 @@ void ToolMain::Tick(MSG *msg)
 	{
 		m_selectedObject = m_d3dRenderer.MousePicking();
 
-		//m_d3dRenderer.DragObj(m_selectedObject);
+		
 		
 		m_toolInputCommands.mouse_RB_Down = false();
 
-		//if (m_toolInputCommands.MouseLeftButtonState == Held && m_toolInputCommands.dragObj)
-		//{
-		//	m_d3dRenderer.DragObj(m_selectedObject);
-		//}
-		/*m_toolInputCommands.MouseLeftButtonState = Held;*/
-
-		//sssm_d3dRenderer.DragObj(m_selectedObject);
+		
 	}
 	
 
@@ -460,27 +443,20 @@ void ToolMain::UpdateInput(MSG * msg)
 		m_toolInputCommands.mouse_X = GET_X_LPARAM(msg->lParam);
 		m_toolInputCommands.mouse_Y = GET_Y_LPARAM(msg->lParam);
 
-		if (!m_toolInputCommands.MouseLeftButtonState == Held)
-		{
-			if (!m_toolInputCommands.dragObj&&m_selectedObject!=-1)
-			{
-				m_OriginalPosition = m_d3dRenderer.GetDisplayList()[m_selectedObject].m_position;
-				m_toolInputCommands.dragObj = true;
-			}
-		}
+		
 
 	
 		break;
 
 	case WM_LBUTTONDOWN:	//mouse button down,  you will probably need to check when its up too
 		//set some flag for the mouse button in inputcommands
-		m_toolInputCommands.MouseLeftButtonState = Pressed;
+		m_toolInputCommands.MouseLeftButtonState = Down;
 		m_toolInputCommands.mouse_LB_Down = true;
 		
 		break;
 
 	case WM_LBUTTONUP:
-		m_toolInputCommands.MouseLeftButtonState = Released;
+		m_toolInputCommands.MouseLeftButtonState = Up;
 		m_toolInputCommands.mouse_LB_Down = false;
 		
 		break;
@@ -561,6 +537,26 @@ void ToolMain::UpdateInput(MSG * msg)
 		m_toolInputCommands.ShiftButton= true;
 	}
 	else m_toolInputCommands.ShiftButton = false;
+
+	if (m_keyArray[VK_UP])
+	{
+		if (m_d3dRenderer.outerRadius < 45 && m_d3dRenderer.innerRadius<35)
+		{
+			m_d3dRenderer.outerRadius += 2;
+			m_d3dRenderer.innerRadius += 2;
+		}
+		
+	}
+	
+	if (m_keyArray[VK_DOWN])
+	{
+
+		if (m_d3dRenderer.outerRadius > 5 && m_d3dRenderer.innerRadius > 1)
+		{
+			m_d3dRenderer.outerRadius -= 2;
+			m_d3dRenderer.innerRadius -= 2;
+		}
+	}
 
 	
 

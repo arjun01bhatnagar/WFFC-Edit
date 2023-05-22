@@ -81,24 +81,23 @@ public:
 	void BuildDisplayList(std::vector<SceneObject>* SceneGraph); //note vector passed by reference 
 	void BuildDisplayChunk(ChunkObject* SceneChunk);
 	void SaveDisplayChunk(ChunkObject* SceneChunk);	//saves geometry et al
-	void ClearDisplayList();
 	void AddToList(SceneObject scene);
 
-	void DragObj(int ID);
+	
 	
 	//terrain
 	void TerrainHighlight();
-	void TerrainStart();
+	
 	void TerrainEditing();
-	void TerrainEnd();
+	
 
-	float m_OldY[TERRAINRESOLUTION][TERRAINRESOLUTION];
+	//float m_OldY[TERRAINRESOLUTION][TERRAINRESOLUTION];
 	std::vector<std::pair<int, int>> m_points;
 
 	DisplayObject CopiedObj;
 
-	int outerRadius = 25;
-	int innerRadius = 15;
+	int outerRadius = 15;
+	int innerRadius = 5;
 	
 	void FocusArcBall();
 

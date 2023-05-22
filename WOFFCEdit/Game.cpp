@@ -494,40 +494,13 @@ int Game::MousePicking()
                 }
             }
 
-         /*   else if(m_displayList[i].m_model.get()->meshes[y]->boundingBox.Intersects(nearPoint, pickingVector, pickedDistance) && m_displayList[i].m_ID == -1)
-            {
-
-                selectedID = -1;
-
-            }*/
+         
         }
 
 
 
     }
 
-    if (temp < 0  && PreviousSelected >= 0)
-    {
-        DisplayObject objectHighlight = m_displayList[PreviousSelected-1];
-
-        //objectHighlight.m_ID = -1;
-        objectHighlight.m_wireframe = false;
-
-        objectHighlight.m_model->UpdateEffects([&](IEffect* effect)
-            {
-                auto fog = dynamic_cast<IEffectFog*>(effect);
-
-                if (fog)
-                {
-
-                    fog->SetFogEnabled(false);
-
-                }
-
-            });
-
-
-    }
         m_rebuildDisplaylist = true;
     
     
@@ -538,25 +511,6 @@ int Game::MousePicking()
     
 }
 
-//void Game::CopyObject(int selectedObject)
-//{
-//
-//    
-//    if (selectedObject != -1)
-//    {
-//        CopiedObj = m_displayList[selectedObject];//selectedID;
-//    }
-//
-//}
-//
-//void Game::PasteObj()
-//{
-//
-//    CopiedObj.m_position.x += 2;
-//
-//    m_displayList.push_back(CopiedObj);
-//
-//}
 
 void Game::PickTest(std::vector<SceneObject>    m_sceneGraph)
 {
@@ -864,16 +818,6 @@ void Game::TerrainHighlight()
 
 }
 
-void Game::TerrainStart()
-{
-    for (int i = 0; i < 128; i++)
-    {
-        for (int j = 0; j < 128; j++)
-        {
-            m_OldY[i][j] = m_displayChunk.m_terrainGeometry[i][j].position.y;
-        }
-    }
-}
 
 void Game::TerrainEditing()
 {
@@ -889,13 +833,7 @@ void Game::TerrainEditing()
     //get the line cast from the mouse
     const XMVECTOR lineCast = XMVector3Normalize(farPoint - nearPoint);
 
-    // float closestTerrainDist = FLT_MAX;
-    // Vector3 closestTerrainIntersection = Vector3(FLT_MAX);
-    // 
-    // 
-
-
-     //loop through quads to check for line intersection
+    
     for (size_t i = 0; i < TERRAINRESOLUTION - 1; i++)
     {
 
@@ -983,50 +921,7 @@ void Game::TerrainEditing()
 
 }
 
-void Game::TerrainEnd()
-{
 
-
-    std::vector<float> oldYpoints;
-    std::vector<float> newYpoints;
-
-    for (int i = 0; i < m_points.size(); i++)
-    {
-
-
-        newYpoints.push_back(m_displayChunk.m_terrainGeometry[m_points[i].first][m_points[i].second].position.y);
-        oldYpoints.push_back(m_OldY[m_points[i].first][m_points[i].second]);
-
-
-    }
-
-    
-
-
-}
-
-void Game::DragObj(int ID)
-{
-    if (ID == -1)
-    
-        return;
-
-    const XMVECTOR nearSource = XMVectorSet(m_InputCommands.mouse_X, m_InputCommands.mouse_Y, 0.0f, 1.0f);
-    const XMVECTOR farSource = XMVectorSet(m_InputCommands.mouse_X, m_InputCommands.mouse_Y, 1.0f, 1.0f);
-
-    XMVECTOR nearPoint = XMVector3Unproject(nearSource, 0.0f, 0.0f, m_ScreenDimensions.right, m_ScreenDimensions.bottom, m_deviceResources->GetScreenViewport().MinDepth, m_deviceResources->GetScreenViewport().MaxDepth, m_projection, m_camera.m_view, m_world);
-    XMVECTOR farPoint = XMVector3Unproject(farSource, 0.0f, 0.0f, m_ScreenDimensions.right, m_ScreenDimensions.bottom, m_deviceResources->GetScreenViewport().MinDepth, m_deviceResources->GetScreenViewport().MaxDepth, m_projection, m_camera.m_view, m_world);
-    
-    XMVECTOR mouseCast = farPoint - nearPoint;
-    mouseCast = XMVector3Normalize(mouseCast);
-
-    //place object set distance from cursor
-    Vector3 newPos = m_displayList[ID].m_position = nearPoint + mouseCast * 15;//DistanceToSelected;
-       // = m_displayList[ID].m_position 
-    m_displayList[ID].m_position = newPos;
-
-
-}
 #pragma region Direct3D Resources
 // These are the resources that depend on the device.
 void Game::CreateDeviceDependentResources()

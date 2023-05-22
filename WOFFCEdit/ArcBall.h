@@ -10,14 +10,13 @@ using namespace SimpleMath;
 class ArcBall
 {
 public:
-	float ArcBallSpeed;
+	
 	float RotateRate;
 	float radiusArcBall;
-	DirectX::SimpleMath::Vector3 ArcBallPosition;
+	
 	DirectX::SimpleMath::Vector3 ArcBallCamOrientation;
 	DirectX::SimpleMath::Vector3 ArcBallLookAt;
 	DirectX::SimpleMath::Vector3 ArcBallLookDirection;
-	DirectX::SimpleMath::Vector3 ArcBallRight;
 	DirectX::SimpleMath::Matrix  ArcBallView;
 
 
@@ -37,7 +36,7 @@ public:
 	~ArcBall();
 
 	void Update(InputCommands* m_Inputcommands, DX::StepTimer const& t);
-	void ArcLerp(DX::StepTimer const& t);
+	
 	void Inititalize(float width, float height);
 	DirectX::SimpleMath::Vector3 ArcBallFrom;
 	DirectX::SimpleMath::Vector3 ArcBallTowards;
@@ -56,6 +55,5 @@ public:
 private:
 	float arcBallWidth;
 	float arcBallHeight;
-	float ArcLerpRemaining;
-	float ArcBallLerp;
+	
 };
