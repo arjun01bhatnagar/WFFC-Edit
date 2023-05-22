@@ -1,75 +1,4 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Win32SimpleSample.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  ArcBall.cpp
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ArcBall.cpp(7,21): warning C4305: '=': truncation from 'double' to 'float'
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ArcBall.cpp(64,12): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ArcBall.cpp(65,12): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ArcBall.cpp(98,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ArcBall.cpp(99,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ArcBall.cpp(100,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ArcBall.cpp(111,41): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-  Camera.cpp
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.cpp(9,20): warning C4305: '=': truncation from 'double' to 'float'
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.cpp(18,27): warning C4305: '=': truncation from 'double' to 'float'
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.cpp(74,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.cpp(75,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.cpp(113,64): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.cpp(114,28): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.cpp(115,64): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Camera.cpp(196,38): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-  DisplayChunk.cpp
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\DisplayChunk.cpp(14,50): warning C4305: '=': truncation from 'double' to 'float'
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\DisplayChunk.cpp(15,49): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\DisplayChunk.cpp(97,185): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\DisplayChunk.cpp(97,81): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\DisplayChunk.cpp(117,10): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\DisplayChunk.cpp(194,10): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\DisplayChunk.cpp(232,68): warning C4244: '=': conversion from 'float' to 'BYTE', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\DisplayChunk.cpp(239,30): warning C4101: 'index4': unreferenced local variable
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\DisplayChunk.cpp(239,14): warning C4101: 'index2': unreferenced local variable
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\DisplayChunk.cpp(239,22): warning C4101: 'index3': unreferenced local variable
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\DisplayChunk.cpp(239,6): warning C4101: 'index1': unreferenced local variable
-  Game.cpp
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(68,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(68,25): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(69,34): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(69,27): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(221,57): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(220,57): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(219,97): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(262,13): warning C4101: 'Buffer': unreferenced local variable
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(460,23): warning C4018: '<': signed/unsigned mismatch
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(469,55): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(468,55): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(467,104): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(475,117): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(475,91): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(476,115): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(476,89): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(483,27): warning C4018: '<': signed/unsigned mismatch
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(800,119): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(800,93): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(801,117): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(801,91): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(886,119): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(886,93): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(887,117): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(887,91): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(993,23): warning C4018: '<': signed/unsigned mismatch
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(1017,113): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(1017,87): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(1018,111): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Game.cpp(1018,85): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-  MFCFrame.cpp
-  _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
-  MFCMain.cpp
-  _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
-  Main.cpp
-  _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
-  ObjectManip.cpp
-  _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ObjectManip.cpp(97,38): warning C4305: 'argument': truncation from 'double' to 'float'
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ObjectManip.cpp(98,38): warning C4305: 'argument': truncation from 'double' to 'float'
-E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ObjectManip.cpp(99,38): warning C4305: 'argument': truncation from 'double' to 'float'
   ToolMain.cpp
   _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
 E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(106,46): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
@@ -106,5 +35,4 @@ E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(463,52): warning C4806: '==': u
 E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(574,21): warning C4018: '<': signed/unsigned mismatch
 E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(635,20): warning C4018: '<': signed/unsigned mismatch
 E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\ToolMain.cpp(685,21): warning C4018: '<': signed/unsigned mismatch
-  Generating Code...
   Win32SimpleSample.vcxproj -> E:\CMP405 Tools\WFFC-Edit\WOFFCEdit\Debug\WoFEdit.exe
