@@ -205,21 +205,7 @@ void DisplayChunk::SaveHeightMap()
 	
 }
 
-//void DisplayChunk::UpdateTerrain()
-//{
-//	//all this is doing is transferring the height from the heigtmap into the terrain geometry.
-//	int index;
-//	for (size_t i = 0; i < TERRAINRESOLUTION; i++)
-//	{
-//		for (size_t j = 0; j < TERRAINRESOLUTION; j++)
-//		{
-//			index = (TERRAINRESOLUTION * i) + j;
-//			m_terrainGeometry[i][j].position.y = (float)(m_heightMap[index])*m_terrainHeightScale;	
-//		}
-//	}
-//	CalculateTerrainNormals();
-//
-//}
+
 
 void DisplayChunk::GenerateHeightmap()
 {

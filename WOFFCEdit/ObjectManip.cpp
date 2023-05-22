@@ -142,33 +142,6 @@ void ObjectManip::OnEnd()
 }
 
 
-
-// SelectDialogue message handlers callback   - We only need this if the dailogue is being setup-with createDialogue().  We are doing
-//it manually so its better to use the messagemap
-/*INT_PTR CALLBACK SelectProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
-{
-	switch (uMsg)
-	{
-	case WM_COMMAND:
-		switch (LOWORD(wParam))
-		{
-		case IDOK:
-		//	EndDialog(hwndDlg, wParam);
-			DestroyWindow(hwndDlg);
-			return TRUE;
-
-
-		case IDCANCEL:
-			EndDialog(hwndDlg, wParam);
-			return TRUE;
-			break;
-		}
-	}
-
-	return INT_PTR();
-}*/
-
-
 void ObjectManip::OnBnClickedOk()
 {
 	// TODO: Add your control notification handler code here
