@@ -11,9 +11,7 @@ BEGIN_MESSAGE_MAP(ObjectManip, CDialogEx)
 	ON_BN_CLICKED(IDOK, &ObjectManip::OnBnClickedOk)
 	ON_LBN_SELCHANGE(IDC_LIST1, &ObjectManip::Select)	//listbox
 	ON_BN_CLICKED(IDR_EXIT1, &ObjectManip::OnEnd)
-	//ON_BN_CLICKED(IDOK,&ObjectManip::OnEnd)
-
-	//ON_EN_CHANGE(IDC_EDIT4, &ObjectManip::OnEnChangeEdit4)
+	
 END_MESSAGE_MAP()
 
 
@@ -76,7 +74,7 @@ void ObjectManip::SetObjectData(std::vector<SceneObject>* SceneGraph, int* selec
 	}
 }
 
-
+//Function change the data input from the user
 void ObjectManip::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
@@ -99,22 +97,20 @@ void ObjectManip::DoDataExchange(CDataExchange* pDX)
 	DDV_MinMaxFloat(pDX, ScaleZ, 0.1, 10);
 
 
-	//DDX_Control(pDX, IDC_LIST1, m_listBox);
+	
 }
 
 void ObjectManip::End()
 {
-	DestroyWindow();	//destory the window properly.  INcluding the links and pointers created.  THis is so the dialogue can start again. 
+	DestroyWindow();	
 }
 
 void ObjectManip::Select()
 {
-	//int index = m_listBox.GetCurSel();
+	
 	CString currentSelectionValue;
 
-	//m_listBox.GetText(index, currentSelectionValue);
-
-	//*m_currentSelection = index;//_ttoi(currentSelectionValue);
+	
 
 }
 

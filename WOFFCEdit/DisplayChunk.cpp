@@ -50,7 +50,8 @@ void DisplayChunk::RenderBatch(std::shared_ptr<DX::DeviceResources>  DevResource
 	context->IASetInputLayout(m_terrainInputLayout.Get());
 
 	m_batch->Begin();
-	for (size_t i = 0; i < TERRAINRESOLUTION-1; i++)	//looping through QUADS.  so we subtrack one from the terrain array or it will try to draw a quad starting with the last vertex in each row. Which wont work
+	size_t i = 0;
+	while (i < TERRAINRESOLUTION - 1)	//looping through QUADS.  so we subtrack one from the terrain array or it will try to draw a quad starting with the last vertex in each row. Which wont work
 	{
 		for (size_t j = 0; j < TERRAINRESOLUTION - 1; j++)//same as above
 		{
@@ -61,22 +62,31 @@ void DisplayChunk::RenderBatch(std::shared_ptr<DX::DeviceResources>  DevResource
 				m_batch->DrawQuad(m_terrainGeometry[i][j], m_terrainGeometry[i][j + 1], m_terrainGeometry[i + 1][j + 1], m_terrainGeometry[i + 1][j]); //bottom left bottom right, top right top left.
 			
 		}
+
+		i++;
 	}
 	m_batch->End();
 
 	m_EffectHighlight->Apply(context);
 	m_batch->Begin();
-	for (size_t i = 0; i < TERRAINRESOLUTION - 1; i++)	//looping through QUADS.  so we subtrack one from the terrain array or it will try to draw a quad starting with the last vertex in each row. Which wont work
+
+
+	//Iterating through the Quads and subtracting one from the terrain array
+	//
+	size_t m=0;
+	while( m < TERRAINRESOLUTION - 1)	
 	{
-		for (size_t j = 0; j < TERRAINRESOLUTION - 1; j++)//same as above
+		for (size_t j = 0; j < TERRAINRESOLUTION - 1; j++)
 		{
-			if (!m_Highlighted[i][j] || !m_Highlighted[i][j + 1] || !m_Highlighted[i + 1][j + 1] || !m_Highlighted[i + 1][j])
+			if (!m_Highlighted[m][j] || !m_Highlighted[m][j + 1] || !m_Highlighted[m + 1][j + 1] || !m_Highlighted[m + 1][j])
 
 				continue;
 
-				m_batch->DrawQuad(m_terrainGeometry[i][j], m_terrainGeometry[i][j + 1], m_terrainGeometry[i + 1][j + 1], m_terrainGeometry[i + 1][j]); //bottom left bottom right, top right top left.
+				m_batch->DrawQuad(m_terrainGeometry[m][j], m_terrainGeometry[m][j + 1], m_terrainGeometry[m + 1][j + 1], m_terrainGeometry[m + 1][j]); //bottom left bottom right, top right top left.
 			
 		}
+
+		m++;
 	}
 	m_batch->End();
 
@@ -143,6 +153,8 @@ void DisplayChunk::LoadHeightMap(std::shared_ptr<DX::DeviceResources>  DevResour
 	m_terrainEffect->SetTextureEnabled(true);
 	m_terrainEffect->SetTexture(m_texture_diffuse);
 
+
+	//Setting colour for highlighting ring for terrain
 	m_EffectHighlight = std::make_unique<BasicEffect>(device);
 	m_EffectHighlight->EnableDefaultLighting();
 	m_EffectHighlight->SetLightingEnabled(true);
@@ -150,7 +162,7 @@ void DisplayChunk::LoadHeightMap(std::shared_ptr<DX::DeviceResources>  DevResour
 	m_EffectHighlight->SetTexture(m_texture_diffuse);
 	m_EffectHighlight->SetFogStart(0.0f);
 	m_EffectHighlight->SetFogEnd(0.0f);
-	m_EffectHighlight->SetFogColor(Colors::IndianRed);
+	m_EffectHighlight->SetFogColor(Colors::Aquamarine);
 	m_EffectHighlight->SetFogEnabled(true);
 
 
@@ -172,20 +184,20 @@ void DisplayChunk::LoadHeightMap(std::shared_ptr<DX::DeviceResources>  DevResour
 	m_batch = std::make_unique<PrimitiveBatch<VertexPositionNormalTexture>>(devicecontext);
 
 
-	for (size_t i = 0; i < TERRAINRESOLUTION; i++)
+	size_t i = 0;
+	while(i < TERRAINRESOLUTION)
 	{
 		for (size_t j = 0; j < TERRAINRESOLUTION; j++)
 			m_Highlighted[i][j] = false;
+
+		i++;
 	}
 	
 }
 
 void DisplayChunk::SaveHeightMap()
 {
-/*	for (size_t i = 0; i < TERRAINRESOLUTION*TERRAINRESOLUTION; i++)
-	{
-		m_heightMap[i] = 0;
-	}*/
+
 
 	GenerateHeightmap();
 	FILE *pFile = NULL;
@@ -226,8 +238,8 @@ void DisplayChunk::CalculateTerrainNormals()
 	DirectX::SimpleMath::Vector3 upDownVector, leftRightVector, normalVector;
 
 
-
-	for (int i = 0; i<(TERRAINRESOLUTION - 1); i++)
+	int i = 0;
+	while(i<TERRAINRESOLUTION - 1)
 	{
 		for (int j = 0; j<(TERRAINRESOLUTION - 1); j++)
 		{
@@ -245,6 +257,7 @@ void DisplayChunk::CalculateTerrainNormals()
 
 			m_terrainGeometry[i][j].normal = normalVector;	//set the normal for this point based on our result
 		}
+		i++;
 	}
 }
 

@@ -1,6 +1,6 @@
 #pragma once
 
-
+//Enum for defining states
 enum ToolState
 {
 	Down,
@@ -11,6 +11,8 @@ enum ToolState
 
 struct InputCommands
 {
+	//Controls for camera movement
+
 	bool forward;
 	bool back;
 	bool right;
@@ -22,7 +24,8 @@ struct InputCommands
 	bool moveUp;
 	bool moveDown;
 
-	bool mouseButtonUp;
+	
+	//Controls for camera rotation
 
 	float mouse_X;
 	float mouse_Y;
@@ -30,9 +33,15 @@ struct InputCommands
 	float mouse_X_prev;
 	float mouse_Y_prev;
 
+	bool isDragging;
+
+	//Mouse button bools
+
 	bool mouse_LB_Down;
 	bool mouse_RB_Down;
 
+
+	//Misc Bools for input from keyboard and focusing
 	bool FocusCam;
 
 	bool RButton;
@@ -43,22 +52,17 @@ struct InputCommands
 
 	bool NButton;
 
+
+	//Bools for copy and paste
 	bool CopyDown;
 	bool PasteDown;
-	bool canScroll;
-
 	
-
-	int testingScroll;
 
 	bool ifOK;
 
-	bool isDragging;
-	
 
-	bool dragObj;
-	bool dragObjEnd;
 
+	//Bools for terrain editing
 	bool TerrainEnd;
 
 	int DirTerrain;

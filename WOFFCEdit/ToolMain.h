@@ -6,7 +6,7 @@
 #include "sqlite3.h"
 #include "SceneObject.h"
 #include "InputCommands.h"
-#include "CopyPaste.h"
+
 #include <vector>
 
 
@@ -19,8 +19,10 @@ public: //methods
 	//onAction - These are the interface to MFC
 	int		getCurrentSelectionID();										//returns the selection number of currently selected object so that It can be displayed.
 	void	onActionInitialise(HWND handle, int width, int height);			//Passes through handle and hieght and width and initialises DirectX renderer and SQL LITE
-	//void	onActionFocusCamera();
-	void	onActionLoad();													//load the current chunk
+	
+	void	onActionLoad();		
+	
+	//Functions to be called in mfc main for toolbar                        //load the current chunk
 	afx_msg	void	onActionSave();											//save the current chunk
 	afx_msg void	onActionSaveTerrain();									//save chunk geometry
 	afx_msg void    onActionWireframe();
@@ -41,14 +43,7 @@ public: //methods
 	void Paste();
 	
 
-	//std::vector<std::vector<SceneObject>> m_scene_objects_memory;
-	std::vector<SceneObject> m_scene_objects;
-	DirectX::SimpleMath::Vector3 m_OriginalPosition = DirectX::SimpleMath::Vector3(0, 0, 0);
-	//Game GameObject;
-	
-	//CopyPaste m_CopyPaste{ this };
-
-
+	//Int for changing the camera type from 1 to 2
 	int CamTypetool;
 
 	void SetCameraTypeTool(int cam)
@@ -61,46 +56,24 @@ public: //methods
 		m_d3dRenderer.BuildDisplayList(&m_sceneGraph);
 	};
 
-	/*void StoreBackup();
-
-	void Undo();
-	void Redo();
-
-	void Instantiate();
-	void RemoveObject();
-	void DuplicateObject();*/
+	
 
 public:	//variables
+
+
 	std::vector<SceneObject>    m_sceneGraph;	//our scenegraph storing all the objects in the current chunk
 	ChunkObject					m_chunk;		//our landscape chunk
 	int m_selectedObject = -1;						//ID of current Selection
-	
-
-	std::vector <std::vector <SceneObject>> m_sceneObjectMem;
-
-	std::vector<int>  PositionDiffX;
-	std::vector<int>  PositionDiffY;
-
-	
 
 	InputCommands m_toolInputCommands;		//input commands that we want to use and possibly pass over to the renderer
 
-	DirectX::XMFLOAT2 GetBrushData();
-	/*void ToggleTerrainEdit()
-	{
-		m_d3dRenderer.m_TerrainEditModeActive = !m_d3dRenderer.m_TerrainEditModeActive;
-	};*/
 
-	void GetTerrainEditMode()
-	{
-
-	}
 
 	
 
 
 private:	//methods
-	void	onContentAdded();
+	
 
 
 		

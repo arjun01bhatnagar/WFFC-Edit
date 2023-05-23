@@ -4,11 +4,11 @@ using namespace DirectX::SimpleMath;
 
 ArcBall::ArcBall()
 {
-	/*ArcBallSpeed = 0.30;*/
+	//Functional
 	RotateRate = 10;
 
 	
-
+	//ArcBall variables
 	ArcBallCamOrientation.x = 0;
 	ArcBallCamOrientation.y = 0;
 	ArcBallCamOrientation.z = 0;
@@ -23,8 +23,7 @@ ArcBall::ArcBall()
 
 
 
-	//ArcBall
-
+	
 
 }
 
@@ -46,6 +45,8 @@ void ArcBall::Update(InputCommands* m_InputCommands,DX::StepTimer const& t)
 
 
 
+	//Inputs to rotate the camera around the object using the mouse and keyboard
+
 	if (m_InputCommands->RButton && m_InputCommands->isDragging)
 	{
 		float x = m_InputCommands->mouse_X - m_InputCommands->mouse_X_prev;
@@ -63,7 +64,7 @@ void ArcBall::Update(InputCommands* m_InputCommands,DX::StepTimer const& t)
 
 		else if (x < 0)
 		{
-			ArcBallCamOrientation.y -= RotateRate * (-1) * dx;// *(-1);
+			ArcBallCamOrientation.y -= RotateRate * (-1) * dx;
 		}
 
 		if (y > 0)
@@ -73,7 +74,7 @@ void ArcBall::Update(InputCommands* m_InputCommands,DX::StepTimer const& t)
 
 		else if (y < 0)
 		{
-			ArcBallCamOrientation.x += RotateRate * (-1) * dy;// * (-1);
+			ArcBallCamOrientation.x += RotateRate * (-1) * dy;
 		}
 
 		if (ArcBallCamOrientation.x >= 90.f)
@@ -93,11 +94,12 @@ void ArcBall::Update(InputCommands* m_InputCommands,DX::StepTimer const& t)
 
 
 	ArcBallView = Matrix::CreateLookAt(ArcBallLookDirection, ArcBallTowards, Vector3::UnitY);
-	//ArcBallView = Matrix::CreateLookAt(ArcBallLookDirection, ArcBallLookAt, Vector3::UnitY);
+	
 
 }
 
 
+//Function to set the position of the camera near the object to focus on the object
 void ArcBall::SetPosition(Vector3 pos)
 {
 	

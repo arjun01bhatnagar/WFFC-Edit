@@ -65,6 +65,8 @@ void Game::Initialize(HWND window, int width, int height)
     m_deviceResources->CreateWindowSizeDependentResources();
     CreateWindowSizeDependentResources();
 
+
+    //Initializing the arcball and camera initialise functions
     m_camera.Initialize(width, height);
     m_ArcBall.Inititalize(width, height);
 
@@ -126,6 +128,8 @@ void Game::Tick(InputCommands *Input)
 void Game::Update(DX::StepTimer const& timer)
 {
 	
+
+    //Conditions to switch between normal and arcball camera
     if (CamType == 1)
     {
         camView = m_camera.GetViewMatrix();
@@ -136,8 +140,10 @@ void Game::Update(DX::StepTimer const& timer)
         camView = m_ArcBall.GetViewMatrix();
         m_ArcBall.Update(&m_InputCommands,timer);
     }
-   // m_camera.FocusCam();
+  
 
+
+    //calling the terrainHighlight function when the button is pressed
     if (m_InputCommands.terrain == true)
     {
         TerrainHighlight();
@@ -258,6 +264,8 @@ void Game::Render()
 	m_displayChunk.RenderBatch(m_deviceResources);
 
     //CAMERA POSITION ON HUD
+
+    //HUD to display the cursor and caera's position in the scene
     m_sprites->Begin();
     WCHAR   Buffer[256];
     std::wstring var = L"Cursor X: " + std::to_wstring(m_InputCommands.mouse_X) + L" Cursor Y: " + std::to_wstring(m_InputCommands.mouse_Y);
@@ -441,7 +449,7 @@ void Game::AddToList(SceneObject scene)
 
 
 
-int Game::MousePicking()
+int Game::MousePicking() //Mouse pikcking function from the lab
 {
    // int select = -1;
     //PreviousSelected = selectedID;
@@ -502,11 +510,7 @@ int Game::MousePicking()
     }
 
         m_rebuildDisplaylist = true;
-    
-    
-    //selectedID = select;
-    
-    //if we got a hit.  return it.  
+
     return selectedID - 1;
     
 }
@@ -611,12 +615,12 @@ void Game::BuildDisplayList(std::vector<SceneObject> * SceneGraph)
 
         //SelectedID colour change
 
-        if (SceneGraph->at(i).ID == selectedID) //.back())
+        if (SceneGraph->at(i).ID == selectedID) 
         {
             
             DisplayObject objectHighlight = newDisplayObject;
 
-            //objectHighlight.m_ID = -1;
+            
             objectHighlight.m_wireframe = true;
 
             objectHighlight.m_model->UpdateEffects([&](IEffect* effect)
@@ -643,7 +647,7 @@ void Game::BuildDisplayList(std::vector<SceneObject> * SceneGraph)
 
                 DisplayObject objectHighlight = newDisplayObject;
 
-                //objectHighlight.m_ID = -1;
+                
                 objectHighlight.m_wireframe = false;
 
                 objectHighlight.m_model->UpdateEffects([&](IEffect* effect)
@@ -659,7 +663,7 @@ void Game::BuildDisplayList(std::vector<SceneObject> * SceneGraph)
 
                     });
 
-           // }
+          
 
 
 
@@ -673,19 +677,16 @@ void Game::BuildDisplayList(std::vector<SceneObject> * SceneGraph)
 		
 }
 
-//DisplayChunk* Game::GetTerrain()
-//{
-//    return &m_displayChunk;
-//}
+
 
 void Game::BuildDisplayChunk(ChunkObject * SceneChunk)
 {
 	//populate our local DISPLAYCHUNK with all the chunk info we need from the object stored in toolmain
 	//which, to be honest, is almost all of it. Its mostly rendering related info so...
-	m_displayChunk.PopulateChunkData(SceneChunk);		//migrate chunk data
+	m_displayChunk.PopulateChunkData(SceneChunk);		
 	m_displayChunk.LoadHeightMap(m_deviceResources);
-	m_displayChunk.m_terrainEffect->SetProjection(m_projection);
-    m_displayChunk.m_EffectHighlight->SetProjection(m_projection);
+	m_displayChunk.m_terrainEffect->SetProjection(m_projection); //effect for terrain
+    m_displayChunk.m_EffectHighlight->SetProjection(m_projection); //effect for higlighting
 	m_displayChunk.InitialiseBatch();
 }
 
@@ -705,17 +706,21 @@ void Game::Info(SceneObject* scene, int i)
 void Game::FocusArcBall()
 {
 
-
+    //Function to focus the arcball camera on the object
+    
     CamType = 2;
-    float RadiusOffSet = 5;
+   
+
     Vector3 SelectedObjectPosition = m_displayList[selectedID - 1].m_position;
 
 
-   // m_ArcBall.ArcBallPosition = Vector3(m_displayList[selectedID].m_position);
-    m_ArcBall.SetTarget(SelectedObjectPosition);
+
+    //Target and camera position is set using these functions
+
+    m_ArcBall.SetTarget(SelectedObjectPosition); 
 
     
-    m_ArcBall.SetPosition(SelectedObjectPosition);//Vector3(m_ArcBall.ArcBallPosition.x, m_ArcBall.ArcBallPosition.y, m_ArcBall.ArcBallPosition.z));
+    m_ArcBall.SetPosition(SelectedObjectPosition);
 
 }
 #ifdef DXTK_AUDIO
@@ -735,14 +740,21 @@ void Game::NewAudioDevice()
 #pragma endregion
 void Game::TerrainHighlight()
 {
-    for (int i = 0; i < 128; i++)
+
+    int i = 0;
+    while( i < 128)
     {
-        for (int j = 0; j < 128; j++)
+        int j = 0;
+        while( j < 128)
         {
 
             m_displayChunk.m_Highlighted[i][j] = false;
 
+            j++;
+
         }
+
+        i++;
     }
 
     Vector3 IntersectPoint;
@@ -758,7 +770,9 @@ void Game::TerrainHighlight()
     const XMVECTOR lineCast = XMVector3Normalize(farPoint - nearPoint);
 
     //loop through quads to check for line intersection
-    for (size_t i = 0; i < TERRAINRESOLUTION - 1; i++)
+
+    size_t l = 0;
+    while(l < TERRAINRESOLUTION )
     {
 
         if (intersection)
@@ -766,10 +780,10 @@ void Game::TerrainHighlight()
 
         for (size_t j = 0; j < TERRAINRESOLUTION - 1; j++)
         {
-            XMVECTOR v1 = XMLoadFloat3(&m_displayChunk.m_terrainGeometry[i][j].position);
-            XMVECTOR v2 = XMLoadFloat3(&m_displayChunk.m_terrainGeometry[i][j + 1].position);
-            XMVECTOR v3 = XMLoadFloat3(&m_displayChunk.m_terrainGeometry[i + 1][j + 1].position);
-            XMVECTOR v4 = XMLoadFloat3(&m_displayChunk.m_terrainGeometry[i + 1][j].position);
+            XMVECTOR v1 = XMLoadFloat3(&m_displayChunk.m_terrainGeometry[l][j].position);
+            XMVECTOR v2 = XMLoadFloat3(&m_displayChunk.m_terrainGeometry[l][j + 1].position);
+            XMVECTOR v3 = XMLoadFloat3(&m_displayChunk.m_terrainGeometry[l + 1][j + 1].position);
+            XMVECTOR v4 = XMLoadFloat3(&m_displayChunk.m_terrainGeometry[l + 1][j].position);
 
             //get plane from vertices
             XMVECTOR normal = XMVector3Normalize(XMVector3Cross(v2 - v1, v3 - v1));
@@ -796,23 +810,30 @@ void Game::TerrainHighlight()
             }
 
         }
+        l++;
+
+
     }
 
     if (!intersection)
         return;
 
-    for (int i = 0; i < 128; i++)
+
+    int m = 0;
+    while(m < 128)
     {
         for (int j = 0; j < 128; j++)
         {
-            const float distance = Vector3::Distance(Vector3(IntersectPoint.x, 0, IntersectPoint.z), Vector3(m_displayChunk.m_terrainGeometry[i][j].position.x, 0, m_displayChunk.m_terrainGeometry[i][j].position.z));
+            const float distance = Vector3::Distance(Vector3(IntersectPoint.x, 0, IntersectPoint.z), Vector3(m_displayChunk.m_terrainGeometry[m][j].position.x, 0, m_displayChunk.m_terrainGeometry[m][j].position.z));
             
 
             if (distance<outerRadius && distance>innerRadius)
             {
-                m_displayChunk.m_Highlighted[i][j] = true;
+                m_displayChunk.m_Highlighted[m][j] = true;
             }
         }
+
+        m++;
     }
 
 
@@ -833,8 +854,8 @@ void Game::TerrainEditing()
     //get the line cast from the mouse
     const XMVECTOR lineCast = XMVector3Normalize(farPoint - nearPoint);
 
-    
-    for (size_t i = 0; i < TERRAINRESOLUTION - 1; i++)
+    size_t i = 0;
+    while( i < TERRAINRESOLUTION - 1)
     {
 
 
@@ -874,40 +895,42 @@ void Game::TerrainEditing()
             }
 
         }
+        i++;
     }
     if (!intersect)
         return;
 
-    //loop through vertices and check if they are within a certain radius of the intersection point
-    for (int i = 0; i < 128; i++)
+    
+    int m = 0;
+    while(m < 128)
     {
         for (int j = 0; j < 128; j++)
         {
-            //get distance between vertex and intersection point (ignoring y axis)
-            const float distance = Vector3::Distance(Vector3(IntersectPoint.x, 0, IntersectPoint.z), Vector3(m_displayChunk.m_terrainGeometry[i][j].position.x, 0, m_displayChunk.m_terrainGeometry[i][j].position.z));
-            if (distance < outerRadius) //10
+            
+            const float distance = Vector3::Distance(Vector3(IntersectPoint.x, 0, IntersectPoint.z), Vector3(m_displayChunk.m_terrainGeometry[m][j].position.x, 0, m_displayChunk.m_terrainGeometry[m][j].position.z));
+            if (distance < outerRadius) 
             {
                 if (distance < outerRadius)
                 {
                     if (distance < innerRadius)
-                        m_displayChunk.m_terrainGeometry[i][j].position.y += 0.25f * m_InputCommands.DirTerrain;
+                        m_displayChunk.m_terrainGeometry[m][j].position.y += 0.25f * m_InputCommands.DirTerrain;
                     else
-                        m_displayChunk.m_terrainGeometry[i][j].position.y += 0.25f * m_InputCommands.DirTerrain * (1 - ((distance - innerRadius) / 10.f));
+                        m_displayChunk.m_terrainGeometry[m][j].position.y += 0.25f * m_InputCommands.DirTerrain * (1 - ((distance - innerRadius) / 10.f));
 
-                    if (m_displayChunk.m_terrainGeometry[i][j].position.y < 0)
+                    if (m_displayChunk.m_terrainGeometry[m][j].position.y < 0)
 
-                        m_displayChunk.m_terrainGeometry[i][j].position.y = 0;
+                        m_displayChunk.m_terrainGeometry[m][j].position.y = 0;
 
-                    else if (m_displayChunk.m_terrainGeometry[i][j].position.y > 64)
+                    else if (m_displayChunk.m_terrainGeometry[m][j].position.y > 64)
 
-                        m_displayChunk.m_terrainGeometry[i][j].position.y = 64;
+                        m_displayChunk.m_terrainGeometry[m][j].position.y = 64;
 
 
-                    m_displayChunk.HighlightNormals(i, j);
+                    m_displayChunk.HighlightNormals(m, j);
                     std::pair<int, int> point;
 
 
-                    point.first = i;
+                    point.first = m;
                     point.second = j;
                     
                     m_points.push_back(point);
@@ -917,6 +940,7 @@ void Game::TerrainEditing()
                 }
             }
         }
+        m++;
     }
 
 }

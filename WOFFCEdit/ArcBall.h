@@ -47,9 +47,6 @@ public:
 	{
 		ArcBallLookAt = TargetPos;
 	}
-
-	
-
 	
 
 private:

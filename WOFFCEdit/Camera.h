@@ -4,17 +4,17 @@
 #include "StepTimer.h"
 #include <SimpleMath.h>
 
-//#define width;
-//#define height;
-
 class Camera
 {
 public: 
+
 	//functionality
 	float								m_movespeed;
 	float                               m_camRotRate;
 
 	//camera
+	//Variables for the components of the camera
+
 	DirectX::SimpleMath::Vector3		m_camPosition;
 	DirectX::SimpleMath::Vector3		m_camOrientation;
 	DirectX::SimpleMath::Vector3		m_camLookAt;
@@ -26,12 +26,12 @@ public:
 
 	InputCommands* m_InputCommands;
 
-	DirectX::SimpleMath::Vector3 GetOrientation()
+	DirectX::SimpleMath::Vector3 GetOrientation() //Getting the correct orientation of the camera
 	{
 		return m_camOrientation;
 	};
 
-	DirectX::SimpleMath::Matrix GetViewMatrix()
+	DirectX::SimpleMath::Matrix GetViewMatrix() //Getting the view matrix
 	{
 		return m_view;
 	};
@@ -39,35 +39,36 @@ public:
 	Camera();
 	~Camera();
 
-	//void SetCameraScreenSize(int &w, int &h);
+	
 
 
-	void FocusCam(DirectX::XMFLOAT3 position, DirectX::XMFLOAT3 scale);  // , InputCommands* m_InputCommands);
+	void FocusCam(DirectX::XMFLOAT3 position, DirectX::XMFLOAT3 scale);  //Definition of function to focus the camera on a selected object
 
-	//XMFLOAT3 Lerp(DirectX:: XMFLOAT3 start, DirectX:: XMFLOAT3 end, float t);
-	/*{
-		float x = start.x + (end.x - start.x) * t;
-		float y = start.y + (end.y - start.y) * t;
-		float z = start.z + (end.z - start.z) * t;
 
-		return XMFLOAT3(x, y, z);
-	}*/
-	void Lerp(DX::StepTimer const& t);
+	void Lerp(DX::StepTimer const& t); //Function for lerping the camera to the object
 
-	//void Focus(const Vector3 objectPosition, float objectRadius, const XMFLOAT3 cameraDirection, XMFLOAT3 cameraPosition, float lerpSpeed);
+	
 	void Update(InputCommands* m_InputCommands, DX::StepTimer const& t);
 	void Initialize(float width, float height);
+
+
+	//Vectors for gathering data about the position of 
+	//the camera and position of object to calculate distance between the two
+
 	DirectX::SimpleMath::Vector3 M_from;
 	DirectX::SimpleMath::Vector3 M_Towards;
-	bool FocusCamera;
+	
 	float CamSpeed = 1.5;
 
 private:
+
+	//Window
+	//Variables required for the focus
+	//and lerping functions
+
 	float m_width;
 	float m_height;
 	float LerpRemaining;
 	float lerp;
-	//
-
-	//std::vector<DisplayObject>			m_displayList;
+	
 };

@@ -11,7 +11,7 @@ BEGIN_MESSAGE_MAP(MFCMain, CWinApp)
 	ON_COMMAND(ID_BUTTON40003, &MFCMain::ToolBarButton3)
 	ON_COMMAND(ID_BUTTON40006, &MFCMain::ToolBarButton4)
 	ON_COMMAND(ID_BUTTON40007, &MFCMain::ToolBarButton5)
-	//ON_COMMAND(ID_BUTTON40008, &MFCMain::ToolBarButton6)
+	
 	ON_UPDATE_COMMAND_UI(ID_INDICATOR_TOOL, &CMyFrame::OnUpdatePage)
 END_MESSAGE_MAP()
 
@@ -20,14 +20,13 @@ BOOL MFCMain::InitInstance()
 	//instanciate the mfc frame
 	m_frame = new CMyFrame();
 	m_pMainWnd = m_frame;
+
 	RECT hDesktopsize;
-	// Get a handle to the desktop window
-	const HWND desktop = GetDesktopWindow();
-	// Get the size of screen to the variable desktop
-	GetWindowRect(desktop, &hDesktopsize);
-	// The top left corner will have coordinates (0,0)
-	// and the bottom right corner will have coordinates
-	// (horizontal, vertical)
+	
+	const HWND desktop = GetDesktopWindow(); //handle for the desktop window
+	
+	GetWindowRect(desktop, &hDesktopsize); // Size of the screen to the desktop
+	
 
 
 	m_frame->Create(	NULL,
@@ -52,7 +51,7 @@ BOOL MFCMain::InitInstance()
 	m_height	= WindowRECT.Height();
 
 	m_ToolSystem.onActionInitialise(m_toolHandle, m_width, m_height);
-	//cam.SetCameraScreenSize(m_width, m_height);
+	
 
 	return TRUE;
 }
@@ -123,12 +122,12 @@ void MFCMain::ToolBarButton1()
 	m_ToolSystem.onActionSave();
 }
 
-void MFCMain::ToolBarButton2()
+void MFCMain::ToolBarButton2() //Function to call the wirefram toggle function
 {
 	m_ToolSystem.onActionWireframe();
 }
 
-void MFCMain::ToolBarButton3()
+void MFCMain::ToolBarButton3() //Function to turn the arcball camera on and off
 {
 	if (m_ToolSystem.m_selectedObject > -1)
 	{
@@ -152,11 +151,9 @@ void MFCMain::ToolBarButton3()
 	}
 }
 
-void MFCMain::ToolBarButton4()
+void MFCMain::ToolBarButton4() //Function to create the object manipulation inspector
 {
-	//m_ToolSelectDialogue.Create(IDD_DIALOG2);	//Start up modeless
-	//m_ToolSelectDialogue.ShowWindow(SW_SHOW);	//show modeless
-	//m_ToolSelectDialogue.SetObjectData(&m_ToolSystem.m_sceneGraph, &m_ToolSystem.m_selectedObject);
+	
 	if (m_ToolSystem.m_selectedObject > -1)
 	{
 		m_ObjectManip.SetObjectData(&m_ToolSystem.m_sceneGraph, &m_ToolSystem.m_selectedObject, &m_ToolSystem.m_toolInputCommands);
@@ -170,17 +167,14 @@ void MFCMain::ToolBarButton4()
 	
 }
 
-void MFCMain::ToolBarButton5()
+void MFCMain::ToolBarButton5() //Function enable and disable terrain editing
 {
 
 	m_ToolSystem.onActionTerrain();
 
 }
 
-void MFCMain::ToolBarButton6()
-{
-	//m_ToolSystem.TerrainFlip();
-}
+
 
 MFCMain::MFCMain()
 {

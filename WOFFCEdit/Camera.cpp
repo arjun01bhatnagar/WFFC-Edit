@@ -30,14 +30,6 @@ Camera::Camera()
 	m_camRight.y = 0.0f;
 	m_camRight.z = 0.0f;
 
-	/*m_camOrientation.x = 0.0f;
-	m_camOrientation.y = 0.0f;
-	m_camOrientation.z = 0.0f;*/
-
-	
-	
-	
-
 }
 
 Camera::~Camera()
@@ -48,22 +40,29 @@ Camera::~Camera()
 
 void Camera::Initialize(float width, float height)
 {
-	m_width = width;
-	m_height = height;
-	
 
+	m_width = width; 
+	m_height = height;
 }
 
+
+//Updating the input commands
 void Camera::Update(InputCommands* m_InputCommands, DX::StepTimer const& t)
 {
 	Vector3 planarMotionVector = m_camLookDirection;
 	planarMotionVector.y = 0.0;
+
+	//the camera keeps lerping until
+	//the remaining lerp time is 0
+
 	if (LerpRemaining > 0)
 	{
 		Lerp(t);
 	}
 
 	
+	//Camera is rotated when the left mouse button is pressed and if the mouse is being dragged
+
 	if (m_InputCommands->mouse_LB_Down && m_InputCommands->isDragging)
 	{
 		
@@ -110,8 +109,10 @@ void Camera::Update(InputCommands* m_InputCommands, DX::StepTimer const& t)
 	}
 	
 
-	m_camLookDirection.x = cos(m_camOrientation.y * 3.1415 / 180) * cos(m_camOrientation.x * 3.1415 / 180); //sin((m_camOrientation.y) * 3.1415 / 180);
-	m_camLookDirection.y = sin(m_camOrientation.x * 3.1415 / 180);//cos((m_camOrientation.y) * 3.1415 / 180);
+	//calculations provided in the wiki to normalize the Look direction of the camera
+
+	m_camLookDirection.x = cos(m_camOrientation.y * 3.1415 / 180) * cos(m_camOrientation.x * 3.1415 / 180);
+	m_camLookDirection.y = sin(m_camOrientation.x * 3.1415 / 180);
 	m_camLookDirection.z = sin(m_camOrientation.y * 3.1415 / 180) * cos(m_camOrientation.x * 3.1415 / 180);
 
 	m_camLookDirection.Normalize();
@@ -150,6 +151,7 @@ void Camera::Update(InputCommands* m_InputCommands, DX::StepTimer const& t)
 		m_camPosition -= Vector3::UnitY * m_movespeed;
 	}
 	
+	//Conditions to increase the speed of the camera movement
 
 	if (m_InputCommands->forward && m_InputCommands->ShiftButton)
 	{
@@ -183,13 +185,14 @@ void Camera::Update(InputCommands* m_InputCommands, DX::StepTimer const& t)
 
 	//update lookat point
 	m_camLookAt = m_camPosition + m_camLookDirection;
-	//m_camPosition = m_camLookAt + m_camLookDirection;
+	
 
 	m_view = Matrix::CreateLookAt(m_camPosition, m_camLookAt, Vector3::UnitY);
 }
 
 
 
+//Lerp function
 void Camera::Lerp(DX::StepTimer const& t)
 {
 	
@@ -199,10 +202,10 @@ void Camera::Lerp(DX::StepTimer const& t)
 
 }
 
+
+//Focus Camera Function
 void Camera::FocusCam(XMFLOAT3 position,XMFLOAT3 scale)
 {
-
-	
 
 	LerpRemaining = 0.5;
 	lerp = 0.5;
@@ -210,9 +213,6 @@ void Camera::FocusCam(XMFLOAT3 position,XMFLOAT3 scale)
 	
 	M_Towards = position - (XMFLOAT3(2.5, -2, 0) * scale);
 	M_from = m_camPosition;
-	//FocusCamera = true;
-	
-
 
 }
 

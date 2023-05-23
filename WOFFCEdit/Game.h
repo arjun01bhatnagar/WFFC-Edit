@@ -47,7 +47,7 @@ public:
 	
 	void PickTest(std::vector<SceneObject>    m_sceneGraph);
 	int MousePicking();
-	//std::vector<unsigned int> selectedID;
+	
 	int selectedID;
 	std::vector<unsigned int> m_selectedID;
 
@@ -55,12 +55,12 @@ public:
 	//Dimensions
 
 	RECT m_ScreenDimensions;
-	//ToolMain* m_ToolMain;
+
 
 	Camera m_camera;
 	
 
-	//bool m_rebuildDisplaylist;
+	
 
 	bool wireframe;
 	
@@ -74,8 +74,7 @@ public:
 	void OnResuming();
 	void OnWindowSizeChanged(int width, int height);
 
-	void CopyObject(int selectedObj);
-	void PasteObj();
+	
 
 	//tool specific
 	void BuildDisplayList(std::vector<SceneObject>* SceneGraph); //note vector passed by reference 
@@ -91,7 +90,7 @@ public:
 	void TerrainEditing();
 	
 
-	//float m_OldY[TERRAINRESOLUTION][TERRAINRESOLUTION];
+	
 	std::vector<std::pair<int, int>> m_points;
 
 	DisplayObject CopiedObj;
@@ -147,10 +146,7 @@ private:
 	int PreviousSelected;
 
 	
-	//Camera M_Camera2;
-	//HWND window;
-
-	//bool m_rebuildDisplayList;
+	
 	
 	//control variables
 	bool m_grid;							//grid rendering on / off

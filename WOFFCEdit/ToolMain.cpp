@@ -42,7 +42,7 @@ ToolMain::~ToolMain()
 	sqlite3_close(m_databaseConnection);		//close the database connection
 }
 
-
+//Getter function to store the ID of the selected ID
 int ToolMain::getCurrentSelectionID()
 {
 
@@ -295,6 +295,7 @@ void ToolMain::onActionSaveTerrain()
 	m_d3dRenderer.SaveDisplayChunk(&m_chunk);
 }
 
+//Function call for arcball camera
 void ToolMain::onFocusArcBall()
 {
 
@@ -306,7 +307,7 @@ void ToolMain::onFocusArcBall()
 }
 
 
-
+//Function to toggle terrain editing mode on and off
 void ToolMain::onActionTerrain()
 {
 
@@ -332,7 +333,7 @@ void ToolMain::onActionTerrain()
 
 }
 
-
+//Function to toggle wireframe mode on and off
 void ToolMain::onActionWireframe()
 {
 	if (m_d3dRenderer.wireframe == false)
@@ -345,8 +346,12 @@ void ToolMain::onActionWireframe()
 		m_d3dRenderer.wireframe = false;
 	}
 }
+
 void ToolMain::Tick(MSG *msg)
 {
+
+	//Setting the camera type 
+
 	if (CamTypetool== 1)
 	{
 		m_d3dRenderer.CamType = 1;
@@ -356,6 +361,8 @@ void ToolMain::Tick(MSG *msg)
 		m_d3dRenderer.CamType = 2;
 	}
 
+
+	//Setting states for terrain editing
 	if (m_toolInputCommands.terrain == true)
 	{
 
@@ -386,19 +393,14 @@ void ToolMain::Tick(MSG *msg)
 		
 	}
 
-
+	//Mouse picking function call
 	if (m_toolInputCommands.mouse_RB_Down )
 	{
 		m_selectedObject = m_d3dRenderer.MousePicking();
-
-		
-		
 		m_toolInputCommands.mouse_RB_Down = false();
-
-		
 	}
 	
-
+	//OK button press update
 	if (m_toolInputCommands.ifOK)
 	{
 		m_d3dRenderer.Info(&m_sceneGraph.at(m_selectedObject),m_selectedObject);
@@ -410,7 +412,7 @@ void ToolMain::Tick(MSG *msg)
 	m_d3dRenderer.PickTest(m_sceneGraph);
 	
 	
-	m_toolInputCommands.testingScroll = 0;
+	
 	
 }
 
@@ -469,19 +471,10 @@ void ToolMain::UpdateInput(MSG * msg)
 	case WM_RBUTTONUP:
 		m_toolInputCommands.mouse_RB_Down = false;
 		m_toolInputCommands.isDragging = false;
-		if (m_toolInputCommands.dragObj)
-		{
-
-			m_toolInputCommands.dragObj = false;
-
-		}
+	
 		break;
 	case WM_MOUSEWHEEL:
-		if (m_toolInputCommands.canScroll)
-		{
-			m_toolInputCommands.testingScroll = GET_WHEEL_DELTA_WPARAM(msg->wParam);
-			m_toolInputCommands.canScroll = false;
-		}
+		
 		break;
 
 	case WM_MOUSELEAVE:
@@ -513,7 +506,7 @@ void ToolMain::UpdateInput(MSG * msg)
 		m_toolInputCommands.right = true;
 	}
 	else m_toolInputCommands.right = false;
-	//rotation
+	
 	if (m_keyArray['E'])
 	{
 		m_toolInputCommands.moveDown = true;
@@ -538,6 +531,8 @@ void ToolMain::UpdateInput(MSG * msg)
 	}
 	else m_toolInputCommands.ShiftButton = false;
 
+
+	//Controlling the inner and outer radius for the terrain editing highlighter
 	if (m_keyArray[VK_UP])
 	{
 		if (m_d3dRenderer.outerRadius < 45 && m_d3dRenderer.innerRadius<35)
@@ -559,7 +554,7 @@ void ToolMain::UpdateInput(MSG * msg)
 	}
 
 	
-
+	//Focus the camera on objects
 	if (m_keyArray[VK_CONTROL] && m_keyArray['F'])
 	{
 		m_toolInputCommands.FButton = true;
@@ -583,14 +578,14 @@ void ToolMain::UpdateInput(MSG * msg)
 	else m_toolInputCommands.FButton = false;
 
 
-
+	//Copy
 	if (m_keyArray[VK_CONTROL] && m_keyArray['C'])
 
 	{
 			Copy();	
 	}
 	
-
+	//Paste
 	if (m_keyArray[VK_CONTROL] && m_keyArray['V'])
 	{
 
@@ -607,6 +602,7 @@ void ToolMain::UpdateInput(MSG * msg)
 	else m_toolInputCommands.CopyDown = false;
 
 	
+	//Delete
 	if (m_keyArray[VK_CONTROL] && m_keyArray['X'])
 	{
 		Delete();
@@ -618,6 +614,7 @@ void ToolMain::UpdateInput(MSG * msg)
 	
 }
 
+//Paste function
 void ToolMain::Paste()
 {
 
@@ -627,8 +624,8 @@ void ToolMain::Paste()
 	int newID = 0;
 	int targetIndex = 0;
 	
-
-	for (int i = 0; i < m_sceneGraph.size(); i++)
+	int i = 0;
+	while( i < m_sceneGraph.size())
 	{
 		if (m_sceneGraph.at(i).ID == m_selectedObject)
 		{
@@ -636,6 +633,7 @@ void ToolMain::Paste()
 		}
 
 		newID = max(newID, m_sceneGraph[i].ID);
+		i++;
 	}
 	newObject = m_sceneGraph.at(targetIndex);
 
@@ -660,6 +658,7 @@ void ToolMain::Paste()
 
 }
 
+//Copy Function
 void ToolMain::Copy()
 {
 	m_toolInputCommands.CopyDown = false;
@@ -669,6 +668,7 @@ void ToolMain::Copy()
 	}
 }
 
+//Delete Function
 void ToolMain::Delete()
 {
 	if (m_selectedObject !=-1)

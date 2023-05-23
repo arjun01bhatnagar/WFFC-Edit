@@ -44,6 +44,8 @@ public:
 	afx_msg void OnEnd();
 	afx_msg void OnLbnSelchangeList1();
 
+
+	//Variables to get the value from control boxes
 	float PosX;
 	float PosY;
 	float PosZ;
